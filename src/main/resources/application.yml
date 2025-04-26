@@ -1,0 +1,6 @@
+server:
+  port: 8070
+
+  servlet:
+    encoding:
+      force-response: true
