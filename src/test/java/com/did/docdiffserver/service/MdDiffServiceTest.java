@@ -7,12 +7,8 @@ import org.junit.Test;
 public class MdDiffServiceTest {
 
 
-
-
     @Test
     public void  simpleTest() {
-
         log.info("test");
-
     }
 }
