@@ -14,8 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 允许所有路径
-                        .allowedOrigins("http://localhost:5174")
-//                        .allowedOrigins("*")
+//                        .allowedOrigins("http://localhost:5174")
                         .allowedOriginPatterns("*")
                         .allowCredentials(true)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许的方法
@@ -24,4 +23,15 @@ public class CorsConfig {
             }
         };
     }
+
+
+    /**
+     *
+     *     .allowedOriginPatterns("*") // 允许所有域名
+     *     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+     *     .allowedHeaders("*")
+     *     .allowCredentials(true)
+     *     .maxAge(3600);
+     *
+     */
 }
