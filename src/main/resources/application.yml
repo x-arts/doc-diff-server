@@ -4,3 +4,7 @@ server:
   servlet:
     encoding:
       force-response: true
+logging:
+  level:
+    root: info
+    org.springframework.web: trace
