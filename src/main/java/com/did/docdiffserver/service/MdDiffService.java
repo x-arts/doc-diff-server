@@ -17,7 +17,7 @@ public class MdDiffService {
 
     public String mdTextDiff(String oldText, String newText) {
         log.info("mdTextDiff: oldText={}, newText={}", oldText, newText);
-        return "mdTextDiff: oldText=" + oldText + ", newText=" + newText;
+        return generateUnifiedDiff(oldText, newText, "old.md", "new.md");
     }
 
 
