@@ -36,10 +36,18 @@ public class MdDiffService {
     }
 
     public String pandoc2md(String fileId) {
+        /*
+        pandoc input.docx -f docx -t markdown --atx-headers -o output.md
+        •	-f docx：输入格式是 docx
+        •	-t markdown：输出成 markdown
+        •	--atx-headers：强制使用 # 号风格的标题（ATX 样式）
+        •	-o output.md：输出的文件
+         */
+
         String docFilePath = uploadFilePath + fileId + ".docx";
         String targetPath = uploadFilePath + fileId + "-docx.md";
 
-        String cmd = "pandoc " + docFilePath + " -o " + targetPath;
+        String cmd = "pandoc " + docFilePath + " -f docx -t markdown  --atx-headers  -o " + targetPath;
         log.info("pandoc2md  cmd: {}", cmd);
         String str = RuntimeUtil.execForStr(cmd);
         log.info("pandoc2md  str: {}", str);
@@ -58,8 +66,8 @@ public class MdDiffService {
          * marker_single --input /path/to/input.pdf --output /path/to/output.md --batch-size 2
          */
         String pdfFilePath = uploadFilePath + fileId + ".pdf";
-        String targetPath = uploadFilePath + fileId + "-pdf.md";
-        String cmd = "marker_single --input " + pdfFilePath + " --output " + targetPath;
+        String targetPath = uploadFilePath + fileId +"/" + fileId + "-pdf.md";
+        String cmd = "marker_single  " + pdfFilePath + " --output_format markdown  --output_dir " + uploadFilePath;
         log.info("pdf2md  cmd: {}", cmd);
         String str = RuntimeUtil.execForStr(cmd);
         log.info("pdf2md  str: {}", str);
