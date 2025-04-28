@@ -9,4 +9,9 @@ public class MdTextDiffCondition {
 
     private String newText;
 
+
+    private String oldFileId;
+
+    private String newFileId;
+
 }

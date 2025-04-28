@@ -8,3 +8,13 @@ logging:
   level:
     root: info
     org.springframework.web: trace
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+
+local:
+  file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/
