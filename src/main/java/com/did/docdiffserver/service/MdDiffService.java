@@ -55,9 +55,8 @@ public class MdDiffService {
             FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
             channel.force(true);
 
-            String cmd = "pandoc " + docFilePath + "  -o " + targetPath;
-            log.info("pandoc2md  cmd: {}", cmd);
-//            String str = RuntimeUtil.execForStr(cmd);
+//            String cmd = "pandoc " + docFilePath + "  -o " + targetPath;
+//            log.info("pandoc2md  cmd: {}", cmd);
 
             ProcessBuilder pb = new ProcessBuilder(
                     "pandoc", docFilePath,"-o", targetPath
@@ -97,6 +96,28 @@ public class MdDiffService {
         String cmd = "marker_single  " + pdfFilePath + " --output_format markdown  --output_dir " + uploadFilePath;
         log.info("pdf2md  cmd: {}", cmd);
         String str = RuntimeUtil.execForStr(cmd);
+
+        try  {
+            ProcessBuilder pb = new ProcessBuilder(
+                    "marker_single", pdfFilePath,"--output_format","markdown","--output_dir", uploadFilePath
+            );
+            pb.redirectErrorStream(true);  // 合并错误输出
+            Process process = pb.start();
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line); // 打印pandoc输出
+            }
+
+            log.info("pandoc2md  str: {}", line);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
         log.info("pdf2md  str: {}", str);
         String content = "";
         try {
