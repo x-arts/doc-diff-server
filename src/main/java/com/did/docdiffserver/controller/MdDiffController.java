@@ -53,7 +53,7 @@ public class MdDiffController {
     }
 
 
-    @PostMapping("/mdTextDiff-upload")
+    @PostMapping("/upload")
     public ResponseEntity<BaseVo> uploadFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("文件不能为空！"));

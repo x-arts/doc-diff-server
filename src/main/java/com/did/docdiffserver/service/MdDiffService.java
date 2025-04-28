@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
-import java.io.StringWriter;
+import java.io.*;
+import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,17 +42,42 @@ public class MdDiffService {
         pandoc input.docx -f docx -t markdown --atx-headers -o output.md
         •	-f docx：输入格式是 docx
         •	-t markdown：输出成 markdown
-        •	--atx-headers：强制使用 # 号风格的标题（ATX 样式）
+        •	--markdown-headings=atx ：强制使用 # 号风格的标题（ATX 样式）
         •	-o output.md：输出的文件
+        -f docx -t markdown  --markdown-headings=atx
          */
 
         String docFilePath = uploadFilePath + fileId + ".docx";
         String targetPath = uploadFilePath + fileId + "-docx.md";
 
-        String cmd = "pandoc " + docFilePath + " -f docx -t markdown  --atx-headers  -o " + targetPath;
-        log.info("pandoc2md  cmd: {}", cmd);
-        String str = RuntimeUtil.execForStr(cmd);
-        log.info("pandoc2md  str: {}", str);
+
+        try  {
+            FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
+            channel.force(true);
+
+            String cmd = "pandoc " + docFilePath + "  -o " + targetPath;
+            log.info("pandoc2md  cmd: {}", cmd);
+//            String str = RuntimeUtil.execForStr(cmd);
+
+            ProcessBuilder pb = new ProcessBuilder(
+                    "pandoc", docFilePath,"-o", targetPath
+            );
+            pb.redirectErrorStream(true);  // 合并错误输出
+            Process process = pb.start();
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line); // 打印pandoc输出
+            }
+
+            log.info("pandoc2md  str: {}", line);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         String content = "";
         try {
             content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
