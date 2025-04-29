@@ -59,7 +59,13 @@ public class MdDiffService {
 //            log.info("pandoc2md  cmd: {}", cmd);
 
             ProcessBuilder pb = new ProcessBuilder(
-                    "pandoc", docFilePath,"-o", targetPath
+                    "pandoc",
+                    docFilePath,
+                    "-f", "docx",
+                    "-t", "markdown",
+                    "--markdown-headings=atx",
+                    "-o",
+                    targetPath
             );
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
@@ -92,14 +98,12 @@ public class MdDiffService {
          * marker_single --input /path/to/input.pdf --output /path/to/output.md --batch-size 2
          */
         String pdfFilePath = uploadFilePath + fileId + ".pdf";
-        String targetPath = uploadFilePath + fileId +"/" + fileId + "-pdf.md";
-        String cmd = "marker_single  " + pdfFilePath + " --output_format markdown  --output_dir " + uploadFilePath;
-        log.info("pdf2md  cmd: {}", cmd);
-        String str = RuntimeUtil.execForStr(cmd);
 
+        String outDir = uploadFilePath;
+        String content = "";
         try  {
             ProcessBuilder pb = new ProcessBuilder(
-                    "marker_single", pdfFilePath,"--output_format","markdown","--output_dir", uploadFilePath
+                    "marker_single", pdfFilePath,"--output_format","markdown","--output_dir", outDir
             );
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
@@ -107,24 +111,17 @@ public class MdDiffService {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line); // 打印pandoc输出
+                log.info("pdf2md  process-line: {}", line);
             }
 
-            log.info("pandoc2md  str: {}", line);
+            String targetPath = uploadFilePath + fileId +"/" + fileId + ".md";
+            log.info("pdf2md  targetPath: {}", targetPath);
+            content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error(e.getMessage(),e);
         }
 
-
-
-        log.info("pdf2md  str: {}", str);
-        String content = "";
-        try {
-            content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            log.info(e.getMessage(), e);
-        }
         return content;
     }
 
