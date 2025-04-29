@@ -1,6 +1,5 @@
 package com.did.docdiffserver.service;
 
-import cn.hutool.core.util.RuntimeUtil;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
