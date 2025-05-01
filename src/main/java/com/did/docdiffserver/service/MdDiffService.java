@@ -54,9 +54,6 @@ public class MdDiffService {
             FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
             channel.force(true);
 
-//            String cmd = "pandoc " + docFilePath + "  -o " + targetPath;
-//            log.info("pandoc2md  cmd: {}", cmd);
-
             ProcessBuilder pb = new ProcessBuilder(
                     "pandoc",
                     docFilePath,
