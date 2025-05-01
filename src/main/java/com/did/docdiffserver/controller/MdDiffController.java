@@ -117,7 +117,8 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-            String text = mdDiffService.doc2md(fileId, suffix);
+//            String text = mdDiffService.doc2md(fileId, suffix);
+            String text = mdDiffService.doc2mdMinerU(filePath, fileId);
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);

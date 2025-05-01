@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
+import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -25,6 +26,9 @@ public class MdDiffService {
 
     @Value("${local.file-upload-path}")
     private String uploadFilePath;
+
+    @Resource
+    private MinerUService minerUService;
 
 
 
@@ -76,6 +80,11 @@ public class MdDiffService {
             return pdf2md(fileId);
         }
         throw new RuntimeException("suffix not support");
+    }
+
+    public String doc2mdMinerU(String filePath, String fileId) {
+        log.info("doc2mdMinerU: fileId={}", fileId);
+       return   minerUService.docToMarkdown(filePath,fileId);
     }
 
     public String pandoc2md(String fileId) {
