@@ -53,6 +53,45 @@ public class MdDiffController {
     }
 
 
+    @PostMapping("/mark")
+    public ResponseEntity<BaseVo> mark(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("文件不能为空！"));
+        }
+
+        // 指定保存路径
+        String uploadDir = uploadFilePath;
+        File directory = new File(uploadDir);
+        if (!directory.exists()) {
+            directory.mkdirs(); // 自动创建目录
+        }
+        log.info("uploadFile: getOriginalFilename={}", file.getOriginalFilename());
+        String suffix = FileNameUtil.getSuffix(file.getOriginalFilename());
+        assert suffix != null;
+        if (!allowedFileTypes.contains(suffix)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("仅支持 docx，pdf 格式"));
+        }
+
+        String fileId = UUID.randomUUID().toString();
+
+        // 保存文件
+        try {
+            String filePath = uploadDir + fileId + "." + suffix;
+            file.transferTo(new File(filePath));
+            String text = mdDiffService.markDocxFile(filePath, fileId);
+            ProcessFileVO processFileVO = new ProcessFileVO();
+            processFileVO.setFileId(fileId);
+            processFileVO.setText(text);
+            processFileVO.successStatus();
+            return ResponseEntity.ok(processFileVO);
+        } catch (IOException e) {
+            log.info(e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BaseVo.nSuccess("上传失败"));
+        }
+    }
+
+
+
     @PostMapping("/upload")
     public ResponseEntity<BaseVo> uploadFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
@@ -78,14 +117,11 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-
             String text = mdDiffService.doc2md(fileId, suffix);
-
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);
             processFileVO.successStatus();
-
             return ResponseEntity.ok(processFileVO);
         } catch (IOException e) {
             log.info(e.getMessage(), e);

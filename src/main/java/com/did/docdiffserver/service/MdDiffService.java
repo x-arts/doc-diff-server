@@ -4,26 +4,127 @@ import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
+import org.jsoup.select.NodeVisitor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
 public class MdDiffService {
 
-
     @Value("${local.file-upload-path}")
     private String uploadFilePath;
+
+    private static Set<String> keyWordSet = new HashSet<>();
+
+    static {
+        keyWordSet.add("周期");
+        keyWordSet.add("价格");
+        keyWordSet.add("设备");
+    }
+
+
+    public String markDocxFile(String filePath, String fileId) {
+        String html = doc2Html(filePath, fileId);
+        String markHtml = highlightKeywordsInHtml(html);
+        return markHtml;
+    }
+
+    public String doc2Html(String filePath, String fileId) {
+        /*
+        soffice --headless --convert-to html:"HTML (StarWriter)" resume.docx  --outdir ./output
+         */
+
+        try {
+            ProcessBuilder pb = new ProcessBuilder(
+                    "soffice",
+                    "--headless",
+                    "--convert-to", "html:\"HTML (StarWriter)\"",
+                    filePath,
+                    "--outdir", "./" + fileId
+            );
+            pb.redirectErrorStream(true);  // 合并错误输出
+            Process process = pb.start();
+            InputStream is = process.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                log.info("doc2Html line = {}", line);
+            }
+
+            //  读取文件
+            String targetPath = uploadFilePath + fileId + "/" + fileId + ".html";
+            return StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+
+        }
+
+
+        return "";
+
+    }
+
+    public String highlightKeywordsInHtml(String html) {
+        // 解析 HTML 字符串为 Document 对象
+        Document document = Jsoup.parse(html);
+
+        document.body().traverse(new NodeVisitor() {
+            @Override
+            public void head(Node node, int depth) {
+                // 只处理文本节点
+                if (node instanceof TextNode) {
+                    TextNode textNode = (TextNode) node;
+                    String text = textNode.text();
+//                    log.info("highlightKeywordsInHtml text = {}",text);
+                    keyWordSet.forEach(keyword -> {
+//                        log.info("keyword = {}",keyword);
+                        if (text.contains(keyword)) {
+                            log.info(" match  keyword = {}, text = {}", keyword, text);
+                            // 替换关键字为 <mark> 包裹的 HTML
+                            String replaced = text.replaceAll(
+                                    "(?i)(" + java.util.regex.Pattern.quote(keyword) + ")",
+                                    "<code><mark style=\"background-color:lightskyblue\">$1</mark></code>"
+                            );
+
+                            // 使用父元素插入 HTML 替换原始文本节点
+                            Element parent = node.parent().ownerDocument();
+                            if (parent != null) {
+                                // 插入替换后的 HTML 内容（解析为新节点）
+                                parent.html(parent.html().replace(text, replaced));
+                            }
+                        }
+                    });
+
+
+                }
+            }
+
+            @Override
+            public void tail(Node node, int depth) {
+                // 不做处理
+            }
+        });
+
+        // 返回修改后的 HTML 字符串
+        return document.html();
+    }
+
 
     public String doc2md(String fileId, String suffix) {
         if (suffix.equals("docx")) {
@@ -45,14 +146,12 @@ public class MdDiffService {
         •	-o output.md：输出的文件
         -f docx -t markdown  --markdown-headings=atx
          */
-
         String docFilePath = uploadFilePath + fileId + ".docx";
         String targetPath = uploadFilePath + fileId + "-docx.md";
 
-
-        try  {
-            FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
-            channel.force(true);
+        try {
+//            FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
+//            channel.force(true);
 
             ProcessBuilder pb = new ProcessBuilder(
                     "pandoc",
@@ -97,9 +196,9 @@ public class MdDiffService {
 
         String outDir = uploadFilePath;
         String content = "";
-        try  {
+        try {
             ProcessBuilder pb = new ProcessBuilder(
-                    "marker_single", pdfFilePath,"--output_format","markdown","--output_dir", outDir
+                    "marker_single", pdfFilePath, "--output_format", "markdown", "--output_dir", outDir
             );
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
@@ -110,12 +209,12 @@ public class MdDiffService {
                 log.info("pdf2md  process-line: {}", line);
             }
 
-            String targetPath = uploadFilePath + fileId +"/" + fileId + ".md";
+            String targetPath = uploadFilePath + fileId + "/" + fileId + ".md";
             log.info("pdf2md  targetPath: {}", targetPath);
             content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
 
         } catch (IOException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
 
         return content;

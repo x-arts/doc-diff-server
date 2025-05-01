@@ -9,7 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
 public class DocDiffServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DocDiffServerApplication.class, args);
+        SpringApplication springApplication = new SpringApplication(DocDiffServerApplication.class);
+        springApplication.setAllowBeanDefinitionOverriding(true);
+        springApplication.run(args);
     }
 
 }
