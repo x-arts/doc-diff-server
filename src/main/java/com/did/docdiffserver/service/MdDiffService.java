@@ -210,7 +210,7 @@ public class MdDiffService {
                 "revised.txt",    // 新文件名
                 originalLines,         // 原内容
                 patch,            // Patch对象
-                30                 // 上下文行数
+                3                 // 上下文行数
         );
         // 将 List<String> 转换为单个字符串
 

@@ -2,6 +2,7 @@ package com.did.docdiffserver.controller;
 
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.lang.UUID;
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.condition.MdTextDiffCondition;
 import com.did.docdiffserver.data.vo.BaseVo;
@@ -51,6 +52,13 @@ public class MdDiffController {
         log.info("mdFileDiff: condition = {}", JSONObject.toJSONString(condition));
         return mdDiffService.mdTextDiff(condition.getOldText(), condition.getNewText());
     }
+
+    @GetMapping("/getKeywords")
+    public ResponseEntity<JSONArray> getKeywords(){
+        JSONArray keyWords = new JSONArray("河南公司新能源","设备");
+        return ResponseEntity.ok(keyWords);
+    }
+
 
 
     @PostMapping("/mark")
