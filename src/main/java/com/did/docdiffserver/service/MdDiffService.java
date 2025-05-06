@@ -16,13 +16,6 @@ import java.util.List;
 @Service
 public class MdDiffService {
 
-    @Value("${local.file-upload-path}")
-    private String uploadFilePath;
-
-    @Resource
-    private MinerUService minerUService;
-
-
 
     public String mdTextDiff(String oldText, String newText) {
         return generateUnifiedDiff(oldText, newText, "old.md", "new.md");
