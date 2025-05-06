@@ -7,6 +7,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.condition.MdTextDiffCondition;
 import com.did.docdiffserver.data.vo.BaseVo;
 import com.did.docdiffserver.data.vo.ProcessFileVO;
+import com.did.docdiffserver.service.DocCovertService;
 import com.did.docdiffserver.service.MdDiffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,9 @@ public class MdDiffController {
 
     @Resource
     private MdDiffService mdDiffService;
+
+    @Resource
+    private DocCovertService docCovertService;
 
 
     private static Set<String> allowedFileTypes = new HashSet<>();
@@ -86,7 +90,7 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-            String text = mdDiffService.markDocxFile(filePath, fileId);
+            String text = docCovertService.docx2Html(filePath, fileId);
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);
@@ -125,8 +129,7 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-//            String text = mdDiffService.doc2md(fileId, suffix);
-            String text = mdDiffService.doc2mdMinerU(filePath, fileId);
+            String text = docCovertService.doc2mdMinerU(filePath, fileId);
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);

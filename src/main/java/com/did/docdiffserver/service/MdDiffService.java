@@ -4,21 +4,13 @@ import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 
 import javax.annotation.Resource;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.StringWriter;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Slf4j
 @Service
@@ -32,148 +24,7 @@ public class MdDiffService {
 
 
 
-    public String markDocxFile(String filePath, String fileId) {
-        String html = doc2Html(filePath, fileId);
-        Document document = Jsoup.parse(html);
-        return document.body().html();
-    }
-
-    public String doc2Html(String filePath, String fileId) {
-        /*
-        soffice --headless --convert-to html:"HTML (StarWriter)" resume.docx  --outdir ./output
-        -outdir /Users/xuewenke/temp-file/doc-diff-server
-         */
-        try {
-            ProcessBuilder pb = new ProcessBuilder(
-                    "/Users/xuewenke/temp-file/doc-diff-server/docx2html.sh", filePath
-            );
-            List<String> command = pb.command();
-            System.out.println(String.join(" ", command));
-            pb.redirectErrorStream(true);  // 合并错误输出
-            pb.environment().put("HOME", "/tmp");
-            Process process = pb.start();
-            InputStream is = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                log.info("doc2Html line = {}", line);
-            }
-
-            //  读取文件
-            String targetPath = uploadFilePath  + "html/" + fileId + ".html";
-            return StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-
-        }
-        return "";
-    }
-
-
-
-    public String doc2md(String fileId, String suffix) {
-        if (suffix.equals("docx")) {
-            return pandoc2md(fileId);
-        }
-
-        if (suffix.equals("pdf")) {
-            return pdf2md(fileId);
-        }
-        throw new RuntimeException("suffix not support");
-    }
-
-    public String doc2mdMinerU(String filePath, String fileId) {
-        log.info("doc2mdMinerU: fileId={}", fileId);
-       return   minerUService.docToMarkdown(filePath,fileId);
-    }
-
-    public String pandoc2md(String fileId) {
-        /*
-        pandoc input.docx -f docx -t markdown --atx-headers -o output.md
-        •	-f docx：输入格式是 docx
-        •	-t markdown：输出成 markdown
-        •	--markdown-headings=atx ：强制使用 # 号风格的标题（ATX 样式）
-        •	-o output.md：输出的文件
-        -f docx -t markdown  --markdown-headings=atx
-         */
-        String docFilePath = uploadFilePath + fileId + ".docx";
-        String targetPath = uploadFilePath + fileId + "-docx.md";
-
-        try {
-//            FileChannel channel = FileChannel.open(Paths.get(docFilePath), StandardOpenOption.WRITE);
-//            channel.force(true);
-
-            ProcessBuilder pb = new ProcessBuilder(
-                    "pandoc",
-                    docFilePath,
-                    "-f", "docx",
-                    "-t", "markdown",
-                    "--markdown-headings=atx",
-                    "-o",
-                    targetPath
-            );
-            pb.redirectErrorStream(true);  // 合并错误输出
-            log.info("word 转 markdown 开始");
-            Process process = pb.start();
-            InputStream is = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                log.info("pandoc2md  str: {}", line);
-            }
-            log.info("word 转 markdown 结束");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        String content = "";
-        try {
-            content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            log.info(e.getMessage(), e);
-        }
-
-        return content;
-    }
-
-    public String pdf2md(String fileId) {
-        /*
-         * marker_single --input /path/to/input.pdf --output /path/to/output.md --batch-size 2
-         */
-        String pdfFilePath = uploadFilePath + fileId + ".pdf";
-
-        String outDir = uploadFilePath;
-        String content = "";
-        try {
-            ProcessBuilder pb = new ProcessBuilder(
-                    "marker_single", pdfFilePath, "--output_format", "markdown","--force_ocr", "--output_dir", outDir
-            );
-            pb.redirectErrorStream(true);  // 合并错误输出
-            log.info("pdf 转 markdown 开始");
-            Process process = pb.start();
-            InputStream is = process.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                log.info("pdf2md  process-line: {}", line);
-            }
-            log.info("pdf 转 markdown 结束");
-
-            String targetPath = uploadFilePath + fileId + "/" + fileId + ".md";
-            log.info("pdf2md  targetPath: {}", targetPath);
-            content = StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
-
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
-
-        return content;
-    }
-
-
     public String mdTextDiff(String oldText, String newText) {
-//        log.info("mdTextDiff: oldText={}, newText={}", oldText, newText);
         return generateUnifiedDiff(oldText, newText, "old.md", "new.md");
     }
 
