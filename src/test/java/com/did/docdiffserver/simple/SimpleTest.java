@@ -3,58 +3,132 @@ package com.did.docdiffserver.simple;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.github.difflib.DiffUtils;
-import com.github.difflib.UnifiedDiffUtils;
-import com.github.difflib.patch.Patch;
-import com.github.difflib.text.DiffRow;
-import com.github.difflib.text.DiffRowGenerator;
+import com.alibaba.fastjson2.JSONObject;
+import com.did.docdiffserver.data.SimilarSearchResult;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.net.jsse.PEMFile;
+import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.junit.Test;
+import toolgood.words.StringSearch;
 
-import java.io.StringWriter;
-import java.lang.reflect.Member;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 public class SimpleTest {
 
-    private static final String filePath = "/Users/xuewenke/temp-file/diff-oneline/";
+    private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
+
+
+    /**
+     * 简化 word md
+     */
+    @Test
+    public void  simpleWordMd(){
+        String wordMd2OneLinePath = wordMd2OneLine();
+    }
+
+    @Test
+    public void  simplePdfMd(){
+        String pdfMd2OneLinePath = pdfMd2OneLine();
+    }
+
+
+    @Test
+    public void  simplePdfMdFindDiff() {
+        String wordSimpleMdFilePath = filePath + "word-1-simple.md";
+        String pdfSimpleMdFilePath = filePath + "pdf-1-simple.md";
+        List<String> wordLines = FileUtil.readLines(wordSimpleMdFilePath, "utf-8");
+        String bigWord = StrUtil.join("", wordLines);
+//        FileUtil.writeString(bigWord,filePath + "word-one-line.txt", "utf-8");
+        String findKey = "甲的方：国能数智科技开发（北京）有限公司乙方：北京天海智数科技有限公司日期：2023年8月";
+        boolean findResult = preciseSearch(bigWord, findKey);
+        log.info("simplePdfMdFindDiff   findResult = {}", findResult);
+        if (findResult) {
+            //获取子字符串的下标
+            int index = bigWord.indexOf(findKey);
+            log.info("simplePdfMdFindDiff  index = {}", index);
+        }  else {
+            // 相似度匹配
+            List<SimilarSearchResult> searchResults = similarSearch(bigWord, findKey);
+            for (SimilarSearchResult searchResult : searchResults) {
+                log.info("simplePdfMdFindDiff  searchResult = {}", JSONObject.toJSONString(searchResult));
+            }
+            Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
+            if (max.isPresent()) {
+                log.info("simplePdfMdFindDiff  max = {}", JSONObject.toJSONString(max.get()));
+            }
+        }
+    }
+
+
+
+    private  List<SimilarSearchResult>  similarSearch(String text, String key) {
+        JaroWinklerSimilarity jw = new JaroWinklerSimilarity();
+        double threshold = 0.85;  // 相似度阈值
+
+        List<SimilarSearchResult> searchResults = new ArrayList<>();
+        int lenB = key.length();
+        // 遍历所有长度与 B 相同的滑动窗口子串
+        for (int i = 0; i + lenB <= text.length(); i++) {
+            String sub = text.substring(i, i + lenB);
+            Double score = jw.apply(sub, key);
+            if (score != null && score > threshold) {
+                searchResults.add(new SimilarSearchResult(sub, score));
+            }
+        }
+        return searchResults;
+    }
+
+
+
+    private boolean preciseSearch(String text, String key) {
+        StringSearch search = new StringSearch();
+        search.SetKeywords(CollectionUtil.newArrayList(key));
+        List<String> found = search.FindAll(text);
+        if (CollectionUtil.isEmpty(found)) {
+            return false;
+        }
+        for (String string : found) {
+            log.info("preciseSearch match word = {}", string);
+        }
+        return true;
+    }
+
+
+
 
     @Test
     public void  simpleTest() {
-        String wordMd2OneLinePath = wordMd2OneLine();
+//        String wordMd2OneLinePath = wordMd2OneLine();
         String pdfMd2OneLinePath = pdfMd2OneLine();
 
-        List<String> wordLines = FileUtil.readLines(wordMd2OneLinePath, "utf-8");
-        List<String> pdfLines = FileUtil.readLines(pdfMd2OneLinePath, "utf-8");
+//        List<String> wordLines = FileUtil.readLines(wordMd2OneLinePath, "utf-8");
+//        List<String> pdfLines = FileUtil.readLines(pdfMd2OneLinePath, "utf-8");
 
-        // 配置行内差异生成器
-        DiffRowGenerator generator = DiffRowGenerator.create()
-                .showInlineDiffs(true)
-                .inlineDiffByWord(false)
-                .oldTag(f -> "[DEL]")  // 自定义旧文本标记
-                .newTag(f -> "[INS]")  // 自定义新文本标记
-                .build();
-
-        // 比较单行文本
-        List<DiffRow> rows = generator.generateDiffRows(
-                CollectionUtil.newArrayList(String.join("",wordLines)) ,
-                CollectionUtil.newArrayList(String.join("",pdfLines)));
-
-        // 输出差异结果
-        for (DiffRow row : rows) {
-            System.out.println("旧行标记: " + row.getOldLine());
-            System.out.println("新行标记: " + row.getNewLine());
-        }
+//        // 配置行内差异生成器
+//        DiffRowGenerator generator = DiffRowGenerator.create()
+//                .showInlineDiffs(true)
+//                .inlineDiffByWord(false)
+//                .oldTag(f -> "[DEL]")  // 自定义旧文本标记
+//                .newTag(f -> "[INS]")  // 自定义新文本标记
+//                .build();
+//
+//        // 比较单行文本
+//        List<DiffRow> rows = generator.generateDiffRows(
+//                CollectionUtil.newArrayList(String.join("",wordLines)) ,
+//                CollectionUtil.newArrayList(String.join("",pdfLines)));
+//
+//        // 输出差异结果
+//        for (DiffRow row : rows) {
+//            System.out.println("旧行标记: " + row.getOldLine());
+//            System.out.println("新行标记: " + row.getNewLine());
+//        }
 
     }
 
 
     private String wordMd2OneLine() {
-        String wordMdFilePath = filePath + "word-2.md";
-        String outputFilePath = filePath + "word-out-2.md";
+        String wordMdFilePath = filePath + "word-1.md";
+        String outputFilePath = filePath + "word-1-simple.md";
         if (!FileUtil.exist(outputFilePath)) {
             FileUtil.newFile(outputFilePath);
         }
@@ -63,8 +137,8 @@ public class SimpleTest {
     }
 
     private String pdfMd2OneLine() {
-        String mdFilePath = filePath + "pdf-2.md";
-        String outputFilePath = filePath + "pdf-out-2.md";
+        String mdFilePath = filePath + "pdf-1.md";
+        String outputFilePath = filePath + "pdf-1-simple.md";
         if (!FileUtil.exist(outputFilePath)) {
             FileUtil.newFile(outputFilePath);
         }
@@ -83,13 +157,14 @@ public class SimpleTest {
                 continue;
             }
             if (addLine.startsWith("#")){
+                addLine = addLine.replaceAll("#", "");
+            }
+
+            if (addLine.startsWith("<html>")) {
                 continue;
             }
 
-            if (addLine.startsWith("<")) {
-                continue;
-            }
-
+            //  目的是把目录去掉。单这个方式不一定精准
             if(addLine.matches("^[0-9].*")) {
                 continue;
             }
