@@ -7,15 +7,21 @@ import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.SimilarSearchResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.Test;
 import toolgood.words.StringSearch;
 
+import java.io.File;
 import java.util.*;
 
 @Slf4j
 public class SimpleTest {
 
     private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
+
+    private static final String localTempFilePath =  "src/main/temp-file/";
 
 
     /**
@@ -30,6 +36,38 @@ public class SimpleTest {
     public void  simplePdfMd(){
         String pdfMd2OneLinePath = pdfMd2OneLine();
     }
+
+
+    /**
+     * 从标准的 html 里获取表格数据
+     */
+    @Test
+    public void fetchTableFromStandHtml() {
+        String html = FileUtil.readString(localTempFilePath + "1/1.html", "utf-8");
+        Document doc = Jsoup.parse(html);
+        Elements tables = doc.select("table");
+
+    }
+
+
+    private List<String> mergeTables(List<String> tableLines) {
+        List<Elements> tables = new LinkedList<>();
+        Elements currentTable = null;
+        String currentTableHeads = null;
+        for (String tableLine : tableLines) {
+            Document doc = Jsoup.parse(tableLine);
+            Elements table = doc.select("table");
+            if (currentTable == null) {
+                currentTable = table;
+            }
+        }
+    }
+
+
+    private String getTableHeads(Elements table) {
+
+    }
+
 
 
     @Test
