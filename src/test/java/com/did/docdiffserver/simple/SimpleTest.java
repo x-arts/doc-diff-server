@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
 import toolgood.words.StringSearch;
@@ -21,7 +22,7 @@ public class SimpleTest {
 
     private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
 
-    private static final String localTempFilePath =  "src/main/temp-file/";
+    private static final String localTempFilePath =  "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
 
 
     /**
@@ -46,8 +47,24 @@ public class SimpleTest {
         String html = FileUtil.readString(localTempFilePath + "1/1.html", "utf-8");
         Document doc = Jsoup.parse(html);
         Elements tables = doc.select("table");
-
+        for (Element table : tables) {
+            String tableHeadersStr = getTableHeadersStr(table);
+            log.info("tableHeadersStr = {}", tableHeadersStr);
+        }
     }
+
+
+    private String getTableHeadersStr(Element element) {
+        Element tr = element.select("tr").first();
+        Elements tds = tr.select("td");
+        List<String> headers = new ArrayList<>();
+        for (Element td : tds) {
+//            log.info("header = {}", td.text());
+            headers.add(td.text());
+        }
+        return StrUtil.join("&", headers);
+    }
+
 
 
     private List<String> mergeTables(List<String> tableLines) {
@@ -61,11 +78,13 @@ public class SimpleTest {
                 currentTable = table;
             }
         }
+
+        return null;
     }
 
 
     private String getTableHeads(Elements table) {
-
+        return null;
     }
 
 
