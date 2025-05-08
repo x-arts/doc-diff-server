@@ -1,0 +1,10700 @@
+{
+	"pandoc-api-version": [
+		1,
+		23,
+		1
+	],
+	"meta": {
+		"lang": {
+			"t": "MetaInlines",
+			"c": [
+				{
+					"t": "Str",
+					"c": "en"
+				}
+			]
+		},
+		"title": {
+			"t": "MetaInlines",
+			"c": [
+				{
+					"t": "Str",
+					"c": "Document"
+				}
+			]
+		},
+		"viewport": {
+			"t": "MetaInlines",
+			"c": [
+				{
+					"t": "Str",
+					"c": "width=device-width,"
+				},
+				{
+					"t": "Space"
+				},
+				{
+					"t": "Str",
+					"c": "initial-scale=1"
+				}
+			]
+		}
+	},
+	"blocks": [
+		{
+			"t": "Table",
+			"c": [
+				[
+					"",
+					[],
+					[
+						[
+							"width",
+							"99%"
+						],
+						[
+							"cellpadding",
+							"7"
+						],
+						[
+							"cellspacing",
+							"0"
+						]
+					]
+				],
+				[
+					null,
+					[]
+				],
+				[
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 6.666666666666667e-2
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 0.28627450980392155
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 0.24705882352941178
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 8.235294117647059e-2
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 8.235294117647059e-2
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 0.11372549019607843
+						}
+					],
+					[
+						{
+							"t": "AlignDefault"
+						},
+						{
+							"t": "ColWidth",
+							"c": 0.12156862745098039
+						}
+					]
+				],
+				[
+					[
+						"",
+						[],
+						[]
+					],
+					[
+						[
+							[
+								"",
+								[],
+								[]
+							],
+							[
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"7%"
+											],
+											[
+												"height",
+												"11"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "序号"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"29%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "名称"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"25%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "规格型号"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"8%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "单位"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"8%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "数量"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"11%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "品牌"
+														}
+													]
+												}
+											]
+										}
+									]
+								],
+								[
+									[
+										"",
+										[],
+										[
+											[
+												"width",
+												"12%"
+											],
+											[
+												"bgcolor",
+												"#d7d7d7"
+											],
+											[
+												"style",
+												"background: #d7d7d7; border: 1px solid #000000; padding: 0cm 0.19cm"
+											]
+										]
+									],
+									{
+										"t": "AlignDefault"
+									},
+									1,
+									1,
+									[
+										{
+											"t": "Para",
+											"c": [
+												{
+													"t": "Strong",
+													"c": [
+														{
+															"t": "Str",
+															"c": "备注"
+														}
+													]
+												}
+											]
+										}
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					[
+						[
+							"",
+							[],
+							[]
+						],
+						0,
+						[],
+						[
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "一"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "中心侧安全一区设备"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "数据采集服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "时序数据库服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "3"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "关系数据库服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "4"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "数据计算服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "5"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "应用服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "磁盘阵列"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "AS5500G5-C"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "7"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "HA"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "高可用软件"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "高可用集群软件"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"11"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "8"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "时钟服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "PTS-10A"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "东土"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "9"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "汇聚交换机"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "S5731-H48T4XC"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "华为"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "10"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "接入交换机"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "S5735-S24T4X"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "华为"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "11"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "I-II"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "区防火墙"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "USG-FW-310-T-NF1608"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "启明星辰"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "12"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "工作站"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CE520F"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "13"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "操作系统服务器版"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "服务器版（"
+													},
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "V10"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "）"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "10"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "14"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "操作系统工作站版"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "工作站版（"
+													},
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "V10"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "）"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "二"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "中心侧安全二区设备"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "数据服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "功能服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "3"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "汇聚交换机"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "S5731-H48T4XC"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "华为"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "4"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "操作系统服务器版"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "服务器版（"
+													},
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "V10"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "）"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "4"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "三"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Strong",
+														"c": [
+															{
+																"t": "Str",
+																"c": "管理区设备"
+															}
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理信息区时序数据库服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理信息区关系数据库服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "3"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理信息区应用服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CS5260H2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "4"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理信息区视频监控服务器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "DS-VE22S-B"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "海康威视"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "5"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "磁盘阵列"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "AS5500G5-C"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "HA"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "高可用软件"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "高可用集群软件"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "7"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "综合视频接入平台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "定制"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "海康"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "8"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "视频安防监控工作站"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "ThinkStation"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "联想"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "9"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "工作站"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "CE520F"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "5"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "浪潮"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "10"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "路由器"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "AR6280"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "华为"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "11"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理区核心交换机"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "S5731-H48T4XC"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "2"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "华为"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "12"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "管理信息区防火墙"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "USG-FW-310-T-NF1608"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "台"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "启明星辰"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "13"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "操作系统服务器版"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "服务器版（"
+													},
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "V10"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "）"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"13"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "14"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "操作系统工作站版"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "工作站版（"
+													},
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "V10"
+																}
+															]
+														]
+													},
+													{
+														"t": "Str",
+														"c": "）"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "套"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "6"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "麒麟"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "LineBreak"
+													}
+												]
+											}
+										]
+									]
+								]
+							],
+							[
+								[
+									"",
+									[],
+									[]
+								],
+								[
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"7%"
+												],
+												[
+													"height",
+													"12"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "15"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"29%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "备品备件"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"25%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "国产"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "项"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"8%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Span",
+														"c": [
+															[
+																"",
+																[],
+																[
+																	[
+																		"lang",
+																		"en-US"
+																	]
+																]
+															],
+															[
+																{
+																	"t": "Str",
+																	"c": "1"
+																}
+															]
+														]
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"11%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "国产"
+													}
+												]
+											}
+										]
+									],
+									[
+										[
+											"",
+											[],
+											[
+												[
+													"width",
+													"12%"
+												],
+												[
+													"style",
+													"border: 1px solid #000000; padding: 0cm 0.19cm"
+												]
+											]
+										],
+										{
+											"t": "AlignDefault"
+										},
+										1,
+										1,
+										[
+											{
+												"t": "Para",
+												"c": [
+													{
+														"t": "Str",
+														"c": "含硬件安装调试"
+													}
+												]
+											}
+										]
+									]
+								]
+							]
+						]
+					]
+				],
+				[
+					[
+						"",
+						[],
+						[]
+					],
+					[]
+				]
+			]
+		}
+	]
+}
