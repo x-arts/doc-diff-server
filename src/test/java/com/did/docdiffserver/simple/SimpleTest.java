@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.did.docdiffserver.data.Row;
 import com.did.docdiffserver.data.SimilarSearchResult;
 import com.did.docdiffserver.data.TableInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,8 @@ public class SimpleTest {
 
     private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
 
-    private static final String localTempFilePath =  "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
+//    private static final String localTempFilePath =  "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
+    private static final String localTempFilePath =  "/Users/xuewenke/workspace/code/doc-diff-server/src/main/temp-file/";
 
 
 
@@ -59,15 +61,51 @@ public class SimpleTest {
     }
 
 
-
+    /**
+     * 手里 word 的表格
+     */
+    @Test
     public void fetchTableFromWordMd() {
         String wordMdFilePath = localTempFilePath + "word-1.md";
         List<String> tableLines = FileUtil.readLines(wordMdFilePath, "utf-8");
         for (String tableLine : tableLines) {
-            Document doc = Jsoup.parse(tableLine);
-            Element table = doc.select("table").first();
-
+            if (tableLine.startsWith("<html>")) {
+                log.info("tableLine = {}", tableLine);
+                Document doc = Jsoup.parse(tableLine);
+                Element table = doc.select("table").first();
+                collectionTableData(table);
+            }
         }
+
+        for (String s : wordTable.keySet()) {
+            log.info("wordTableName = {}", s);
+        }
+    }
+
+    /**
+     * 获取表格数据
+     * @param table
+     */
+    private void collectionTableData(Element table){
+        TableInfo currentTable = getTableInfo(table);
+        TableInfo tableInMap = wordTable.get(currentTable.getHeadersLine());
+        if (tableInMap != null) {
+            currentTable  = tableInMap;
+        } else {
+            wordTable.put(currentTable.getTableName(), currentTable);
+        }
+        List<Row> rows = currentTable.getRows();
+
+        Elements trs = table.select("tr");
+        int count = 0;
+        for (Element tr : trs) {
+            count++;
+            if (count == 1) {
+                continue;
+            }
+            rows.add(Row.of(tr));
+        }
+        currentTable.addRows(rows);
     }
 
 
@@ -80,42 +118,10 @@ public class SimpleTest {
             headers.add(td.text());
         }
         String headersLine = StrUtil.join("&", headers);
-        return new TableInfo(headersLine, columnSize, new LinkedList<>());
+        return TableInfo.init(headersLine, columnSize );
     }
 
-    private void collectionTableData(Element table){
-        TableInfo currentTable = getTableInfo(table);
 
-        TableInfo tableInMap = wordTable.get(currentTable.getHeadersLine());
-        if (tableInMap != null) {
-            currentTable  = tableInMap;
-        }
-        List<String> rowDataLines = currentTable.getRowDataLines();
-
-        Elements trs = table.select("tr");
-        int count = 0;
-        for (Element tr : trs) {
-            count++;
-            if (count == 1) {
-                continue;
-            }
-            Elements tds = tr.select("td");
-
-
-            for (Element td : tds) {
-
-            }
-
-        }
-//        Elements tds = trs.select("td");
-//        List<String> headers = new ArrayList<>();
-//        for (Element td : tds) {
-////            log.info("header = {}", td.text());
-//            headers.add(td.text());
-//        }
-
-
-    }
 
 
     private boolean containsEmptyTd(Elements tds) {
@@ -169,29 +175,47 @@ public class SimpleTest {
 
     @Test
     public void  simplePdfMdFindDiff() {
-        String wordSimpleMdFilePath = filePath + "word-1-simple.md";
-        String pdfSimpleMdFilePath = filePath + "pdf-1-simple.md";
+        String wordSimpleMdFilePath = localTempFilePath + "word-1-simple.md";
+        String pdfSimpleMdFilePath = localTempFilePath + "pdf-1-simple.md";
         List<String> wordLines = FileUtil.readLines(wordSimpleMdFilePath, "utf-8");
+        List<String> pdfLines = FileUtil.readLines(pdfSimpleMdFilePath, "utf-8");
         String bigWord = StrUtil.join("", wordLines);
-//        FileUtil.writeString(bigWord,filePath + "word-one-line.txt", "utf-8");
-        String findKey = "甲的方：国能数智科技开发（北京）有限公司乙方：北京天海智数科技有限公司日期：2023年8月";
-        boolean findResult = preciseSearch(bigWord, findKey);
-        log.info("simplePdfMdFindDiff   findResult = {}", findResult);
-        if (findResult) {
-            //获取子字符串的下标
-            int index = bigWord.indexOf(findKey);
-            log.info("simplePdfMdFindDiff  index = {}", index);
-        }  else {
-            // 相似度匹配
-            List<SimilarSearchResult> searchResults = similarSearch(bigWord, findKey);
-            for (SimilarSearchResult searchResult : searchResults) {
-                log.info("simplePdfMdFindDiff  searchResult = {}", JSONObject.toJSONString(searchResult));
-            }
-            Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
-            if (max.isPresent()) {
-                log.info("simplePdfMdFindDiff  max = {}", JSONObject.toJSONString(max.get()));
+//        FileUtil.writeString(bigWord,localTempFilePath + "word-one-line.txt", "utf-8");
+
+        List<String> wordDiffs = new LinkedList<>();
+        List<String> pdfDiffs = new LinkedList<>();
+
+        for (String pdfLine : pdfLines) {
+            String findKey = pdfLine;
+            boolean findResult = preciseSearch(bigWord, findKey);
+            log.info("simplePdfMdFindDiff   findResult = {}", findResult);
+            if (findResult) {
+                //获取子字符串的下标
+//                int index = bigWord.indexOf(findKey);
+//                log.info("simplePdfMdFindDiff  index = {}", index);
+            }  else {
+                // 相似度匹配
+                List<SimilarSearchResult> searchResults = similarSearch(bigWord, findKey);
+//                for (SimilarSearchResult searchResult : searchResults) {
+//                    log.info("simplePdfMdFindDiff  searchResult = {}", JSONObject.toJSONString(searchResult));
+//                }
+                Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
+                if (max.isPresent()) {
+                    wordDiffs.add(max.get().getSimilarStr());
+                    pdfDiffs.add(findKey);
+//                    log.info("simplePdfMdFindDiff  max = {}", JSONObject.toJSONString(max.get()));
+                }
             }
         }
+
+        for (String wordDiff : wordDiffs) {
+            System.out.println(wordDiff);
+        }
+        System.out.println("=========================");
+        for (String pdfDiff : pdfDiffs) {
+            System.out.println(pdfDiff);
+        }
+
     }
 
 
