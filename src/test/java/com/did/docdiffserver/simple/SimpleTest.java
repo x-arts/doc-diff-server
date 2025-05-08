@@ -5,6 +5,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.SimilarSearchResult;
+import com.did.docdiffserver.data.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.jsoup.Jsoup;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import toolgood.words.StringSearch;
 
 import java.io.File;
+import java.io.PipedReader;
 import java.util.*;
 
 @Slf4j
@@ -24,6 +26,9 @@ public class SimpleTest {
 
     private static final String localTempFilePath =  "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
 
+
+
+    private static Map<String, TableInfo> wordTable = new HashMap<>();
 
     /**
      * 简化 word md
@@ -52,6 +57,79 @@ public class SimpleTest {
             log.info("tableHeadersStr = {}", tableHeadersStr);
         }
     }
+
+
+
+    public void fetchTableFromWordMd() {
+        String wordMdFilePath = localTempFilePath + "word-1.md";
+        List<String> tableLines = FileUtil.readLines(wordMdFilePath, "utf-8");
+        for (String tableLine : tableLines) {
+            Document doc = Jsoup.parse(tableLine);
+            Element table = doc.select("table").first();
+
+        }
+    }
+
+
+    private TableInfo getTableInfo(Element table) {
+        Element tr = table.select("tr").first();
+        Elements tds = tr.select("td");
+        int columnSize = tds.size();
+        List<String> headers = new ArrayList<>();
+        for (Element td : tds) {
+            headers.add(td.text());
+        }
+        String headersLine = StrUtil.join("&", headers);
+        return new TableInfo(headersLine, columnSize, new LinkedList<>());
+    }
+
+    private void collectionTableData(Element table){
+        TableInfo currentTable = getTableInfo(table);
+
+        TableInfo tableInMap = wordTable.get(currentTable.getHeadersLine());
+        if (tableInMap != null) {
+            currentTable  = tableInMap;
+        }
+        List<String> rowDataLines = currentTable.getRowDataLines();
+
+        Elements trs = table.select("tr");
+        int count = 0;
+        for (Element tr : trs) {
+            count++;
+            if (count == 1) {
+                continue;
+            }
+            Elements tds = tr.select("td");
+
+
+            for (Element td : tds) {
+
+            }
+
+        }
+//        Elements tds = trs.select("td");
+//        List<String> headers = new ArrayList<>();
+//        for (Element td : tds) {
+////            log.info("header = {}", td.text());
+//            headers.add(td.text());
+//        }
+
+
+    }
+
+
+    private boolean containsEmptyTd(Elements tds) {
+        for (Element td : tds) {
+            if (StrUtil.isBlank(td.text().trim())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
 
 
     private String getTableHeadersStr(Element element) {
