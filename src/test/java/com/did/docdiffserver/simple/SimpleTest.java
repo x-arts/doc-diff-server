@@ -113,7 +113,6 @@ public class SimpleTest {
             wordTable.put(currentTable.getTableName(), currentTable);
         }
         List<Row> rows = currentTable.getRows();
-
         Elements trs = table.select("tr");
         int count = 0;
         for (Element tr : trs) {

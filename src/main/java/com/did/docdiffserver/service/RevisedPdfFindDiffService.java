@@ -3,13 +3,17 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.vo.Cell;
+import com.did.docdiffserver.data.vo.Row;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
+import com.did.docdiffserver.data.vo.TableInfo;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.springframework.stereotype.Service;
 import toolgood.words.StringSearch;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 @Slf4j
@@ -20,6 +24,55 @@ public class RevisedPdfFindDiffService {
 //    private static final String localTempFilePath =  "/Users/xuewenke/workspace/code/doc-diff-server/src/main/temp-file/";
 
 
+    @Resource
+    private TableService tableService;
+
+    public void  pdfTableFindDiff(String dict, String pdfMdFilePath) {
+        List<String> pdfLines = FileUtil.readLines(pdfMdFilePath, "utf-8");
+        List<String> wordTableDiffs = new LinkedList<>();
+        List<String> pdfTableDiffs = new LinkedList<>();
+        for (String pdfTableDiff : pdfLines) {
+//            System.out.println(pdfTableDiff);
+            if (pdfTableDiff.startsWith("<html>") && pdfTableDiff.contains("table")) {
+                TableInfo tableInfo = tableService.getTableInfo(pdfTableDiff);
+                for (Row row : tableInfo.getRows()) {
+                    for (Cell cell : row.getCells()) {
+                        String cellText = StrTools.removeSpaceInLine(cell.getText());
+                        cellText = StrTools.replacePunctuation(cellText);
+                        findDiff(wordTableDiffs, pdfTableDiffs, dict, cellText);
+                    }
+                }
+            }
+        }
+
+        for (String wordDiff : wordTableDiffs) {
+            System.out.println(wordDiff);
+        }
+        System.out.println("=========================");
+        for (String pdfDiff : pdfTableDiffs) {
+            System.out.println(pdfDiff);
+        }
+    }
+
+
+    public void findDiff(List<String> original, List<String> modify, String dict, String findKye) {
+//        log.info("findDiff findKye = {}", findKye);
+        if (StrUtil.isBlank(findKye)) {
+            return;
+        }
+        boolean findResult = preciseSearch(dict, findKye);
+//        log.info("findDiff findResult = {}",findKye);
+        if (!findResult) {
+            // 相似度匹配
+            List<SimilarSearchResult> searchResults = similarSearch(dict, findKye);
+            Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
+            if (max.isPresent()) {
+                original.add(max.get().getSimilarStr());
+                modify.add(findKye);
+            }
+        }
+
+    }
 
 
     public void  simplePdfMdFindDiff(String dict, String pdfMdFilePath) {
@@ -78,9 +131,9 @@ public class RevisedPdfFindDiffService {
         if (CollectionUtil.isEmpty(found)) {
             return false;
         }
-        for (String string : found) {
-            log.info("preciseSearch match word = {}", string);
-        }
+//        for (String string : found) {
+//            log.info("preciseSearch match word = {}", string);
+//        }
         return true;
     }
 
