@@ -1,9 +1,14 @@
 package com.did.docdiffserver.service;
 
+import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.File;
 
 /**
  * 文档转换服务
@@ -38,7 +43,12 @@ public class DocCovertService {
      * @return
      */
     public String html2PlanTextWithoutTable(String filePath) {
-        return null;
+        String html = FileUtil.readString(filePath, "utf-8");
+        Document doc = Jsoup.parse(html);
+        for (Element table : doc.select("table")) {
+            table.remove();
+        }
+        return doc.html();
 
     }
 

@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.Row;
 import com.did.docdiffserver.data.SimilarSearchResult;
 import com.did.docdiffserver.data.TableInfo;
+import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
 import org.jsoup.Jsoup;
@@ -17,17 +18,36 @@ import toolgood.words.StringSearch;
 
 import java.util.*;
 
+import static com.did.docdiffserver.TestBase.localTempFilePath;
+
 @Slf4j
 public class SimpleTest {
 
     private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
 
-//    private static final String localTempFilePath =  "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
-    private static final String localTempFilePath =  "/Users/xuewenke/workspace/code/doc-diff-server/src/main/temp-file/";
-
-
 
     private static Map<String, TableInfo> wordTable = new HashMap<>();
+
+
+    @Test
+    public void createDict() {
+//        String dictFilePath = localTempFilePath + "1/dict.txt";
+        List<String> lines = FileUtil.readLines(localTempFilePath + "1/1_notable_html_text_1.txt", "utf-8");
+        List<String> dictLines = new LinkedList<>();
+        for (String line : lines) {
+            if (StrUtil.isBlank(line)) {
+                continue;
+            }
+            line = StrTools.replacePunctuation(line);
+            line = StrTools.removeSpaceInLine(line);
+            dictLines.add(line);
+        }
+
+        String bigWord = StrUtil.join("", dictLines);
+        FileUtil.writeString(bigWord,localTempFilePath + "1/dict.txt", "utf-8");
+
+    }
+
 
     /**
      * 简化 word md
@@ -40,6 +60,7 @@ public class SimpleTest {
     @Test
     public void  simplePdfMd(){
         String pdfMd2OneLinePath = pdfMd2OneLine();
+        System.out.println(pdfMd2OneLinePath);
     }
 
 
@@ -324,6 +345,8 @@ public class SimpleTest {
             if(addLine.matches("^[0-9].*")) {
                 continue;
             }
+
+            addLine = StrTools.replacePunctuation(addLine);
             newLines.add(addLine);
         }
 //        String oneLineMd = String.join("", newLines);
