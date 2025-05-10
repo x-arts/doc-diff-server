@@ -23,7 +23,7 @@ import static com.did.docdiffserver.TestBase.localTempFilePath;
 @Slf4j
 public class SimpleTest {
 
-    private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
+//    private static final String filePath = "/Users/xuewenke/temp-file/doc-diff-server/pretreatment/";
 
 
     private static Map<String, TableInfo> wordTable = new HashMap<>();
@@ -303,8 +303,8 @@ public class SimpleTest {
 
 
     private String wordMd2OneLine() {
-        String wordMdFilePath = filePath + "word-1.md";
-        String outputFilePath = filePath + "word-1-simple.md";
+        String wordMdFilePath = localTempFilePath + "word-1.md";
+        String outputFilePath = localTempFilePath + "word-1-simple.md";
         if (!FileUtil.exist(outputFilePath)) {
             FileUtil.newFile(outputFilePath);
         }
@@ -313,8 +313,8 @@ public class SimpleTest {
     }
 
     private String pdfMd2OneLine() {
-        String mdFilePath = filePath + "pdf-1.md";
-        String outputFilePath = filePath + "pdf-1-simple.md";
+        String mdFilePath = localTempFilePath + "pdf-1.md";
+        String outputFilePath = localTempFilePath + "pdf-1-simple.md";
         if (!FileUtil.exist(outputFilePath)) {
             FileUtil.newFile(outputFilePath);
         }
@@ -341,7 +341,7 @@ public class SimpleTest {
             }
 
             //  目的是把目录去掉。单这个方式不一定精准
-            if(addLine.matches("^[0-9].*")) {
+            if(addLine.matches("^\\d+.*$")) {
                 continue;
             }
 
