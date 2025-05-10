@@ -3,7 +3,6 @@ package com.did.docdiffserver.simple;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.Row;
 import com.did.docdiffserver.data.SimilarSearchResult;
 import com.did.docdiffserver.data.TableInfo;
@@ -16,8 +15,6 @@ import org.jsoup.select.Elements;
 import org.junit.Test;
 import toolgood.words.StringSearch;
 
-import java.io.File;
-import java.io.PipedReader;
 import java.util.*;
 
 @Slf4j

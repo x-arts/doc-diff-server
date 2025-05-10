@@ -30,6 +30,19 @@ public class DocCovertService {
     }
 
 
+    /**
+     * 把 html 转换成纯文本，不包含表格
+     *
+     *
+     * @param filePath
+     * @return
+     */
+    public String html2PlanTextWithoutTable(String filePath) {
+        return null;
+
+    }
+
+
 
 
 
