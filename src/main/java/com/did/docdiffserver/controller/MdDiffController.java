@@ -90,7 +90,7 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-            String text = docCovertService.docx2Html(filePath, fileId);
+            String text = docCovertService.docx2HtmlAndGet(filePath, fileId);
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);

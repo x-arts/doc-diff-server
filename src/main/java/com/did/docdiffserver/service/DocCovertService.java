@@ -30,8 +30,21 @@ public class DocCovertService {
         return   minerUService.docToMarkdown(filePath,fileId);
     }
 
-    public String docx2Html(String filePath, String fileId){
-        return sofficeServcie.doc2Html(filePath, fileId);
+    public String docx2HtmlAndGet(String filePath, String fileId) {
+        File file = new File(filePath);
+        String parent = file.getParent();
+        String outDir = parent + "/" + "html/" + fileId;
+        FileUtil.mkdir(outDir);
+        boolean b = docx2Html(filePath, outDir);
+        if (b) {
+            return FileUtil.readString(outDir + "/" + fileId + ".html", "utf-8");
+        } else {
+            return "";
+        }
+    }
+
+    public boolean docx2Html(String filePath, String outDir){
+        return sofficeServcie.doc2Html(filePath, outDir);
     }
 
 

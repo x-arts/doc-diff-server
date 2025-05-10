@@ -1,11 +1,13 @@
 package com.did.docdiffserver.service;
 
+import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -17,24 +19,21 @@ import java.util.List;
 @Service
 public class SofficeServcie {
 
-
-
     @Value("${local.file-upload-path}")
     private String uploadFilePath;
 
-    public String doc2Html(String filePath, String fileId) {
-        /*
-        soffice --headless --convert-to html:"HTML (StarWriter)" resume.docx  --outdir ./output
-        -outdir /Users/xuewenke/temp-file/doc-diff-server
-         */
+    @Value("${local.script}")
+    private String scriptBase;
+
+    public boolean doc2Html(String filePath, String outDir) {
+
         try {
-            ProcessBuilder pb = new ProcessBuilder(
-                    "/Users/xuewenke/temp-file/doc-diff-server/docx2html.sh", filePath
-            );
+            System.out.println(scriptBase);
+            String script = scriptBase + "convert_docx_to_html.sh";
+            ProcessBuilder pb = new ProcessBuilder(script, filePath, outDir);
             List<String> command = pb.command();
-            System.out.println(String.join(" ", command));
             pb.redirectErrorStream(true);  // 合并错误输出
-            pb.environment().put("HOME", "/tmp");
+//            pb.environment().put("HOME", "/tmp");
             Process process = pb.start();
             InputStream is = process.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -42,15 +41,13 @@ public class SofficeServcie {
             while ((line = reader.readLine()) != null) {
                 log.info("doc2Html line = {}", line);
             }
-
-            //  读取文件
-            String targetPath = uploadFilePath  + "html/" + fileId + ".html";
-            return StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
+            return true;
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            return false;
 
         }
-        return "";
+
     }
 
 

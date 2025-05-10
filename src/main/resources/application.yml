@@ -9,6 +9,8 @@ server:
 #    root: info
 #    org.springframework.web: trace
 
+
+
 spring:
   servlet:
     multipart:
@@ -18,3 +20,4 @@ spring:
 
 local:
   file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/
+  script: /Users/xuewenke/temp-file/doc-diff-server/script/
