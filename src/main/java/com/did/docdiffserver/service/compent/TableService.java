@@ -1,8 +1,8 @@
 package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.util.StrUtil;
-import com.did.docdiffserver.data.vo.Row;
-import com.did.docdiffserver.data.vo.TableInfo;
+import com.did.docdiffserver.data.vo.table.Row;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

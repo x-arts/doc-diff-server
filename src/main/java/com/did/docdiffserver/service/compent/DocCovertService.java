@@ -49,6 +49,21 @@ public class DocCovertService {
 
 
     /**
+     *
+     * @param filePath
+     * @return 返回 markdown 的文件路径
+     */
+    public String docx2Markdown(String filePath) {
+        // todo
+
+
+
+        return "";
+    }
+
+
+
+    /**
      * 把 html 转换成纯文本，不包含表格
      *
      *

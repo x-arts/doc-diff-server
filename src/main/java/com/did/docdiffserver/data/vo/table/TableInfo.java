@@ -1,4 +1,4 @@
-package com.did.docdiffserver.data.vo;
+package com.did.docdiffserver.data.vo.table;
 
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.utils.StrTools;

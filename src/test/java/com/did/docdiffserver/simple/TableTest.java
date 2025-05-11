@@ -2,7 +2,7 @@ package com.did.docdiffserver.simple;
 
 import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.TestBase;
-import com.did.docdiffserver.data.vo.TableInfo;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.service.RevisedPdfFindDiffService;
 import com.did.docdiffserver.service.compent.TableService;
 import org.jsoup.Jsoup;
