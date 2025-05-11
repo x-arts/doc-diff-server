@@ -12,5 +12,11 @@ public class YamlConfig {
     @Value("${local.file-upload-path}")
     private String uploadBase;
 
+    @Value("${local.process}")
+    private String processBasePath;
+
+    @Value("${local.script}")
+    private String scriptBasePath;
+
 
 }

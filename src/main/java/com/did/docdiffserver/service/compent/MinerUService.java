@@ -45,7 +45,6 @@ public class MinerUService {
                     "/Users/xuewenke/temp-file/doc-diff-server/mineru2md.sh", filePath
             );
             List<String> command = pb.command();
-            System.out.println(String.join(" ", command));
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
             InputStream is = process.getInputStream();
