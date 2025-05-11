@@ -1,4 +1,4 @@
-package com.did.docdiffserver.data.vo.word;
+package com.did.docdiffserver.data.vo.pdf;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Slf4j
-public class WordProcessVO {
+public class PdfProcessVO {
 
     private String fileId;
 
@@ -19,29 +19,25 @@ public class WordProcessVO {
 
 
     /**
-     * docx 转换成 markdown 的文件内容
+     * pdf 转换成 markdown 的文件内容
      */
     private List<String> mardDownList;
 
 
     /**
-     * 删除了表格的 markdown
+     *  简化后了的，用来对对比的列表
      */
-    private List<String> noHtmlTagList;
-
-    /**
-     * 用来比对的字典
-     */
-    private String compareDict;
+    private List<String> simpleCompareList;
 
 
-    /*
-      还需要回溯到行数
-     */
+    public void  process() {
+        buildMarkDownList(this.filePath);
+        buildSimpleCompareList();
+    }
 
 
-    public static WordProcessVO init(String filePath, String fileId) {
-        WordProcessVO vo = new WordProcessVO();
+    public static PdfProcessVO init(String filePath, String fileId) {
+        PdfProcessVO vo = new PdfProcessVO();
         vo.filePath = filePath;
         vo.fileId = fileId;
         return vo;
@@ -52,7 +48,7 @@ public class WordProcessVO {
      *
      * @param filePath
      */
-    public void buildMarkDownList(String filePath) {
+    private void buildMarkDownList(String filePath) {
         List<String> lines = FileUtil.readLines(filePath, "utf-8");
         this.mardDownList.addAll(lines);
     }
@@ -61,20 +57,15 @@ public class WordProcessVO {
     /**
      * 数据预处理，移除 html  标签
      */
-    public void buildNoHtmlTagList() {
+    private void buildSimpleCompareList() {
+        List<String> list = new LinkedList<>();
+
         for (String line : this.mardDownList) {
-            if (StrTools.startsWithHtmlTag(line)) {
+            if (StrUtil.isBlank(line)) {
                 continue;
             }
-            this.noHtmlTagList.add(line);
-        }
-    }
 
-
-    public void buildDict() {
-        List<String> dictLine = new LinkedList<>();
-        for (String line : this.noHtmlTagList) {
-            if (StrUtil.isBlank(line)) {
+            if (StrTools.startsWithHtmlTag(line)) {
                 continue;
             }
             //  目的是把目录去掉。单这个方式不一定精准
@@ -91,8 +82,10 @@ public class WordProcessVO {
 
             // 去除标点符号
             addLine = StrTools.replacePunctuation(addLine);
-            dictLine.add(addLine);
+            list.add(addLine);
         }
-        this.compareDict = String.join("", dictLine);
+        this.simpleCompareList = list;
     }
+
+
 }
