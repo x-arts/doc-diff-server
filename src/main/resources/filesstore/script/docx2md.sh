@@ -26,7 +26,9 @@ if [ ! -d "$output_dir" ]; then
 fi
 
 # 执行转换命令
+conda activate mineru
 echo "正在将 '$input_file' 转换为 Markdown 并保存到 '$output_dir'..."
+
 docx2md "$input_file" "$output_dir"
 
 # 检查命令是否成功执行
@@ -36,3 +38,5 @@ else
     echo "错误: 转换失败"
     exit 1
 fi
+
+conda deactivate
