@@ -19,7 +19,7 @@ import java.util.*;
 
 @Slf4j
 @Service
-public class RevisedPdfFindDiffService {
+public class PdfFindLineDiffService {
 
     private static final String localTempFilePath = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/";
 //    private static final String localTempFilePath =  "/Users/xuewenke/workspace/code/doc-diff-server/src/main/temp-file/";
@@ -96,15 +96,6 @@ public class RevisedPdfFindDiffService {
                 }
             }
         }
-
-        for (String wordDiff : wordDiffs) {
-            System.out.println(wordDiff);
-        }
-        System.out.println("=========================");
-        for (String pdfDiff : pdfDiffs) {
-            System.out.println(pdfDiff);
-        }
-
     }
 
     private  List<SimilarSearchResult>  similarSearch(String text, String key) {

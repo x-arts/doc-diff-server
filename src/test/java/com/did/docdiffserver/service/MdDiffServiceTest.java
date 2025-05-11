@@ -12,7 +12,7 @@ public class MdDiffServiceTest extends TestBase {
 
 
     @Resource
-    private RevisedPdfFindDiffService revisedPdfFindDiffService;
+    private PdfFindLineDiffService revisedPdfFindDiffService;
 
 
     @Test

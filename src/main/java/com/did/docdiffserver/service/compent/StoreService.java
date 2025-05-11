@@ -18,6 +18,15 @@ public class StoreService {
     @Resource
     private YamlConfig yamlConfig;
 
+    public String getPdfFilePath(String fileId) {
+        return yamlConfig.getUploadBase() + fileId + ".pdf";
+    }
+
+
+    public String getWordFilePath(String fileId) {
+        return yamlConfig.getUploadBase() + fileId + ".docx";
+    }
+
     public String getProcessMarkDownDir(String fileId) {
         String dirOut = yamlConfig.getProcessBasePath() + "/markdown/" + fileId + "/";
         FileUtil.mkdir(dirOut);

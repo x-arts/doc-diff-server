@@ -3,7 +3,7 @@ package com.did.docdiffserver.simple;
 import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.table.TableInfo;
-import com.did.docdiffserver.service.RevisedPdfFindDiffService;
+import com.did.docdiffserver.service.PdfFindLineDiffService;
 import com.did.docdiffserver.service.compent.TableService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +21,7 @@ public class TableTest extends TestBase {
     private TableService tableService;
 
     @Resource
-    private RevisedPdfFindDiffService revisedPdfFindDiffService;
+    private PdfFindLineDiffService revisedPdfFindDiffService;
 
 
 
