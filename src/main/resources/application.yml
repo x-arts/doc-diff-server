@@ -19,5 +19,6 @@ spring:
 
 
 local:
-  file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/
+  file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/upload/
   script: /Users/xuewenke/temp-file/doc-diff-server/script/
+  temp: /Users/xuewenke/temp-file/doc-diff-server/temp/
