@@ -1,4 +1,4 @@
-package com.did.docdiffserver.service;
+package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;

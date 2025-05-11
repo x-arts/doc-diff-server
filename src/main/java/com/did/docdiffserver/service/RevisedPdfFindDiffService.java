@@ -7,6 +7,7 @@ import com.did.docdiffserver.data.vo.Cell;
 import com.did.docdiffserver.data.vo.Row;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
 import com.did.docdiffserver.data.vo.TableInfo;
+import com.did.docdiffserver.service.compent.TableService;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;

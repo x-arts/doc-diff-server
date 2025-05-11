@@ -2,6 +2,7 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.TestBase;
+import com.did.docdiffserver.service.compent.SofficeServcie;
 import org.junit.Test;
 
 import javax.annotation.Resource;

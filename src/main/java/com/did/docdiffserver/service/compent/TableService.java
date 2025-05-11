@@ -1,4 +1,4 @@
-package com.did.docdiffserver.service;
+package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.Row;

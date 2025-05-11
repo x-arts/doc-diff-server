@@ -7,7 +7,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.condition.MdTextDiffCondition;
 import com.did.docdiffserver.data.vo.BaseVo;
 import com.did.docdiffserver.data.vo.ProcessFileVO;
-import com.did.docdiffserver.service.DocCovertService;
+import com.did.docdiffserver.service.compent.DocCovertService;
 import com.did.docdiffserver.service.MdDiffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
