@@ -132,9 +132,6 @@ public class RevisedPdfFindDiffService {
         if (CollectionUtil.isEmpty(found)) {
             return false;
         }
-//        for (String string : found) {
-//            log.info("preciseSearch match word = {}", string);
-//        }
         return true;
     }
 

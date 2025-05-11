@@ -4,17 +4,15 @@ import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
 @Service
-public class MdDiffService {
+public class DocDiffService {
 
 
     /**

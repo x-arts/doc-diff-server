@@ -8,7 +8,7 @@ import com.did.docdiffserver.data.condition.MdTextDiffCondition;
 import com.did.docdiffserver.data.vo.BaseVo;
 import com.did.docdiffserver.data.vo.ProcessFileVO;
 import com.did.docdiffserver.service.compent.DocCovertService;
-import com.did.docdiffserver.service.MdDiffService;
+import com.did.docdiffserver.service.DocDiffService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,7 @@ public class MdDiffController {
     private String uploadFilePath;
 
     @Resource
-    private MdDiffService mdDiffService;
+    private DocDiffService mdDiffService;
 
     @Resource
     private DocCovertService docCovertService;
