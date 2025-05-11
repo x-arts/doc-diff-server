@@ -1,19 +1,12 @@
 package com.did.docdiffserver.service;
 
-import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 @Slf4j
 @Service
@@ -31,9 +24,7 @@ public class SofficeServcie {
             System.out.println(scriptBase);
             String script = scriptBase + "convert_docx_to_html.sh";
             ProcessBuilder pb = new ProcessBuilder(script, filePath, outDir);
-            List<String> command = pb.command();
             pb.redirectErrorStream(true);  // 合并错误输出
-//            pb.environment().put("HOME", "/tmp");
             Process process = pb.start();
             InputStream is = process.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));

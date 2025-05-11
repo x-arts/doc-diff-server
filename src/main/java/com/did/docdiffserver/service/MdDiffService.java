@@ -17,6 +17,21 @@ import java.util.List;
 public class MdDiffService {
 
 
+    /**
+     * 上传两个文件 id， 对文件对比
+     * @param wordFileId
+     * @param pdfFileId
+     * @return
+     */
+    public String docDiff(String wordFileId, String pdfFileId) {
+
+
+        return null;
+    }
+
+
+
+
     public String mdTextDiff(String oldText, String newText) {
         return generateUnifiedDiff(oldText, newText, "old.md", "new.md");
     }
