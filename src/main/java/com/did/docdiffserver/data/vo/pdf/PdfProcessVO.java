@@ -30,8 +30,8 @@ public class PdfProcessVO {
     private List<String> simpleCompareList;
 
 
-    public void  process() {
-        buildMarkDownList(this.filePath);
+    public void  process(String markdownFilePath) {
+        buildMarkDownList(markdownFilePath);
         buildSimpleCompareList();
     }
 
