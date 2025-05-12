@@ -20,6 +20,6 @@ spring:
 
 local:
   file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/upload/
-  script: /Users/xuewenke/temp-file/doc-diff-server/script/
-  temp: /Users/xuewenke/temp-file/doc-diff-server/temp/
-  markdown: /Users/xuewenke/temp-file/doc-diff-server/process/markdown/
+  script: /Users/xuewenke/doc-diff-server/script/
+  temp: /Users/xuewenke/doc-diff-server/temp/
+  markdown: /Users/xuewenke/doc-diff-server/process/markdown/

@@ -85,7 +85,7 @@ public class DocCovertService {
             log.error(e.getMessage(),e);
         }
 
-        return storeService.getProcessMarkDownFilePath(fileId);
+        return storeService.getWordMarkDownFilePath(fileId);
     }
 
 

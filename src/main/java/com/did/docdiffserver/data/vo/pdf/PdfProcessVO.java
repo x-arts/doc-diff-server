@@ -6,6 +6,7 @@ import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class PdfProcessVO {
         PdfProcessVO vo = new PdfProcessVO();
         vo.filePath = filePath;
         vo.fileId = fileId;
+        vo.mardDownList = new ArrayList<>();
+        vo.simpleCompareList = new ArrayList<>();
         return vo;
     }
 
@@ -68,14 +71,19 @@ public class PdfProcessVO {
             if (StrTools.startsWithHtmlTag(line)) {
                 continue;
             }
-            //  目的是把目录去掉。单这个方式不一定精准
-            if (line.matches("^\\d+.*$")) {
+
+            if (line.startsWith("#")) {
                 continue;
             }
+
             String addLine = line.trim();
-            if (addLine.startsWith("#")) {
-                addLine = addLine.replaceAll("#", "");
+
+            //  目的是把目录去掉。单这个方式不一定精准
+            if (addLine.matches("^\\d+.*$")) {
+                continue;
             }
+
+
 
             // 去除行内的空格
             addLine = StrTools.removeSpaceInLine(addLine);

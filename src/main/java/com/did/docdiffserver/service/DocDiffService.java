@@ -45,10 +45,32 @@ public class DocDiffService {
      */
     public String docDiff(String wordFileId, String pdfFileId) {
         WordProcessVO wordProcess = wordProcessService.process(storeService.getWordFilePath(wordFileId), wordFileId);
+        log.info("docDiff wordProcess  finish ");
         PdfProcessVO pdfProcess = pdfProcessService.process(storeService.getPdfFilePath(pdfFileId), pdfFileId);
+        log.info("docDiff pdfProcess  finish ");
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        log.info("docDiff findDiff  finish ");
+        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
+        printSideBySide(diff);
         return generateUnifiedDiff(diff);
     }
+
+    private void  printSideBySide(DiffResultVO diff){
+        List<String> originalList = diff.getOriginalList();
+
+        for (String string : originalList) {
+            System.out.println(string);
+        }
+
+        System.out.println("==========================");
+
+        List<String> modifyList = diff.getModifyList();
+        for (String string : modifyList) {
+            System.out.println(string);
+        }
+
+    }
+
 
 
 
@@ -56,16 +78,19 @@ public class DocDiffService {
         List<String> original = new ArrayList<>();
         List<String> modify = new ArrayList<>();
         String dict = wordProcess.getCompareDict();
+        log.info("findDiff dict = {}", dict.length());
 
         for (String line : pdfProcess.getSimpleCompareList()) {
-            oneLineFindDiff(original, modify, line, dict);
+            oneLineFindDiff(original, modify, dict, line);
         }
 
+        log.info("findDiff finish = {}", original);
         return DiffResultVO.create(wordProcess, pdfProcess, original, modify);
     }
 
 
     public void oneLineFindDiff(List<String> original, List<String> modify, String dict, String findKye) {
+//        log.info("oneLineFindDiff findKye = {}", findKye);
         if (StrUtil.isBlank(findKye)) {
             return;
         }
@@ -111,9 +136,6 @@ public class DocDiffService {
         List<String> found = search.FindAll(text);
         if (CollectionUtil.isEmpty(found)) {
             return false;
-        }
-        for (String string : found) {
-            log.info("preciseSearch match word = {}", string);
         }
         return true;
     }

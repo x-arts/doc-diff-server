@@ -6,6 +6,7 @@ import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class WordProcessVO {
         WordProcessVO vo = new WordProcessVO();
         vo.filePath = filePath;
         vo.fileId = fileId;
+        vo.mardDownList = new ArrayList<>();
+        vo.noHtmlTagList = new ArrayList<>();
         return vo;
     }
 
