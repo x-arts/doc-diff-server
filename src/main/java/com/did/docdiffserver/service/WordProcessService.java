@@ -26,7 +26,7 @@ public class WordProcessService {
         WordProcessVO wordProcessVO = WordProcessVO.init(filePath, fileId);
 
         // 转换成 markdown
-        String markdownFilePath = storeService.getProcessMarkDownFilePath(fileId);
+        String markdownFilePath = storeService.getWordMarkDownFilePath(fileId);
         log.info("wordProcess  markdownFilePath = {}", markdownFilePath);
         wordProcessVO.buildMarkDownList(markdownFilePath);
         wordProcessVO.buildNoHtmlTagList();

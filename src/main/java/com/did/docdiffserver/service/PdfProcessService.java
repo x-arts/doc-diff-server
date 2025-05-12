@@ -1,7 +1,6 @@
 package com.did.docdiffserver.service;
 
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
-import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.service.compent.StoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class PdfProcessService {
     public PdfProcessVO process(String filePath, String fileId) {
         PdfProcessVO processVO = PdfProcessVO.init(filePath, fileId);
 
-        String markdownFilePath = storeService.getProcessMarkDownFilePath(fileId);
+        String markdownFilePath = storeService.getPdfMarkDownFilePath(fileId);
         processVO.process(markdownFilePath);
         return processVO;
     }

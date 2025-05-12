@@ -28,13 +28,18 @@ public class StoreService {
     }
 
     public String getProcessMarkDownDir(String fileId) {
-        String dirOut = yamlConfig.getProcessBasePath() + "/markdown/" + fileId + "/";
+        String dirOut = yamlConfig.getMarkdownBasePath() + fileId + "/";
         FileUtil.mkdir(dirOut);
         return dirOut;
     }
 
-    public String getProcessMarkDownFilePath(String fileId) {
-        String dirOut = yamlConfig.getProcessBasePath() + "/markdown/" + fileId + "/";
+    public String getWordMarkDownFilePath(String fileId) {
+        String dirOut = yamlConfig.getMarkdownBasePath() + fileId + "/";
+        return dirOut + fileId + ".md";
+    }
+
+    public String getPdfMarkDownFilePath(String fileId) {
+        String dirOut = yamlConfig.getMarkdownBasePath() + fileId + "/auto/";
         return dirOut + fileId + ".md";
     }
 
