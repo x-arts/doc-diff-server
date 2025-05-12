@@ -129,7 +129,7 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-            String text = docCovertService.doc2mdMinerU(filePath, fileId);
+            String text = docCovertService.doc2md(filePath, fileId,suffix);
             ProcessFileVO processFileVO = new ProcessFileVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);

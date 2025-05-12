@@ -26,6 +26,7 @@ if [ ! -d "$output_dir" ]; then
 fi
 
 # 执行转换命令
+source ~/.zshrc
 conda activate mineru
 echo "正在将 '$input_file' 转换为 Markdown 并保存到 '$output_dir'..."
 

@@ -36,6 +36,20 @@ public class DocCovertService {
     private  StoreService  storeService;
 
 
+
+    public String doc2md(String filePath, String fileId, String suffix) {
+        if (suffix.equals("docx")) {
+            return docx2Markdown(filePath, fileId);
+        }
+
+        if (suffix.equals("pdf")) {
+            return doc2mdMinerU(filePath, fileId);
+        }
+
+        return "";
+    }
+
+
     public String doc2mdMinerU(String filePath, String fileId) {
         log.info("doc2mdMinerU: fileId={}", fileId);
         return   minerUService.docToMarkdown(filePath,fileId);
@@ -66,12 +80,16 @@ public class DocCovertService {
      */
     public String docx2Markdown(String filePath, String fileId) {
         String outDir = storeService.getProcessMarkDownDir(fileId);
+        String mdFilePath = outDir + fileId + ".md";
+
+        System.out.println(mdFilePath);
+        FileUtil.touch(mdFilePath);
 
         String scriptBasePath = yamlConfig.getScriptBasePath();
-        String scriptPath = scriptBasePath + "/docx2md.sh";
+        String scriptPath = scriptBasePath + "docx2md.sh";
 
         try {
-            ProcessBuilder pb = new ProcessBuilder(scriptPath, filePath, outDir);
+            ProcessBuilder pb = new ProcessBuilder(scriptPath, filePath, mdFilePath);
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
             InputStream is = process.getInputStream();
