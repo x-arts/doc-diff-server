@@ -2,19 +2,18 @@ package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.config.YamlConfig;
+import com.did.docdiffserver.service.WordService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 
 import javax.annotation.Resource;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * 文档转换服务
@@ -36,12 +35,15 @@ public class DocCovertService {
     @Resource
     private  StoreService  storeService;
 
+    @Resource
+    private WordService wordService;
 
 
-    public String doc2md(String filePath, String fileId, String suffix) throws IOException {
+
+    public String doc2md(String filePath, String fileId, String suffix)  {
         if (suffix.equals("docx")) {
             String markdownFilePath = docx2Markdown(filePath, fileId);
-            return StreamUtils.copyToString(Files.newInputStream(Paths.get(markdownFilePath)), StandardCharsets.UTF_8);
+            return wordService.formatShowMarkdown(markdownFilePath);
         }
 
         if (suffix.equals("pdf")) {

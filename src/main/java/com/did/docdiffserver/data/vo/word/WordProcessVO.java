@@ -2,33 +2,70 @@ package com.did.docdiffserver.data.vo.word;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.base.Constant;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.StandardCharsets;
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Data
 @Slf4j
 public class WordProcessVO {
 
+    /**
+     * 比对最小的字符串长度
+     * 如果一样小于 10，则需要加上下一行去比对
+     */
+    private static final int min_size = 10;
+
+
     private String fileId;
 
-    private String filePath;
+    private String wordFilePath;
+
+    private String markDownFilePath;
 
 
     /**
      * docx 转换成 markdown 的文件内容
      */
-    private List<String> mardDownList;
+    private List<String> markDownList = new ArrayList<>();
 
 
     /**
-     * 删除了表格的 markdown
+     * 用来比较的 markdown 文件内容
+     * 会做数据清洗
      */
-    private List<String> noHtmlTagList;
+    private List<String> compareMarkdownList = new ArrayList<>();
+
+
+    /**
+     * 表格数据
+     */
+    private List<String> compareTableList = new ArrayList<>();
+
+
+    /**
+     * 当前用来比对差异的 markdown 文本
+     */
+    public String currentCompareText;
+
+
+    /**
+     * 组成比对的文本 行数
+     */
+    private List<Integer> currentCompareTextLineNumbers = new ArrayList<>();
+
+
+    /**
+     * 当前下标
+     */
+    private int currentLineNum = -1;
+
 
     /**
      * 用来比对的字典
@@ -36,66 +73,117 @@ public class WordProcessVO {
     private String compareDict;
 
 
-    /*
-      还需要回溯到行数
-     */
 
 
-    public static WordProcessVO init(String filePath, String fileId) {
+
+    public static WordProcessVO init(String fileId, String wordFilePath, String markDownFilePath) {
         WordProcessVO vo = new WordProcessVO();
-        vo.filePath = filePath;
+        vo.wordFilePath = wordFilePath;
         vo.fileId = fileId;
-        vo.mardDownList = new ArrayList<>();
-        vo.noHtmlTagList = new ArrayList<>();
+        vo.markDownFilePath = markDownFilePath;
         return vo;
     }
+
+    public void  buildCompareData() {
+        buildCompareMarkdownList();
+    }
+
+    public String currentCompareText() {
+        // 重置数据
+        currentCompareTextLineNumbers.clear();
+        currentCompareText = "";
+        currentLineNum++;
+
+        if (currentLineNum > compareMarkdownList.size()) {
+            return "end";
+        }
+
+        currentCompareText = getOneCompareText();
+        if (currentCompareText.length() > min_size) {
+            return currentCompareText;
+        }
+
+        while (currentCompareText.length() < min_size) {
+            currentLineNum++;
+            currentCompareText = currentCompareText + getOneCompareText();
+        }
+
+        return currentCompareText;
+
+
+
+    }
+
+
+    private String getOneCompareText() {
+        String compareText = compareMarkdownList.get(currentLineNum);
+        // 遇到空行跳过
+        if (compareText.equals(Constant.EMPTY_LINE)) {
+            this.currentLineNum++;
+            return getCurrentCompareText();
+        }
+
+        // 遇到表格跳过
+        if (compareText.equals(Constant.HTML_LINE)) {
+            this.currentLineNum++;
+            return getCurrentCompareText();
+        }
+
+        // 遇到标题跳过
+        if (compareText.startsWith("#")) {
+            this.currentLineNum++;
+            return getCurrentCompareText();
+        }
+
+        currentCompareTextLineNumbers.add(currentLineNum);
+        return compareText;
+    }
+
+
+    private void  buildCompareMarkdownList() {
+        for (String markdownLine : this.markDownList) {
+            String cleanLine = markdownLine.trim();
+            // 移除行内的空格
+            cleanLine  = StrTools.removeSpaceInLine(cleanLine);
+
+            if (StrUtil.isBlank(cleanLine)) {
+                this.compareMarkdownList.add(Constant.EMPTY_LINE);
+                continue;
+            }
+
+            if (StrTools.startsWithHtmlTag(cleanLine)) {
+                this.compareTableList.add(cleanLine);
+                continue;
+            }
+
+            this.compareMarkdownList.add(cleanLine);
+        }
+    }
+
+
+
 
     /**
      * 获取 markdown 的内容
      *
-     * @param filePath
      */
-    public void buildMarkDownList(String filePath) {
-        List<String> lines = FileUtil.readLines(filePath, "utf-8");
-        this.mardDownList.addAll(lines);
+    private void buildMarkDownList() {
+        List<String> lines = FileUtil.readLines(this.getMarkDownFilePath(), StandardCharsets.UTF_8);
+        this.markDownList.addAll(lines);
     }
 
 
     /**
      * 数据预处理，移除 html  标签
      */
-    public void buildNoHtmlTagList() {
-        for (String line : this.mardDownList) {
+    private void buildNoHtmlTagList() {
+        for (String line : this.markDownList) {
             if (StrTools.startsWithHtmlTag(line)) {
                 continue;
             }
-            this.noHtmlTagList.add(line);
         }
     }
 
 
-    public void buildDict() {
-        List<String> dictLine = new LinkedList<>();
-        for (String line : this.noHtmlTagList) {
-            if (StrUtil.isBlank(line)) {
-                continue;
-            }
-            //  目的是把目录去掉。单这个方式不一定精准
-            if (line.matches("^\\d+.*$")) {
-                continue;
-            }
-            String addLine = line.trim();
-            if (addLine.startsWith("#")) {
-                addLine = addLine.replaceAll("#", "");
-            }
 
-            // 去除行内的空格
-            addLine = StrTools.removeSpaceInLine(addLine);
-
-            // 去除标点符号
-            addLine = StrTools.replacePunctuation(addLine);
-            dictLine.add(addLine);
-        }
-        this.compareDict = String.join("", dictLine);
-    }
 }

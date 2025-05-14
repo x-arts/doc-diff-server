@@ -30,6 +30,11 @@ public class PdfProcessVO {
      */
     private List<String> simpleCompareList;
 
+    /**
+     * 行的下标记录， 后续用来做二分查找
+     */
+    private List<Integer> lineIndex = new ArrayList<>();
+
 
     public void  process(String markdownFilePath) {
         buildMarkDownList(markdownFilePath);
