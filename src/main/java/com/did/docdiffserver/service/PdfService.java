@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-public class PdfProcessService {
+public class PdfService {
 
 
     @Resource

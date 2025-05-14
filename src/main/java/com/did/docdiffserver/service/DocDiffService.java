@@ -28,10 +28,10 @@ import java.util.Optional;
 public class DocDiffService {
 
     @Resource
-    private WordProcessService wordProcessService;
+    private WordService wordService;
 
     @Resource
-    private PdfProcessService pdfProcessService;
+    private PdfService pdfService;
 
     @Resource
     private StoreService storeService;
@@ -44,9 +44,9 @@ public class DocDiffService {
      * @return
      */
     public String docDiff(String wordFileId, String pdfFileId) {
-        WordProcessVO wordProcess = wordProcessService.process(storeService.getWordFilePath(wordFileId), wordFileId);
+        WordProcessVO wordProcess = wordService.process(storeService.getWordFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
-        PdfProcessVO pdfProcess = pdfProcessService.process(storeService.getPdfFilePath(pdfFileId), pdfFileId);
+        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");

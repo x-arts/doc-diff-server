@@ -7,12 +7,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 
 import javax.annotation.Resource;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -37,9 +38,10 @@ public class DocCovertService {
 
 
 
-    public String doc2md(String filePath, String fileId, String suffix) {
+    public String doc2md(String filePath, String fileId, String suffix) throws IOException {
         if (suffix.equals("docx")) {
-            return docx2Markdown(filePath, fileId);
+            String markdownFilePath = docx2Markdown(filePath, fileId);
+            return StreamUtils.copyToString(Files.newInputStream(Paths.get(markdownFilePath)), StandardCharsets.UTF_8);
         }
 
         if (suffix.equals("pdf")) {
