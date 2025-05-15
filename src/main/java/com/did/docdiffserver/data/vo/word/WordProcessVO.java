@@ -64,13 +64,6 @@ public class WordProcessVO {
     private int currentLineNum = -1;
 
 
-    /**
-     * 用来比对的字典
-     */
-    private String compareDict;
-
-
-
 
 
     public static WordProcessVO init(String fileId, String markDownFilePath) {
@@ -81,8 +74,19 @@ public class WordProcessVO {
     }
 
     public void  buildCompareData() {
+        // 读取文档
+        buildMarkDownList();
+
+        // 文本清洗和构建
         buildCompareMarkdownList();
     }
+
+
+    private void buildMarkDownList() {
+        List<String> lines = FileUtil.readLines(markDownFilePath, StandardCharsets.UTF_8);
+        this.markDownList.addAll(lines);
+    }
+
 
     public String currentCompareText() {
         // 重置数据
@@ -160,23 +164,21 @@ public class WordProcessVO {
      * 获取 markdown 的内容
      *
      */
-    private void buildMarkDownList() {
-        List<String> lines = FileUtil.readLines(this.getMarkDownFilePath(), StandardCharsets.UTF_8);
-        this.markDownList.addAll(lines);
-    }
+//    private void buildMarkDownList() {
+//        List<String> lines = FileUtil.readLines(this.getMarkDownFilePath(), StandardCharsets.UTF_8);
+//        this.markDownList.addAll(lines);
+//    }
 
 
     /**
      * 数据预处理，移除 html  标签
      */
-    private void buildNoHtmlTagList() {
-        for (String line : this.markDownList) {
-            if (StrTools.startsWithHtmlTag(line)) {
-                continue;
-            }
-        }
-    }
-
-
+//    private void buildNoHtmlTagList() {
+//        for (String line : this.markDownList) {
+//            if (StrTools.startsWithHtmlTag(line)) {
+//                continue;
+//            }
+//        }
+//    }
 
 }

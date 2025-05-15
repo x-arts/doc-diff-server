@@ -77,10 +77,10 @@ public class DocDiffService {
     private DiffResultVO findDiff(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
         List<String> original = new ArrayList<>();
         List<String> modify = new ArrayList<>();
-        String dict = wordProcess.getCompareDict();
+        String dict = "";
         log.info("findDiff dict = {}", dict.length());
 
-        for (String line : pdfProcess.getSimpleCompareList()) {
+        for (String line : pdfProcess.getCompareMarkdownList()) {
             oneLineFindDiff(original, modify, dict, line);
         }
 

@@ -2,10 +2,12 @@ package com.did.docdiffserver.data.vo.pdf;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.base.Constant;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +30,21 @@ public class PdfProcessVO {
     /**
      *  简化后了的，用来对对比的列表
      */
-    private List<String> simpleCompareList;
+    private List<String> compareMarkdownList;
+
+
+    /**
+     * 表格数据
+     */
+    private List<String> compareTableList = new ArrayList<>();
+
+
+
+    /**
+     * 用来比对的字典
+     */
+    private String compareDict;
+
 
     /**
      * 行的下标记录， 后续用来做二分查找
@@ -37,19 +53,27 @@ public class PdfProcessVO {
 
 
     public void  process(String markdownFilePath) {
-        buildMarkDownList(markdownFilePath);
-        buildSimpleCompareList();
+
     }
 
 
-    public static PdfProcessVO init(String filePath, String markdownFilePath) {
+    public static PdfProcessVO init(String fileId, String markdownFilePath) {
         PdfProcessVO vo = new PdfProcessVO();
-        vo.markdownFilePath = filePath;
-        vo.fileId = markdownFilePath;
+        vo.markdownFilePath = markdownFilePath;
+        vo.fileId = fileId;
         vo.mardDownList = new ArrayList<>();
-        vo.simpleCompareList = new ArrayList<>();
+        vo.compareMarkdownList = new ArrayList<>();
         return vo;
     }
+
+
+    public void  buildCompareData() {
+        buildMarkDownList(markdownFilePath);
+        buildCompareMarkdownList();
+        buildDict();
+        buildLineIndex();
+    }
+
 
     /**
      * 获取 markdown 的内容
@@ -57,7 +81,7 @@ public class PdfProcessVO {
      * @param filePath
      */
     private void buildMarkDownList(String filePath) {
-        List<String> lines = FileUtil.readLines(filePath, "utf-8");
+        List<String> lines = FileUtil.readLines(filePath, StandardCharsets.UTF_8);
         this.mardDownList.addAll(lines);
     }
 
@@ -65,37 +89,37 @@ public class PdfProcessVO {
     /**
      * 数据预处理，移除 html  标签
      */
-    private void buildSimpleCompareList() {
-        List<String> list = new LinkedList<>();
+    private void buildCompareMarkdownList() {
+        for (String markdownLine : this.mardDownList) {
+            String cleanLine = markdownLine.trim();
+            // 移除行内的空格
+            cleanLine  = StrTools.removeSpaceInLine(cleanLine);
 
-        for (String line : this.mardDownList) {
-            if (StrUtil.isBlank(line)) {
+            if (StrUtil.isBlank(cleanLine)) {
+                this.compareMarkdownList.add(Constant.EMPTY_LINE);
                 continue;
             }
 
-            if (StrTools.startsWithHtmlTag(line)) {
+            if (StrTools.startsWithHtmlTag(cleanLine)) {
+                this.compareTableList.add(cleanLine);
                 continue;
             }
 
-            if (line.startsWith("#")) {
-                continue;
-            }
-
-            String addLine = line.trim();
-
-            //  目的是把目录去掉。单这个方式不一定精准
-            if (addLine.matches("^\\d+.*$")) {
-                continue;
-            }
-
-            // 去除行内的空格
-            addLine = StrTools.removeSpaceInLine(addLine);
-
-            // 去除标点符号
-            addLine = StrTools.replacePunctuation(addLine);
-            list.add(addLine);
+            this.compareMarkdownList.add(cleanLine);
         }
-        this.simpleCompareList = list;
+    }
+
+
+    private void  buildDict(){
+        this.compareDict = String.join("", this.compareMarkdownList);
+    }
+
+    private void buildLineIndex() {
+        int index = 0;
+        for (String line : this.compareMarkdownList) {
+            lineIndex.add(index);
+            index += line.length();
+        }
     }
 
 
