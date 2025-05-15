@@ -22,6 +22,10 @@ public class WordProcessVO {
     private static final int min_size = 10;
 
 
+    private static final  String END_LINE = "END_LINE";
+
+
+
     private String fileId;
 
     private String markDownFilePath;
@@ -88,6 +92,10 @@ public class WordProcessVO {
     }
 
 
+    /**
+     *
+     * @return
+     */
     public String currentCompareText() {
         // 重置数据
         currentCompareTextLineNumbers.clear();
@@ -95,7 +103,7 @@ public class WordProcessVO {
         currentLineNum++;
 
         if (currentLineNum > compareMarkdownList.size()) {
-            return "end";
+            return END_LINE;
         }
 
         currentCompareText = getOneCompareText();
@@ -112,6 +120,10 @@ public class WordProcessVO {
     }
 
 
+    /**
+     * 获取当前行的比对文本
+     * @return
+     */
     private String getOneCompareText() {
         String compareText = compareMarkdownList.get(currentLineNum);
         // 遇到空行跳过

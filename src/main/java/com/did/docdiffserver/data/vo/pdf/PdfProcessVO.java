@@ -84,6 +84,9 @@ public class PdfProcessVO {
 
     /**
      * 数据预处理，移除 html  标签
+     *
+     *  这里不保留完成的行数， 保留了，定位不出来具体的行数
+     *  所以，就直接跳过 标题， 表格， 空行
      */
     private void buildCompareMarkdownList() {
         for (String markdownLine : this.mardDownList) {
@@ -91,11 +94,18 @@ public class PdfProcessVO {
             // 移除行内的空格
             cleanLine  = StrTools.removeSpaceInLine(cleanLine);
 
+            // 跳过空行
             if (StrUtil.isBlank(cleanLine)) {
-                this.compareMarkdownList.add(Constant.EMPTY_LINE);
+//                this.compareMarkdownList.add(Constant.EMPTY_LINE);
                 continue;
             }
 
+            //跳过标题
+            if (markdownLine.startsWith("#")) {
+               continue;
+            }
+
+            // 跳过表格
             if (StrTools.startsWithHtmlTag(cleanLine)) {
                 this.compareTableList.add(cleanLine);
                 continue;
@@ -106,6 +116,10 @@ public class PdfProcessVO {
     }
 
 
+    /**
+     * 构建大串的时候，还是需要把 空行， html # 过滤掉，
+     *  因为在 word 哪里不是不会拼接空行，html 的
+     */
     private void  buildDict(){
         this.compareDict = String.join("", this.compareMarkdownList);
     }
