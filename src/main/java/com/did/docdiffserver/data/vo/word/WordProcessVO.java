@@ -108,9 +108,6 @@ public class WordProcessVO {
         }
 
         return currentCompareText;
-
-
-
     }
 
 
