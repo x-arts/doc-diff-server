@@ -41,15 +41,48 @@ public class PdfProcessVO {
 
 
     /**
-     * 用来比对的字典
+     * 用来比对的字典，全量
      */
     private String compareDict;
+
+    /**
+     * 动态字典，不断缩小的字典。
+     */
+    private String dynamicDict;
 
 
     /**
      * 行的下标记录， 后续用来做二分查找
      */
     private List<Integer> lineIndex = new ArrayList<>();
+
+
+    /**
+     * 获取匹配中的字符串的 起始下标
+     * @return
+     */
+    public int getMatchTextIndex(String matchText) {
+        int index = this.dynamicDict.indexOf(matchText);
+        if (index == -1) {
+            return -1;
+        }
+        return index;
+    }
+
+    public String getDictSubString(int start, int end) {
+        return this.dynamicDict.substring(start, end);
+    }
+
+    /**
+     * 缩小字典的范围
+     * @param startIndex
+     */
+    public void  cutDynamicDict(int startIndex) {
+
+
+    }
+
+
 
 
 
@@ -122,6 +155,7 @@ public class PdfProcessVO {
      */
     private void  buildDict(){
         this.compareDict = String.join("", this.compareMarkdownList);
+        this.dynamicDict = compareDict;
     }
 
     private void buildLineIndex() {

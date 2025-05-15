@@ -3,6 +3,7 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.DiffResultVO;
+import com.did.docdiffserver.data.vo.NextTextMatchVO;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
@@ -77,34 +78,62 @@ public class DocDiffService {
     private DiffResultVO findDiff(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
         List<String> original = new ArrayList<>();
         List<String> modify = new ArrayList<>();
+        DiffResultVO diffResultVO = DiffResultVO.create(wordProcess, pdfProcess, original, modify);
         String dict = pdfProcess.getCompareDict();
         log.info("findDiff dict = {}", dict.length());
 
-        for (String line : wordProcess.getCompareMarkdownList()) {
-            oneLineFindDiff(original, modify, dict, line);
+        String currentCompareText = wordProcess.getCurrentCompareText();
+        String nextCompareText = wordProcess.getCurrentCompareText();
+        NextTextMatchVO hadMatch = null;
+        while (!currentCompareText.equals(WordProcessVO.END_LINE)) {
+            if (hadMatch == null) {
+                // 第一次为 null 需要自己组装
+                String matchText = findMatchText(dict, currentCompareText);
+                hadMatch = NextTextMatchVO.create(currentCompareText, matchText);
+            }
+
+            hadMatch = oneLineFindDiff(diffResultVO, hadMatch, nextCompareText);
+            nextCompareText = wordProcess.getCurrentCompareText();
         }
 
         log.info("findDiff finish = {}", original);
-        return DiffResultVO.create(wordProcess, pdfProcess, original, modify);
+        return diffResultVO;
     }
 
 
-    public void oneLineFindDiff(List<String> original, List<String> modify, String dict, String findKye) {
-//        log.info("oneLineFindDiff findKye = {}", findKye);
-        if (StrUtil.isBlank(findKye)) {
-            return;
+    public NextTextMatchVO oneLineFindDiff(DiffResultVO diffResultVO, NextTextMatchVO hadMatch, String findNext) {
+        PdfProcessVO pdfProcess = diffResultVO.getPdfProcess();
+        String dict = pdfProcess.getDynamicDict();
+
+        String matchTextNext = findMatchText(dict, findNext);
+
+        if (hadMatch.isNotSame()) {
+            diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
+            String matchText = hadMatch.getMatchText();
+
+            int startIndex = pdfProcess.getMatchTextIndex(matchText);
+            int endIndex = pdfProcess.getMatchTextIndex(matchTextNext);
+            String modifyText = pdfProcess.getDictSubString(startIndex, endIndex);
+            diffResultVO.getModifyList().add(modifyText);
         }
-        boolean findResult = preciseSearch(dict, findKye);
-        if (!findResult) {
-            // 相似度匹配
-            List<SimilarSearchResult> searchResults = similarSearch(dict, findKye);
-            Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
-            if (max.isPresent()) {
-                original.add(max.get().getSimilarStr());
-                modify.add(findKye);
-            }
+        return NextTextMatchVO.create(findNext, matchTextNext);
+    }
+
+
+    public String findMatchText(String dict, String findKey) {
+        List<String> findText = preciseSearch(dict, findKey);
+
+        if (CollectionUtil.isNotEmpty(findText)) {
+            return findText.get(0);
         }
 
+        // 相似度匹配
+        List<SimilarSearchResult> searchResults = similarSearch(dict, findKey);
+        Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
+        if (max.isPresent()) {
+            return max.get().getSimilarStr();
+        }
+        return "";
     }
 
 
@@ -130,14 +159,10 @@ public class DocDiffService {
 
 
 
-    private boolean preciseSearch(String text, String key) {
+    private List<String> preciseSearch(String text, String key) {
         StringSearch search = new StringSearch();
         search.SetKeywords(CollectionUtil.newArrayList(key));
-        List<String> found = search.FindAll(text);
-        if (CollectionUtil.isEmpty(found)) {
-            return false;
-        }
-        return true;
+        return search.FindAll(text);
     }
 
 

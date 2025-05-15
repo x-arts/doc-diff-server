@@ -22,7 +22,7 @@ public class WordProcessVO {
     private static final int min_size = 10;
 
 
-    private static final  String END_LINE = "END_LINE";
+    public static final  String END_LINE = "END_LINE";
 
 
 
