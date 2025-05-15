@@ -52,10 +52,6 @@ public class PdfProcessVO {
     private List<Integer> lineIndex = new ArrayList<>();
 
 
-    public void  process(String markdownFilePath) {
-
-    }
-
 
     public static PdfProcessVO init(String fileId, String markdownFilePath) {
         PdfProcessVO vo = new PdfProcessVO();
