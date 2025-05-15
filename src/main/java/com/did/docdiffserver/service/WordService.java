@@ -99,15 +99,15 @@ public class WordService {
     }
 
 
-    public WordProcessVO process(String filePath, String fileId) {
+    public WordProcessVO process(String markdownFilePath, String fileId) {
         /**
          * 1. docx 转 md 文档
          *
          */
         // 转换成 markdown
-        String markdownFilePath = storeService.getWordMarkDownFilePath(fileId);
+//        String markdownFilePath = storeService.getWordMarkDownFilePath(fileId);
         log.info("wordProcess  markdownFilePath = {}", markdownFilePath);
-        WordProcessVO wordProcessVO = WordProcessVO.init(fileId, filePath, markdownFilePath);
+        WordProcessVO wordProcessVO = WordProcessVO.init(fileId, markdownFilePath);
         wordProcessVO.buildCompareData();
         return wordProcessVO;
     }

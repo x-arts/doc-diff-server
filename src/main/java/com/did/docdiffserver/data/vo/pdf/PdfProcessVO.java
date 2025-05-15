@@ -16,7 +16,7 @@ public class PdfProcessVO {
 
     private String fileId;
 
-    private String filePath;
+    private String markdownFilePath;
 
 
     /**
@@ -42,10 +42,10 @@ public class PdfProcessVO {
     }
 
 
-    public static PdfProcessVO init(String filePath, String fileId) {
+    public static PdfProcessVO init(String filePath, String markdownFilePath) {
         PdfProcessVO vo = new PdfProcessVO();
-        vo.filePath = filePath;
-        vo.fileId = fileId;
+        vo.markdownFilePath = filePath;
+        vo.fileId = markdownFilePath;
         vo.mardDownList = new ArrayList<>();
         vo.simpleCompareList = new ArrayList<>();
         return vo;

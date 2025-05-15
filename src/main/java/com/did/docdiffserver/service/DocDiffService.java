@@ -44,9 +44,9 @@ public class DocDiffService {
      * @return
      */
     public String docDiff(String wordFileId, String pdfFileId) {
-        WordProcessVO wordProcess = wordService.process(storeService.getWordFilePath(wordFileId), wordFileId);
+        WordProcessVO wordProcess = wordService.process(storeService.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
-        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfFilePath(pdfFileId), pdfFileId);
+        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");

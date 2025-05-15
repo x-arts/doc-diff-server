@@ -24,8 +24,6 @@ public class WordProcessVO {
 
     private String fileId;
 
-    private String wordFilePath;
-
     private String markDownFilePath;
 
 
@@ -75,9 +73,8 @@ public class WordProcessVO {
 
 
 
-    public static WordProcessVO init(String fileId, String wordFilePath, String markDownFilePath) {
+    public static WordProcessVO init(String fileId, String markDownFilePath) {
         WordProcessVO vo = new WordProcessVO();
-        vo.wordFilePath = wordFilePath;
         vo.fileId = fileId;
         vo.markDownFilePath = markDownFilePath;
         return vo;
