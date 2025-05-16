@@ -32,8 +32,6 @@ public class DiffResultVO {
     }
 
 
-    private void  buildDiffItemList() {
-    }
 
 
 

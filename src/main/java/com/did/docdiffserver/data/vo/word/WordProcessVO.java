@@ -3,6 +3,7 @@ package com.did.docdiffserver.data.vo.word;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.base.Constant;
+import com.did.docdiffserver.data.vo.CompareData;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -96,19 +97,20 @@ public class WordProcessVO {
      *
      * @return
      */
-    public String fetchCompareText() {
+    public CompareData fetchCompareText() {
         // 重置数据
         currentCompareTextLineNumbers.clear();
         currentCompareText = "";
         currentLineNum++;
 
         if (currentLineNum >= compareMarkdownList.size()) {
-            return END_LINE;
+            return new CompareData(END_LINE, new ArrayList<>());
         }
 
         currentCompareText = getOneCompareText();
         if (currentCompareText.length() > min_size) {
-            return currentCompareText;
+            List<Integer> lineNumbers = new ArrayList<>(this.currentCompareTextLineNumbers);
+            return new CompareData(currentCompareText, lineNumbers);
         }
 
         while (currentCompareText.length() < min_size) {
@@ -119,8 +121,8 @@ public class WordProcessVO {
                 break;
             }
         }
-
-        return currentCompareText;
+        List<Integer> lineNumbers = new ArrayList<>(this.currentCompareTextLineNumbers);
+        return new CompareData(currentCompareText, lineNumbers);
     }
 
 

@@ -10,12 +10,12 @@ import lombok.Data;
 @Data
 public class NextTextMatchVO {
 
-    private String originalText;
+    private CompareData originalText;
 
     private String matchText;
 
 
-    public static  NextTextMatchVO create(String originalText, String matchText) {
+    public static  NextTextMatchVO create(CompareData originalText, String matchText) {
         NextTextMatchVO nextTextMatchVO = new NextTextMatchVO();
         nextTextMatchVO.setOriginalText(originalText);
         nextTextMatchVO.setMatchText(matchText);
@@ -23,7 +23,7 @@ public class NextTextMatchVO {
     }
 
     public boolean isNotSame() {
-        return ! originalText.equals(matchText);
+        return ! originalText.getCompareText().equals(matchText);
     }
 
 

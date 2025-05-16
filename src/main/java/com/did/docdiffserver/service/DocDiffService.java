@@ -2,6 +2,7 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.vo.CompareData;
 import com.did.docdiffserver.data.vo.DiffResultVO;
 import com.did.docdiffserver.data.vo.NextTextMatchVO;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
@@ -82,13 +83,13 @@ public class DocDiffService {
         String dict = pdfProcess.getCompareDict();
         log.info("findDiff dict = {}", dict);
 
-        String currentCompareText = wordProcess.fetchCompareText();
-        String nextCompareText = wordProcess.fetchCompareText();
+        CompareData currentCompareText = wordProcess.fetchCompareText();
+        CompareData nextCompareText = wordProcess.fetchCompareText();
         NextTextMatchVO hadMatch = null;
-        while (!nextCompareText.equals(WordProcessVO.END_LINE)) {
+        while (!nextCompareText.getCompareText().equals(WordProcessVO.END_LINE)) {
             if (hadMatch == null) {
                 // 第一次为 null 需要自己组装
-                String matchText = findMatchText(dict, currentCompareText);
+                String matchText = findMatchText(dict, currentCompareText.getCompareText());
                 hadMatch = NextTextMatchVO.create(currentCompareText, matchText);
             }
 
@@ -101,29 +102,28 @@ public class DocDiffService {
     }
 
 
-    public NextTextMatchVO oneLineFindDiff(DiffResultVO diffResultVO, NextTextMatchVO hadMatch, String findNext) {
+    public NextTextMatchVO oneLineFindDiff(DiffResultVO diffResultVO, NextTextMatchVO hadMatch, CompareData findNext) {
 
         WordProcessVO wordProcess = diffResultVO.getWordProcess();
         PdfProcessVO pdfProcess = diffResultVO.getPdfProcess();
         String dict = pdfProcess.getDynamicDict();
 
         log.info("oneLineFindDiff findNext = {}", findNext);
-        String matchTextNext = findMatchText(dict, findNext);
+        String matchTextNext = findMatchText(dict, findNext.getCompareText());
         log.info("oneLineFindDiff matchTextNext = {}", matchTextNext);
 
         if (hadMatch.isNotSame()) {
 
             if (hadMatch.isMatchTextEmpty()) {
                 // 没有找到的情况
-                diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
+                diffResultVO.getOriginalList().add(hadMatch.getOriginalText().getCompareText());
                 diffResultVO.getModifyList().add("");
-
-                diffResultVO.addDiffItem(hadMatch.getOriginalText(), "", wordProcess.getCurrentCompareTextLineNumbers());
+                diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), "", hadMatch.getOriginalText().getLineNumbers());
 
                 return NextTextMatchVO.create(findNext, matchTextNext);
             }
 
-            diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
+            diffResultVO.getOriginalList().add(hadMatch.getOriginalText().getCompareText());
             String matchText = hadMatch.getMatchText();
 
             int startIndex = pdfProcess.getMatchTextIndex(pdfProcess.getCutIndex(),matchText);
@@ -138,7 +138,7 @@ public class DocDiffService {
             String modifyText = pdfProcess.getDictSubString(startIndex, endIndex);
             diffResultVO.getModifyList().add(modifyText);
 
-            diffResultVO.addDiffItem(hadMatch.getOriginalText(), modifyText, wordProcess.getCurrentCompareTextLineNumbers());
+            diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), modifyText, hadMatch.getOriginalText().getLineNumbers());
 
         }
         return NextTextMatchVO.create(findNext, matchTextNext);
