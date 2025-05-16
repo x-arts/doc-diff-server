@@ -77,9 +77,8 @@ public class DocDiffService {
 
 
     private DiffResultVO findDiff(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
-        List<String> original = new ArrayList<>();
-        List<String> modify = new ArrayList<>();
-        DiffResultVO diffResultVO = DiffResultVO.create(wordProcess, pdfProcess, original, modify);
+
+        DiffResultVO diffResultVO = DiffResultVO.create(wordProcess, pdfProcess);
         String dict = pdfProcess.getCompareDict();
         log.info("findDiff dict = {}", dict);
 
@@ -98,12 +97,13 @@ public class DocDiffService {
             log.info("findDiff nextCompareText = {}", nextCompareText);
         }
 
-        log.info("findDiff finish = {}", original);
         return diffResultVO;
     }
 
 
     public NextTextMatchVO oneLineFindDiff(DiffResultVO diffResultVO, NextTextMatchVO hadMatch, String findNext) {
+
+        WordProcessVO wordProcess = diffResultVO.getWordProcess();
         PdfProcessVO pdfProcess = diffResultVO.getPdfProcess();
         String dict = pdfProcess.getDynamicDict();
 
@@ -117,6 +117,9 @@ public class DocDiffService {
                 // 没有找到的情况
                 diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
                 diffResultVO.getModifyList().add("");
+
+                diffResultVO.addDiffItem(hadMatch.getOriginalText(), "", wordProcess.getCurrentCompareTextLineNumbers());
+
                 return NextTextMatchVO.create(findNext, matchTextNext);
             }
 
@@ -134,6 +137,9 @@ public class DocDiffService {
 
             String modifyText = pdfProcess.getDictSubString(startIndex, endIndex);
             diffResultVO.getModifyList().add(modifyText);
+
+            diffResultVO.addDiffItem(hadMatch.getOriginalText(), modifyText, wordProcess.getCurrentCompareTextLineNumbers());
+
         }
         return NextTextMatchVO.create(findNext, matchTextNext);
     }

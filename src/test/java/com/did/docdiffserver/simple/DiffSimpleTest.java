@@ -17,7 +17,7 @@ public class DiffSimpleTest {
     @Test
     public void diffTest() {
         String original = "天中国人民站起来了";
-        String revised = "今天国人民站起来了";
+        String revised = "";
         doDiff(original, revised);
     }
 

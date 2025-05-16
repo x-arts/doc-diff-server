@@ -4,6 +4,7 @@ import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,17 +18,33 @@ public class DiffResultVO {
 
     private PdfProcessVO pdfProcess;
 
-    private List<String> originalList;
 
+    private List<DiffItemVO> diffItemList;
+
+
+    private List<String> originalList;
+//
     private List<String> modifyList;
 
 
-    public static  DiffResultVO create(WordProcessVO word, PdfProcessVO pdf, List<String> original, List<String> modify) {
+    public void addDiffItem(String original, String modify, List<Integer> originalLineNumbers) {
+         this.diffItemList.add(DiffItemVO.create(original, modify, originalLineNumbers));
+    }
+
+
+    private void  buildDiffItemList() {
+    }
+
+
+
+
+    public static  DiffResultVO create(WordProcessVO word, PdfProcessVO pdf) {
         DiffResultVO diffResultVO = new DiffResultVO();
         diffResultVO.setWordProcess(word);
         diffResultVO.setPdfProcess(pdf);
-        diffResultVO.setOriginalList(original);
-        diffResultVO.setModifyList(modify);
+        diffResultVO.setOriginalList(new ArrayList<>());
+        diffResultVO.setModifyList(new ArrayList<>());
+        diffResultVO.setDiffItemList(new ArrayList<>());
         return diffResultVO;
     }
 
