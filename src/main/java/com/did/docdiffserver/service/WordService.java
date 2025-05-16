@@ -56,14 +56,19 @@ public class WordService {
         return markdownContent;
     }
 
+    /**
+     * guo
+     * @param lines
+     * @return
+     */
     private List<String> filterLineForFormat(List<String> lines) {
         return lines.stream().filter(line -> {
             for (String filterKeyWord : filterKeyWords) {
                 if (line.startsWith(filterKeyWord)) {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }).collect(Collectors.toList());
     }
 

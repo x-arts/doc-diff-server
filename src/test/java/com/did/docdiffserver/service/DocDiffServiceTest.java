@@ -14,11 +14,23 @@ public class DocDiffServiceTest extends TestBase {
     private DocDiffService docDiffService;
 
 
+    @Resource
+    private WordService wordService;
+
+
+
     @Test
     public void docDiffTest() {
         String wordFileId = "a91b1188-cc50-462e-952d-ad685abf9660";
         String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
         String diffStr = docDiffService.docDiff(wordFileId, pdfFileId);
+    }
+
+    @Test
+    public void formatTest() {
+        String path = "/Users/xuewenke/doc-diff-server/process/markdown/a91b1188-cc50-462e-952d-ad685abf9660/a91b1188-cc50-462e-952d-ad685abf9660.md";
+        wordService.formatShowMarkdown(path);
+
     }
 
 

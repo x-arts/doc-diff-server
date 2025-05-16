@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class StrTools {
 
     // 正则表达式匹配HTML标签开头
-    private static final Pattern HTML_TAG_PATTERN = Pattern.compile("^\\s*<[a-zA-Z][a-zA-Z0-9]*\\b[^>]*>");
+    private static final Pattern HTML_TAG_PATTERN = Pattern.compile("^\\s*<\\/?[a-zA-Z][a-zA-Z0-9]*\\b[^>]*>");
 
 
     /**
@@ -31,6 +31,10 @@ public class StrTools {
 
         Matcher matcher = HTML_TAG_PATTERN.matcher(input);
         return matcher.find();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(StrTools.startsWithHtmlTag("</tr>"));
     }
 
 }

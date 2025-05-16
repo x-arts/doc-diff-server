@@ -46,13 +46,15 @@ public class DocDiffService {
     public String docDiff(String wordFileId, String pdfFileId) {
         WordProcessVO wordProcess = wordService.process(storeService.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
-        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
-        log.info("docDiff pdfProcess  finish ");
-        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-        log.info("docDiff findDiff  finish ");
-        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
-        printSideBySide(diff);
-        return generateUnifiedDiff(diff);
+//        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
+//        log.info("docDiff pdfProcess  finish ");
+//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+//        log.info("docDiff findDiff  finish ");
+//        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
+//        printSideBySide(diff);
+//        return generateUnifiedDiff(diff);
+
+        return null;
     }
 
     private void  printSideBySide(DiffResultVO diff){
