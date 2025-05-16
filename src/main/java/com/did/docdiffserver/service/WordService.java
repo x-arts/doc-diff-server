@@ -29,7 +29,7 @@ public class WordService {
 
 
     @Resource
-    private StoreService storeService;
+    private FormatService formatService;
 
     private static final List<String> filterKeyWords = new ArrayList<>();
 
@@ -45,6 +45,10 @@ public class WordService {
 
         // 表格合并
         formatLines = mergeHtmlContentOneLine(formatLines);
+
+
+        formatLines = formatService.symbolicFormat(formatLines);
+
         FileUtil.writeLines(formatLines, filepath, StandardCharsets.UTF_8);
         String markdownContent = "";
         try {

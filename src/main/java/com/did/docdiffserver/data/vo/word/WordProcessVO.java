@@ -96,13 +96,13 @@ public class WordProcessVO {
      *
      * @return
      */
-    public String currentCompareText() {
+    public String fetchCompareText() {
         // 重置数据
         currentCompareTextLineNumbers.clear();
         currentCompareText = "";
         currentLineNum++;
 
-        if (currentLineNum > compareMarkdownList.size()) {
+        if (currentLineNum >= compareMarkdownList.size()) {
             return END_LINE;
         }
 
@@ -113,7 +113,11 @@ public class WordProcessVO {
 
         while (currentCompareText.length() < min_size) {
             currentLineNum++;
-            currentCompareText = currentCompareText + getOneCompareText();
+            String oneCompareText = getOneCompareText();
+            currentCompareText = currentCompareText + oneCompareText;
+            if (currentCompareText.length() > min_size) {
+                break;
+            }
         }
 
         return currentCompareText;
@@ -125,23 +129,27 @@ public class WordProcessVO {
      * @return
      */
     private String getOneCompareText() {
+        log.info("getOneCompareText currentLineNum = {}", currentLineNum);
+        if (currentLineNum >= compareMarkdownList.size()) {
+            return END_LINE;
+        }
         String compareText = compareMarkdownList.get(currentLineNum);
         // 遇到空行跳过
         if (compareText.equals(Constant.EMPTY_LINE)) {
             this.currentLineNum++;
-            return getCurrentCompareText();
+            return getOneCompareText();
         }
 
         // 遇到表格跳过
         if (compareText.equals(Constant.HTML_LINE)) {
             this.currentLineNum++;
-            return getCurrentCompareText();
+            return getOneCompareText();
         }
 
         // 遇到标题跳过
         if (compareText.startsWith("#")) {
             this.currentLineNum++;
-            return getCurrentCompareText();
+            return getOneCompareText();
         }
 
         currentCompareTextLineNumbers.add(currentLineNum);
@@ -160,10 +168,18 @@ public class WordProcessVO {
                 continue;
             }
 
-            if (StrTools.startsWithHtmlTag(cleanLine)) {
+            if (StrTools.isHtmlTable(cleanLine)) {
+                this.compareMarkdownList.add(Constant.HTML_LINE);
                 this.compareTableList.add(cleanLine);
                 continue;
             }
+
+            if (StrTools.startsWithHtmlTag(cleanLine)) {
+                this.compareMarkdownList.add(Constant.HTML_LINE);
+                this.compareTableList.add(cleanLine);
+                continue;
+            }
+
 
             this.compareMarkdownList.add(cleanLine);
         }

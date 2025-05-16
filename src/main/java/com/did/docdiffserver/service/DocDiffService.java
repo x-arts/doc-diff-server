@@ -1,6 +1,7 @@
 package com.did.docdiffserver.service;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.DiffResultVO;
 import com.did.docdiffserver.data.vo.NextTextMatchVO;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
@@ -46,15 +47,14 @@ public class DocDiffService {
     public String docDiff(String wordFileId, String pdfFileId) {
         WordProcessVO wordProcess = wordService.process(storeService.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
-//        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
-//        log.info("docDiff pdfProcess  finish ");
-//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-//        log.info("docDiff findDiff  finish ");
-//        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
-//        printSideBySide(diff);
-//        return generateUnifiedDiff(diff);
-
-        return null;
+        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
+        log.info("docDiff pdfProcess  finish ");
+        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        log.info("docDiff findDiff  finish ");
+        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
+        printSideBySide(diff);
+        return generateUnifiedDiff(diff);
+//        return null;
     }
 
     private void  printSideBySide(DiffResultVO diff){
@@ -81,12 +81,12 @@ public class DocDiffService {
         List<String> modify = new ArrayList<>();
         DiffResultVO diffResultVO = DiffResultVO.create(wordProcess, pdfProcess, original, modify);
         String dict = pdfProcess.getCompareDict();
-        log.info("findDiff dict = {}", dict.length());
+        log.info("findDiff dict = {}", dict);
 
-        String currentCompareText = wordProcess.getCurrentCompareText();
-        String nextCompareText = wordProcess.getCurrentCompareText();
+        String currentCompareText = wordProcess.fetchCompareText();
+        String nextCompareText = wordProcess.fetchCompareText();
         NextTextMatchVO hadMatch = null;
-        while (!currentCompareText.equals(WordProcessVO.END_LINE)) {
+        while (!nextCompareText.equals(WordProcessVO.END_LINE)) {
             if (hadMatch == null) {
                 // 第一次为 null 需要自己组装
                 String matchText = findMatchText(dict, currentCompareText);
@@ -94,7 +94,8 @@ public class DocDiffService {
             }
 
             hadMatch = oneLineFindDiff(diffResultVO, hadMatch, nextCompareText);
-            nextCompareText = wordProcess.getCurrentCompareText();
+            nextCompareText = wordProcess.fetchCompareText();
+            log.info("findDiff nextCompareText = {}", nextCompareText);
         }
 
         log.info("findDiff finish = {}", original);
@@ -106,14 +107,23 @@ public class DocDiffService {
         PdfProcessVO pdfProcess = diffResultVO.getPdfProcess();
         String dict = pdfProcess.getDynamicDict();
 
+        log.info("oneLineFindDiff findNext = {}", findNext);
         String matchTextNext = findMatchText(dict, findNext);
+        log.info("oneLineFindDiff matchTextNext = {}", matchTextNext);
 
         if (hadMatch.isNotSame()) {
             diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
             String matchText = hadMatch.getMatchText();
 
-            int startIndex = pdfProcess.getMatchTextIndex(matchText);
-            int endIndex = pdfProcess.getMatchTextIndex(matchTextNext);
+            int startIndex = pdfProcess.getMatchTextIndex(pdfProcess.getCutIndex(),matchText);
+            int endIndex;
+            if(StrUtil.isBlank(matchTextNext)) {
+                // 没有匹配到
+                endIndex = startIndex + matchText.length();
+            } else {
+                endIndex = pdfProcess.getMatchTextIndex(startIndex,matchTextNext);
+            }
+
             String modifyText = pdfProcess.getDictSubString(startIndex, endIndex);
             diffResultVO.getModifyList().add(modifyText);
         }

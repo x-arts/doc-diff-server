@@ -33,6 +33,11 @@ public class StrTools {
         return matcher.find();
     }
 
+
+    public static boolean isHtmlTable(String input) {
+      return startsWithHtmlTag(input) && input.contains("table");
+    }
+
     public static void main(String[] args) {
         System.out.println(StrTools.startsWithHtmlTag("</tr>"));
     }

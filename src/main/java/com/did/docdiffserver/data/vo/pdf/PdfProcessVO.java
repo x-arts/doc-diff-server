@@ -57,12 +57,17 @@ public class PdfProcessVO {
     private List<Integer> lineIndex = new ArrayList<>();
 
 
+    private int cutIndex;
+
+
     /**
      * 获取匹配中的字符串的 起始下标
      * @return
      */
-    public int getMatchTextIndex(String matchText) {
-        int index = this.dynamicDict.indexOf(matchText);
+    public int getMatchTextIndex(int  startIndex, String matchText) {
+        log.info("getMatchTextIndex: {}", matchText);
+        int index = this.dynamicDict.indexOf(matchText, startIndex);
+        log.info("getMatchTextIndex: index = {}", index);
         if (index == -1) {
             return -1;
         }
@@ -70,6 +75,8 @@ public class PdfProcessVO {
     }
 
     public String getDictSubString(int start, int end) {
+        log.info("startIndex: {}, endIndex: {}", start, end);
+        this.cutIndex = start;
         return this.dynamicDict.substring(start, end);
     }
 
@@ -139,7 +146,7 @@ public class PdfProcessVO {
             }
 
             // 跳过表格
-            if (StrTools.startsWithHtmlTag(cleanLine)) {
+            if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareTableList.add(cleanLine);
                 continue;
             }
