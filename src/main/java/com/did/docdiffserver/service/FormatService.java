@@ -13,6 +13,7 @@ public class FormatService {
 
     /**
      * 符号优化
+     *
      * @param lines
      * @return
      */
@@ -21,7 +22,10 @@ public class FormatService {
 
         for (String line : lines) {
             String replace = line.replace("(", "（")
-                    .replace(")","）");
+                    .replace(")", "）");
+
+            replace = replace.replace(":", "：");
+
             formatLines.add(replace);
         }
 

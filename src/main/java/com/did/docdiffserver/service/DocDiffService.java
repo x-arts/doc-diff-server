@@ -112,6 +112,14 @@ public class DocDiffService {
         log.info("oneLineFindDiff matchTextNext = {}", matchTextNext);
 
         if (hadMatch.isNotSame()) {
+
+            if (hadMatch.isMatchTextEmpty()) {
+                // 没有找到的情况
+                diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
+                diffResultVO.getModifyList().add("");
+                return NextTextMatchVO.create(findNext, matchTextNext);
+            }
+
             diffResultVO.getOriginalList().add(hadMatch.getOriginalText());
             String matchText = hadMatch.getMatchText();
 

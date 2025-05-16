@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.Data;
 
 /**
@@ -23,6 +24,11 @@ public class NextTextMatchVO {
 
     public boolean isNotSame() {
         return ! originalText.equals(matchText);
+    }
+
+
+    public boolean isMatchTextEmpty() {
+        return StrUtil.isBlank(matchText);
     }
 
 }
