@@ -1,4 +1,4 @@
-package com.did.docdiffserver.data;
+package com.did.docdiffserver.data.table;
 
 import lombok.Data;
 import org.jsoup.nodes.Element;
