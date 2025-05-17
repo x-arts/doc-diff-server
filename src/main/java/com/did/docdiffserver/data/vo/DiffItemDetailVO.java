@@ -18,7 +18,7 @@ public class DiffItemDetailVO {
      */
     private String type;
 
-    private String originalStr;
+    private List<String> originalStr;
 
     private int originalStrPosition;
 
@@ -29,7 +29,7 @@ public class DiffItemDetailVO {
     public static  DiffItemDetailVO createForFind(String originalStr){
         DiffItemDetailVO detailVO = new DiffItemDetailVO();
         detailVO.type = DeltaType.DELETE.toString();
-        detailVO.originalStr = originalStr;
+        detailVO.originalStr = CollectionUtil.newArrayList(originalStr);
         detailVO.originalStrPosition = 0;
         detailVO.modifyStr = new ArrayList<>();
         detailVO.modifyStrPosition = 0;
@@ -40,10 +40,7 @@ public class DiffItemDetailVO {
     public static  DiffItemDetailVO of(AbstractDelta<String> delta) {
         DiffItemDetailVO detailVO = new DiffItemDetailVO();
         detailVO.setType(delta.getType().toString());
-        List<String> sourceLine = delta.getSource().getLines();
-        if (CollectionUtil.isNotEmpty(sourceLine)) {
-            detailVO.originalStr = sourceLine.get(0);
-        }
+        detailVO.originalStr = delta.getSource().getLines();
         detailVO.originalStrPosition = delta.getSource().getPosition();
 
         detailVO.modifyStr = delta.getTarget().getLines();

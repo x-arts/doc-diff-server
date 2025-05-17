@@ -19,12 +19,15 @@ public class FormatService {
      */
     public List<String> symbolicFormat(List<String> lines) {
         List<String> formatLines = new ArrayList<>(lines.size());
-
         for (String line : lines) {
             String replace = line.replace("(", "（")
                     .replace(")", "）");
 
-            replace = replace.replace(":", "：");
+            // 冒号替换
+            replace = replace.replace(":", "：")
+                    .replace("□", "")
+                    .replace("\uF06C", "")
+                    .replace("■", "");
 
             formatLines.add(replace);
         }

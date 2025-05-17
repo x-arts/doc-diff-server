@@ -29,7 +29,7 @@ public class DocDiffServiceTest extends TestBase {
     }
 
     @Test
-    public void formatTest() {
+    public void wordFormatTest() {
         String path = "/Users/xuewenke/doc-diff-server/process/markdown/a91b1188-cc50-462e-952d-ad685abf9660/a91b1188-cc50-462e-952d-ad685abf9660.md";
         wordService.formatShowMarkdown(path);
     }

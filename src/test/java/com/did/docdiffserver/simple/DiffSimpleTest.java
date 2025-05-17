@@ -15,8 +15,8 @@ public class DiffSimpleTest {
 
     @Test
     public void diffTest() {
-        String original = "质保期：自项目验收合格之日起3年。";
-        String revised =  "";
+        String original = "质保期：自项目验收合格之日起36个月。";
+        String revised =  "质保期：自项目验收合格之日起3年。";
         doDiff(original, revised);
     }
 
