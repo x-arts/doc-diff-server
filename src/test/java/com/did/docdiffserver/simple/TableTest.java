@@ -4,7 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.service.PdfFindLineDiffService;
-import com.did.docdiffserver.service.compent.TableService;
+import com.did.docdiffserver.service.table.TableInfoBuilder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,8 +17,6 @@ import java.util.List;
 
 public class TableTest extends TestBase {
 
-    @Resource
-    private TableService tableService;
 
     @Resource
     private PdfFindLineDiffService revisedPdfFindDiffService;
@@ -41,7 +39,7 @@ public class TableTest extends TestBase {
         Elements tables = doc.select("table");
         List<TableInfo> tableInfos = new LinkedList<>();
         for (Element table : tables) {
-            TableInfo tableInfo = tableService.getTableInfo(table);
+            TableInfo tableInfo = TableInfo.of(table);
             tableInfos.add(tableInfo);
         }
 

@@ -5,6 +5,8 @@ import com.did.docdiffserver.utils.StrTools;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,22 +16,52 @@ import java.util.List;
 @NoArgsConstructor
 public class TableInfo {
 
-    private String headersLine;
-
-    private int columnSize;
 
     private String tableName;
 
     private List<Row> rows;
 
 
-    public static TableInfo init(String headersLine, int columnSize) {
+    public static TableInfo of(Element table) {
+        String tableHeadLine = getTableHeadLine(table);
+        List<Row> rows = getRows(table);
         TableInfo tableInfo = new TableInfo();
-        tableInfo.setTableName(headersLine);
-        tableInfo.setColumnSize(columnSize);
-        tableInfo.setHeadersLine(headersLine);
-        tableInfo.setRows(new ArrayList<>());
+        tableInfo.setTableName(tableHeadLine);
+        tableInfo.setRows(rows);
         return tableInfo;
+    }
+
+    private static List<Row> getRows(Element table) {
+        Elements trs = table.select("tr");
+        List<Row> rows = new ArrayList<>();
+        int count = 0;
+        for (Element tr : trs) {
+            count++;
+            if (count == 1) {
+                continue;
+            }
+            rows.add(Row.of(tr));
+        }
+        return rows;
+    }
+
+
+
+
+    /**
+     * 获取表格的表头
+     * @param table
+     * @return
+     */
+    private static String getTableHeadLine(Element table) {
+        Element header = table.select("tr").first();
+        Elements tds = header.select("td");
+        int columnSize = tds.size();
+        List<String> headers = new ArrayList<>();
+        for (Element td : tds) {
+            headers.add(td.text());
+        }
+        return StrUtil.join("|", headers);
     }
 
     public void addRows(List<Row> rows) {

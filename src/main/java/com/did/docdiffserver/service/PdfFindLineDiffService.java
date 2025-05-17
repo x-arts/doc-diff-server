@@ -7,7 +7,7 @@ import com.did.docdiffserver.data.vo.table.Cell;
 import com.did.docdiffserver.data.vo.table.Row;
 import com.did.docdiffserver.data.vo.SimilarSearchResult;
 import com.did.docdiffserver.data.vo.table.TableInfo;
-import com.did.docdiffserver.service.compent.TableService;
+import com.did.docdiffserver.service.table.TableInfoBuilder;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.text.similarity.JaroWinklerSimilarity;
@@ -26,7 +26,7 @@ public class PdfFindLineDiffService {
 
 
     @Resource
-    private TableService tableService;
+    private TableInfoBuilder tableInfoBuilder;
 
     public void  pdfTableFindDiff(String dict, String pdfMdFilePath) {
         List<String> pdfLines = FileUtil.readLines(pdfMdFilePath, "utf-8");
@@ -35,7 +35,7 @@ public class PdfFindLineDiffService {
         for (String pdfTableDiff : pdfLines) {
 //            System.out.println(pdfTableDiff);
             if (pdfTableDiff.startsWith("<html>") && pdfTableDiff.contains("table")) {
-                TableInfo tableInfo = tableService.getTableInfo(pdfTableDiff);
+                TableInfo tableInfo = tableInfoBuilder.getTableInfo(pdfTableDiff);
                 for (Row row : tableInfo.getRows()) {
                     for (Cell cell : row.getCells()) {
                         String cellText = StrTools.removeSpaceInLine(cell.getText());
