@@ -13,11 +13,10 @@ import java.util.List;
 public class DiffSimpleTest {
 
 
-
     @Test
     public void diffTest() {
-        String original = "天中国人民站起来了";
-        String revised = "";
+        String original = "质保期：自项目验收合格之日起3年。";
+        String revised =  "";
         doDiff(original, revised);
     }
 
@@ -39,9 +38,11 @@ public class DiffSimpleTest {
             System.out.println("类型: " + type);
             System.out.println("原始: " + sourceLines);
             System.out.println("原始位置: " + position);
+            System.out.println("原始位置2: " + delta.getSource().getChangePosition());
 
             System.out.println("修改: " + targetLines);
             System.out.println("修改位置: " + position1);
+            System.out.println("修改位置2: " + delta.getTarget().getChangePosition());
             System.out.println("-------");
         }
 

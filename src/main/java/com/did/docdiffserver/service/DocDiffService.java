@@ -2,10 +2,8 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import com.did.docdiffserver.data.vo.CompareData;
-import com.did.docdiffserver.data.vo.DiffResultVO;
-import com.did.docdiffserver.data.vo.NextTextMatchVO;
-import com.did.docdiffserver.data.vo.SimilarSearchResult;
+import com.alibaba.fastjson2.JSONObject;
+import com.did.docdiffserver.data.vo.*;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.service.compent.StoreService;
@@ -71,6 +69,10 @@ public class DocDiffService {
         for (String string : modifyList) {
             System.out.println(string);
         }
+
+        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffItemList());
+
+        System.out.println(JSONObject.toJSONString(printJsonVo));
 
     }
 

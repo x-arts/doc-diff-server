@@ -34,6 +34,7 @@ public class DiffItemVO {
     public void buildDiffDetail(){
         this.diffDetail = new ArrayList<>();
         if (StrUtil.isBlank(modifiedText)) {
+            this.diffDetail.add(DiffItemDetailVO.createForFind(this.originalText));
             return;
         }
         List<String> originalChars = Arrays.asList(originalText.split(""));
@@ -42,12 +43,7 @@ public class DiffItemVO {
         Patch<String> patch = DiffUtils.diff(originalChars, revisedChars);
 
         for (AbstractDelta<String> delta : patch.getDeltas()) {
-            DiffItemDetailVO detailVO = new DiffItemDetailVO();
-            detailVO.setType(delta.getType().toString());
-            detailVO.setOriginalStr(delta.getSource().toString());
-            detailVO.setModifyStr(delta.getTarget().toString());
-            detailVO.setOriginalStrPosition(delta.getSource().getPosition());
-            detailVO.setModifyStrPosition(delta.getTarget().getPosition());
+            DiffItemDetailVO detailVO = DiffItemDetailVO.of(delta);
             this.diffDetail.add(detailVO);
         }
     }
