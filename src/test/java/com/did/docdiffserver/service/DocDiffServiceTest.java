@@ -1,10 +1,17 @@
 package com.did.docdiffserver.service;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.TestBase;
+import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class DocDiffServiceTest extends TestBase {
@@ -38,8 +45,27 @@ public class DocDiffServiceTest extends TestBase {
     public void pdfFormatTest() {
         String path = "/Users/xuewenke/doc-diff-server/process/markdown/b2b4a8f7-42b1-49f7-adc6-68d159573100/auto/b2b4a8f7-42b1-49f7-adc6-68d159573100.md";
         pdfService.formatShowMarkdown(path);
+    }
 
 
+    @Test
+    public void mergeHtmlTableTest(){
+        String path = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/pdf.md";
+        List<String> readLines = FileUtil.readLines(path, StandardCharsets.UTF_8);
+
+//        List<String> collect = readLines.stream()
+//                .filter(StrUtil::isNotBlank)
+//                .collect(Collectors.toList());
+
+        List<String> mergeHtmlTable = pdfService.mergeHtmlTable(readLines);
+
+        List<String> tableLine = mergeHtmlTable.stream()
+                .filter(line -> StrTools.isHtmlTable(line))
+                .collect(Collectors.toList());
+
+        System.out.println("mergeHtmlTable:" + tableLine.size());
+
+//        mergeHtmlTable.forEach(System.out::println);
     }
 
 

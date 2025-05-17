@@ -53,7 +53,7 @@ public class TableInfo {
      * @param table
      * @return
      */
-    private static String getTableHeadLine(Element table) {
+    public static String getTableHeadLine(Element table) {
         Element header = table.select("tr").first();
         Elements tds = header.select("td");
         int columnSize = tds.size();
