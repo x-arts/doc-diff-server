@@ -1,8 +1,10 @@
 package com.did.docdiffserver.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.table.HtmlTableContent;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.service.table.TableInfoBuilder;
 import com.did.docdiffserver.utils.StrTools;
@@ -73,74 +75,50 @@ public class PdfService {
 
 
     public List<String> mergeHtmlTable(List<String> formatLines) {
-        List<String> lines = new ArrayList<>();
+        // 获取到 markdown 的表格， 有字符分割也打上了标签
+        List<HtmlTableContent> htmlTableContents = buildMergeTableList(formatLines);
+        return Collections.emptyList();
+    }
 
 
-        int waitMergeTableIndex = -1;
-        boolean findNextTable = false;
-        Element waitMergeTable = null;
-        String waitMergeTableHeadLine = null;
-
-        List<Integer> deleteIndex = new ArrayList<>();
-
-        int findNextTableBlankCount = 0;
-
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
-            if (findNextTable) {
-                if (StrUtil.isBlank(line)) {
-                    findNextTableBlankCount++;
-                }
+    private List<HtmlTableContent>  buildMergeTableList(List<String> formatLines) {
+        List<HtmlTableContent> result = new ArrayList<>();
+        for (int i = 0; i < formatLines.size(); i++) {
+            String line = formatLines.get(i);
+            line = line.trim();
+            if (StrTools.isHtmlTable(line)) {
+                HtmlTableContent htmlTableContent = new HtmlTableContent(line, i);
+                addHtmlTableContent(result, htmlTableContent);
                 continue;
             }
 
-            if (StrTools.isHtmlTable(line)) {
-                Element table = Jsoup.parse(line).outputSettings(settings)
-                        .select("table").first();
-                String headLine = TableInfo.getTableHeadLine(table);
-                log.info("headLine:{}", headLine);
-                if (!findNextTable) {
-                    // 没有在找到表格的情况下， 先报自己标记上
-                    waitMergeTableIndex = i;
-                    findNextTable = true;
-                    waitMergeTable = table;
-                    waitMergeTableHeadLine = headLine;
-                    continue;
-                }
-
-                //  表示等待 merge  表格
-                /**
-                 * 表示在找表格，
-                 *
-                 * 表格合并的逻辑:
-                 * 1、我的表格必须相邻，也就是说，下标是连续的。
-                 * 2、标头是相同的的。
-                 */
-                boolean isMatchHeadline = waitMergeTableHeadLine.equals(headLine);
-                boolean isNextLine = (i == waitMergeTableIndex + findNextTableBlankCount + 1);
-
-                if (isMatchHeadline && isNextLine) {
-                    Element mergeTable = tableInfoBuilder.mergeTable(waitMergeTable, table);
-                    lines.set(waitMergeTableIndex,mergeTable.outerHtml());
-                    deleteIndex.add(i);
-                    findNextTableBlankCount++;
-//                    findNextTable = false;
-                } else {
-                    waitMergeTableIndex = i;
-                    waitMergeTable = table;
-                    waitMergeTableHeadLine = headLine;
-                }
-            } else {
-                if (findNextTable) {
-                    findNextTable = false;
-                }
+            if (StrUtil.isNotBlank(line)) {
+                System.out.println("line = " + line);
+                addHtmlTableContent(result, HtmlTableContent.ofSplit());
             }
         }
 
-        for (int index : deleteIndex) {
-            lines.remove(index);
+        return result;
+    }
+
+
+
+    private void  addHtmlTableContent(List<HtmlTableContent> list, HtmlTableContent htmlTableContent) {
+        System.out.println("addHtmlTableContent");
+        if (htmlTableContent.isTable()){
+            list.add(htmlTableContent);
+        } else {
+            if (CollectionUtil.isEmpty(list)) {
+                return;
+            }
+
+            int lastIndex =  list.size() -1;
+            HtmlTableContent lastOne = list.get(lastIndex);
+            if (lastOne.isTable()) {
+                list.add(htmlTableContent);
+            }
         }
-        return lines;
+
     }
 
 
