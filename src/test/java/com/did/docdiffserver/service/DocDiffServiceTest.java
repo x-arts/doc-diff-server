@@ -3,6 +3,7 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.TestBase;
+import com.did.docdiffserver.utils.HtmlUtils;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -50,14 +52,19 @@ public class DocDiffServiceTest extends TestBase {
 
     @Test
     public void mergeHtmlTableTest(){
-        String path = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/pdf.md";
-        List<String> readLines = FileUtil.readLines(path, StandardCharsets.UTF_8);
+        String pdfPath = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/pdf.md";
+        String wordPath = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/word.md";
+        List<String> readLines = FileUtil.readLines(pdfPath, StandardCharsets.UTF_8);
+        List<String> wordMdLine = FileUtil.readLines(wordPath, StandardCharsets.UTF_8);
+
+
+        Set<String> tableHeads = HtmlUtils.getTableHeads(wordMdLine);
 
 //        List<String> collect = readLines.stream()
 //                .filter(StrUtil::isNotBlank)
 //                .collect(Collectors.toList());
 
-        List<String> mergeHtmlTable = pdfService.mergeHtmlTable(readLines);
+        List<String> mergeHtmlTable = pdfService.mergeHtmlTable(readLines, tableHeads);
 
         List<String> tableLine = mergeHtmlTable.stream()
                 .filter(line -> StrTools.isHtmlTable(line))

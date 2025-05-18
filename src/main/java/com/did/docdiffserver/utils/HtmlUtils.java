@@ -20,8 +20,20 @@ public class HtmlUtils {
             .indentAmount(0);    // 无缩进
 
 
+    /**
+     * 添加属性并返回 文本
+     * @param index
+     * @return
+     */
+    public static String addTableId(String html, String tableId) {
+        Document document = htmlToDocument(html);
+        Element table = findFirstTable(document);
+        table.attr("id", tableId);
+        return document.outerHtml();
+    }
 
-    public void adjustTableHead(HtmlTableContent htmlTableContent, Set<String> standHeads) {
+
+    public static void adjustTableHead(HtmlTableContent htmlTableContent, Set<String> standHeads) {
         String tableHtml = htmlTableContent.getHtml();
         Document document = htmlToDocument(tableHtml);
         Element table = findFirstTable(document);
@@ -33,17 +45,37 @@ public class HtmlUtils {
         }
 
         // 表示第一行不是表头，需要一直往下找，找到表头
-        Elements tr = table.select("tr");
+        Elements trs = table.select("tr");
         boolean isFindTableHead = false;
-
-        for (int i = 0; i < tr.size(); i++) {
-
-
-
+        List<Integer> removeIndex= new ArrayList<>();
+        for (int i = 0; i < trs.size(); i++) {
+            Element tr = trs.get(i);
+            String headed = headTrToString(tr);
+            if (standHeads.contains(headed)) {
+                isFindTableHead = true;
+                break;
+            } else {
+                removeIndex.add(i);
+            }
         }
 
+        if (isFindTableHead) {
+            removeTableRowByIndex(table, removeIndex);
 
+            // 修改了结构，需要重写内容
+            htmlTableContent.setHtml(document.outerHtml());
+        }
     }
+
+
+    public static void removeTableRowByIndex(Element table,List<Integer> removeIndex)  {
+        Elements tr = table.select("tr");
+        for (int index : removeIndex) {
+            tr.get(index).remove();
+        }
+    }
+
+
 
 
     /**
@@ -51,7 +83,7 @@ public class HtmlUtils {
      * @param tableHtmlList
      * @return
      */
-    public Set<String> getTableHeads(List<String> tableHtmlList) {
+    public static Set<String> getTableHeads(List<String> tableHtmlList) {
         Set<String> tableHeads = new HashSet<>();
         for (String tableHtml : tableHtmlList) {
             Document document = htmlToDocument(tableHtml);

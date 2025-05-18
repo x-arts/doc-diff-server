@@ -6,7 +6,10 @@ import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.table.HtmlTableContent;
 import com.did.docdiffserver.data.vo.table.TableInfo;
+import com.did.docdiffserver.data.vo.table.TableMergeResult;
 import com.did.docdiffserver.service.table.TableInfoBuilder;
+import com.did.docdiffserver.utils.HtmlUtils;
+import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -71,11 +74,25 @@ public class PdfService {
     }
 
 
-    public List<String> mergeHtmlTable(List<String> formatLines) {
+    public List<String> mergeHtmlTable(List<String> formatLines, Set<String> standHeads) {
         // 获取到 markdown 的表格， 有字符分割也打上了标签
         List<HtmlTableContent> htmlTableContents = buildMergeTableList(formatLines);
+        // 移除识别错误导致的错误表头
+        htmlTableContents.forEach(tableContent -> {HtmlUtils.adjustTableHead(tableContent, standHeads);});
 
-        return Collections.emptyList();
+        // 表格合并结果
+        TableMergeResult result = MergeTableUtils.mergeTable(htmlTableContents, standHeads);
+
+        List<String> mergeTableFormat = new ArrayList<>(formatLines);
+
+        result.getRemoveLineIndex().forEach(removeIndex -> {
+            mergeTableFormat.remove(removeIndex.intValue());
+        });
+        result.getReSetTables().forEach(tableContent -> {
+            mergeTableFormat.set(tableContent.getIndex(), tableContent.getHtml());
+        });
+
+        return mergeTableFormat;
     }
 
 
