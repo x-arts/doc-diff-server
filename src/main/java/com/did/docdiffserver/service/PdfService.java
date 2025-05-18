@@ -39,9 +39,6 @@ public class PdfService {
     @Resource
     private TableInfoBuilder tableInfoBuilder;
 
-    Document.OutputSettings settings = new Document.OutputSettings()
-            .prettyPrint(false)  // 禁用格式化
-            .indentAmount(0);    // 无缩进
 
 
     public PdfProcessVO process(String markdownFilePath, String fileId) {
@@ -60,7 +57,7 @@ public class PdfService {
 
         formatLines = formatService.symbolicFormat(formatLines);
 
-        formatLines = mergeHtmlTable(formatLines);
+//        formatLines = mergeHtmlTable(formatLines);
 
         FileUtil.writeLines(formatLines, filepath, StandardCharsets.UTF_8);
         String markdownContent = "";
@@ -77,6 +74,7 @@ public class PdfService {
     public List<String> mergeHtmlTable(List<String> formatLines) {
         // 获取到 markdown 的表格， 有字符分割也打上了标签
         List<HtmlTableContent> htmlTableContents = buildMergeTableList(formatLines);
+
         return Collections.emptyList();
     }
 
@@ -104,7 +102,6 @@ public class PdfService {
 
 
     private void  addHtmlTableContent(List<HtmlTableContent> list, HtmlTableContent htmlTableContent) {
-        System.out.println("addHtmlTableContent");
         if (htmlTableContent.isTable()){
             list.add(htmlTableContent);
         } else {

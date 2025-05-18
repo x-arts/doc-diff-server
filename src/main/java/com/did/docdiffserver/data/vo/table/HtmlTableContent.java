@@ -6,7 +6,7 @@ import lombok.Data;
 public class HtmlTableContent {
 
 
-    private String  html;
+    private String html;
     private int index;
 
 

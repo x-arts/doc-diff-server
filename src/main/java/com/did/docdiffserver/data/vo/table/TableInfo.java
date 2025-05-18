@@ -1,6 +1,7 @@
 package com.did.docdiffserver.data.vo.table;
 
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.utils.HtmlUtils;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class TableInfo {
 
 
     public static TableInfo of(Element table) {
-        String tableHeadLine = getTableHeadLine(table);
+        String tableHeadLine = HtmlUtils.getTableHeadLine(table);
         List<Row> rows = getRows(table);
         TableInfo tableInfo = new TableInfo();
         tableInfo.setTableName(tableHeadLine);
@@ -48,21 +49,7 @@ public class TableInfo {
 
 
 
-    /**
-     * 获取表格的表头
-     * @param table
-     * @return
-     */
-    public static String getTableHeadLine(Element table) {
-        Element header = table.select("tr").first();
-        Elements tds = header.select("td");
-        int columnSize = tds.size();
-        List<String> headers = new ArrayList<>();
-        for (Element td : tds) {
-            headers.add(td.text());
-        }
-        return StrUtil.join("|", headers);
-    }
+
 
     public void addRows(List<Row> rows) {
         this.rows.addAll(rows);
