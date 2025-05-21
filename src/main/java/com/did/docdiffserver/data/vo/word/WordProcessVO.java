@@ -23,12 +23,19 @@ public class WordProcessVO {
     private static final int min_size = 10;
 
 
-    public static final  String END_LINE = "END_LINE";
+    /**
+     * 用来表示是结束的行
+     */
+    public static final String END_LINE = "END_LINE";
 
-
-
+    /**
+     * word 文档的 Id
+     */
     private String fileId;
 
+    /**
+     * markdown 文件路径
+     */
     private String markDownFilePath;
 
 
@@ -46,7 +53,7 @@ public class WordProcessVO {
 
 
     /**
-     * 表格数据
+     * 表格的文本数据
      */
     private List<String> compareTableList = new ArrayList<>();
 
@@ -69,8 +76,6 @@ public class WordProcessVO {
     private int currentLineNum = -1;
 
 
-
-
     public static WordProcessVO init(String fileId, String markDownFilePath) {
         WordProcessVO vo = new WordProcessVO();
         vo.fileId = fileId;
@@ -78,7 +83,7 @@ public class WordProcessVO {
         return vo;
     }
 
-    public void  buildCompareData() {
+    public void buildCompareData() {
         // 读取文档
         buildMarkDownList();
 
@@ -94,7 +99,6 @@ public class WordProcessVO {
 
 
     /**
-     *
      * @return
      */
     public CompareData fetchCompareText() {
@@ -128,6 +132,7 @@ public class WordProcessVO {
 
     /**
      * 获取当前行的比对文本
+     *
      * @return
      */
     private String getOneCompareText() {
@@ -159,11 +164,11 @@ public class WordProcessVO {
     }
 
 
-    private void  buildCompareMarkdownList() {
+    private void buildCompareMarkdownList() {
         for (String markdownLine : this.markDownList) {
             String cleanLine = markdownLine.trim();
             // 移除行内的空格
-            cleanLine  = StrTools.removeSpaceInLine(cleanLine);
+            cleanLine = StrTools.removeSpaceInLine(cleanLine);
 
             if (StrUtil.isBlank(cleanLine)) {
                 this.compareMarkdownList.add(Constant.EMPTY_LINE);
@@ -187,28 +192,5 @@ public class WordProcessVO {
         }
     }
 
-
-
-
-    /**
-     * 获取 markdown 的内容
-     *
-     */
-//    private void buildMarkDownList() {
-//        List<String> lines = FileUtil.readLines(this.getMarkDownFilePath(), StandardCharsets.UTF_8);
-//        this.markDownList.addAll(lines);
-//    }
-
-
-    /**
-     * 数据预处理，移除 html  标签
-     */
-//    private void buildNoHtmlTagList() {
-//        for (String line : this.markDownList) {
-//            if (StrTools.startsWithHtmlTag(line)) {
-//                continue;
-//            }
-//        }
-//    }
 
 }
