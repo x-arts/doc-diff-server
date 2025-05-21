@@ -2,22 +2,26 @@ package com.did.docdiffserver.data.vo.pdf;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.did.docdiffserver.data.base.Constant;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Data
 @Slf4j
 public class PdfProcessVO {
 
+    /**
+     * pdf 文件 Id
+     */
     private String fileId;
 
+    /**
+     * markdown 文件路径
+     */
     private String markdownFilePath;
 
 
@@ -34,16 +38,21 @@ public class PdfProcessVO {
 
 
     /**
-     * 表格数据
+     * 表格的文本数据
      */
     private List<String> compareTableList = new ArrayList<>();
-
 
 
     /**
      * 用来比对的字典，全量
      */
     private String compareDict;
+
+    /**
+     * 行的下标记录， 后续用来做二分查找
+     */
+    private List<Integer> compareDictIndex = new ArrayList<>();
+
 
     /**
      * 动态字典，不断缩小的字典。
@@ -107,7 +116,6 @@ public class PdfProcessVO {
         buildMarkDownList(markdownFilePath);
         buildCompareMarkdownList();
         buildDict();
-        buildLineIndex();
     }
 
 
@@ -161,16 +169,21 @@ public class PdfProcessVO {
      *  因为在 word 哪里不是不会拼接空行，html 的
      */
     private void  buildDict(){
-        this.compareDict = String.join("", this.compareMarkdownList);
-        this.dynamicDict = compareDict;
-    }
+//        this.compareDict = String.join("", this.compareMarkdownList);
+//        this.dynamicDict = compareDict;
+        int currentIndex = 0;
+        StringBuilder compareDictBuilder = new StringBuilder();
+        for (int i = 0; i < compareMarkdownList.size(); i++) {
+            String contentText = compareMarkdownList.get(i);
+            /**
+             * 数组需要存的下标
+             */
+            int indexFlag = i;
 
-    private void buildLineIndex() {
-        int index = 0;
-        for (String line : this.compareMarkdownList) {
-            lineIndex.add(index);
-            index += line.length();
+
+
         }
+
     }
 
 
