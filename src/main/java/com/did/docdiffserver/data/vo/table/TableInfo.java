@@ -23,6 +23,8 @@ public class TableInfo {
 
     private String tableName;
 
+    private String tableId;
+
     private List<Row> rows;
 
 
