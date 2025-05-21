@@ -2,6 +2,7 @@ package com.did.docdiffserver.data.vo.pdf;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,12 @@ public class PdfProcessVO {
 
 
     /**
+     * 表格数据转换成表格对象
+     */
+    private List<TableInfo> tableInfoList = new ArrayList<>();
+
+
+    /**
      * 用来比对的字典，全量
      */
     private String compareDict;
@@ -60,10 +67,10 @@ public class PdfProcessVO {
     private String dynamicDict;
 
 
-    /**
-     * 行的下标记录， 后续用来做二分查找
-     */
-    private List<Integer> lineIndex = new ArrayList<>();
+//    /**
+//     * 行的下标记录， 后续用来做二分查找
+//     */
+//    private List<Integer> lineIndex = new ArrayList<>();
 
 
     private int cutIndex;
@@ -116,6 +123,7 @@ public class PdfProcessVO {
         buildMarkDownList(markdownFilePath);
         buildCompareMarkdownList();
         buildDict();
+        buildTableInfo();
     }
 
 
@@ -187,6 +195,13 @@ public class PdfProcessVO {
 
         this.compareDict = compareDictBuilder.toString();
         this.dynamicDict = compareDict;
+    }
+
+    /**
+     * 构建表格对象
+     */
+    private void buildTableInfo() {
+        this.tableInfoList = TableInfo.buildTableInfoList(compareTableList);
     }
 
 

@@ -6,11 +6,14 @@ import com.did.docdiffserver.utils.StrTools;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +25,27 @@ public class TableInfo {
 
     private List<Row> rows;
 
+
+
+
+    /**
+     * 把 html 的表格转换成 tableInfo
+     * @param htmlList
+     * @return
+     */
+    public static List<TableInfo> buildTableInfoList(List<String> htmlList){
+        return htmlList.stream().map(TableInfo::getTableInfo)
+                .collect(Collectors.toList());
+    }
+
+    public static TableInfo getTableInfo(String html){
+        if (StrUtil.isBlank(html)) {
+            throw new RuntimeException("html is null");
+        }
+        Document doc = Jsoup.parse(html);
+        Element table = doc.select("table").first();
+        return TableInfo.of(table);
+    }
 
     public static TableInfo of(Element table) {
         String tableHeadLine = HtmlUtils.getTableHeadLine(table);

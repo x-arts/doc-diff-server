@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.base.Constant;
 import com.did.docdiffserver.data.vo.CompareData;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,11 @@ public class WordProcessVO {
      */
     private List<String> compareTableList = new ArrayList<>();
 
+    /**
+     * 表格数据转换成表格对象
+     */
+    private List<TableInfo> tableInfoList = new ArrayList<>();
+
 
     /**
      * 当前用来比对差异的 markdown 文本
@@ -89,6 +95,8 @@ public class WordProcessVO {
 
         // 文本清洗和构建
         buildCompareMarkdownList();
+
+        buildTableInfo();
     }
 
 
@@ -190,6 +198,13 @@ public class WordProcessVO {
 
             this.compareMarkdownList.add(cleanLine);
         }
+    }
+
+    /**
+     * 构建表格对象
+     */
+    private void buildTableInfo() {
+        this.tableInfoList = TableInfo.buildTableInfoList(compareTableList);
     }
 
 

@@ -23,26 +23,18 @@ public class TableInfoBuilder {
      * @param tableTwo
      * @return
      */
-    public Element mergeTable(Element tableOne, Element tableTwo) {
-        log.info("mergeTable");
-        Elements tr = tableTwo.select("tr");
-        tr.remove(0);
-        for (Element element : tr) {
-            tableOne.appendChild(element);
-        }
-        return tableOne;
-    }
+//    public Element mergeTable(Element tableOne, Element tableTwo) {
+//        log.info("mergeTable");
+//        Elements tr = tableTwo.select("tr");
+//        tr.remove(0);
+//        for (Element element : tr) {
+//            tableOne.appendChild(element);
+//        }
+//        return tableOne;
+//    }
 
 
-    /**
-     * 把 html 的表格转换成 tableInfo
-     * @param htmlList
-     * @return
-     */
-    public List<TableInfo> buildTableInfoList(List<String> htmlList){
-        return htmlList.stream().map(this::getTableInfo)
-                .collect(Collectors.toList());
-    }
+
 
 
     public TableInfo getTableInfo(String html){
