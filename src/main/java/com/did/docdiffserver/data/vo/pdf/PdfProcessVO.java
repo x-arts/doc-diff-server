@@ -175,15 +175,18 @@ public class PdfProcessVO {
         StringBuilder compareDictBuilder = new StringBuilder();
         for (int i = 0; i < compareMarkdownList.size(); i++) {
             String contentText = compareMarkdownList.get(i);
+            compareDictBuilder.append(contentText);
             /**
              * 数组需要存的下标
              */
-            int indexFlag = i;
-
-
-
+            int maxIndex = currentIndex + contentText.length();
+            for (int j = currentIndex; j < maxIndex; j++) {
+                compareDictIndex.set(j,i );
+            }
         }
 
+        this.compareDict = compareDictBuilder.toString();
+        this.dynamicDict = compareDict;
     }
 
 
