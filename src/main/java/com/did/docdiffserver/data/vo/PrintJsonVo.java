@@ -14,9 +14,10 @@ public class PrintJsonVo {
 
 
 
-    public static PrintJsonVo of(List<DiffTextItemVO> diffItemList) {
+    public static PrintJsonVo of(List<DiffTextItemVO> diffItemList, List<DiffTableItemVO> tableItemList) {
         PrintJsonVo printJsonVo = new PrintJsonVo();
         printJsonVo.setDiffItemList(diffItemList);
+        printJsonVo.diffTableItemList = tableItemList;
         printJsonVo.buildDetail();
         return printJsonVo;
     }

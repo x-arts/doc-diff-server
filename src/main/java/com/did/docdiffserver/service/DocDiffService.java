@@ -3,10 +3,12 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.did.docdiffserver.data.condition.TableCompareCondition;
 import com.did.docdiffserver.data.vo.*;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.service.compent.StoreService;
+import com.did.docdiffserver.service.table.TableCompare;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
@@ -36,6 +38,9 @@ public class DocDiffService {
     @Resource
     private StoreService storeService;
 
+    @Resource
+    private TableCompare  tableCompare;
+
 
     /**
      * 上传两个文件 id， 对文件对比
@@ -51,12 +56,17 @@ public class DocDiffService {
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
         log.info("docDiff  diff size = {}", diff.getOriginalList().size());
-        printSideBySide(diff);
+
+        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
+
+        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
+
+        printSideBySide(diff, diffTableItems);
         return generateUnifiedDiff(diff);
 //        return null;
     }
 
-    private void  printSideBySide(DiffResultVO diff){
+    private void  printSideBySide(DiffResultVO diff, List<DiffTableItemVO> diffTableItems){
         List<String> originalList = diff.getOriginalList();
 
         for (String string : originalList) {
@@ -70,7 +80,7 @@ public class DocDiffService {
             System.out.println(string);
         }
 
-        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffTextList());
+        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffTextList(), diffTableItems);
 
         System.out.println(JSONObject.toJSONString(printJsonVo));
 
