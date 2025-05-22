@@ -55,6 +55,7 @@ public class TableInfo {
         TableInfo tableInfo = new TableInfo();
         tableInfo.setTableName(tableHeadLine);
         tableInfo.setRows(rows);
+        tableInfo.setTableId(table.attr("id"));
         return tableInfo;
     }
 

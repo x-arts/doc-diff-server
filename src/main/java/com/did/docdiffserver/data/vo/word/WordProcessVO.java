@@ -175,14 +175,8 @@ public class WordProcessVO {
     private void buildCompareMarkdownList() {
         for (String markdownLine : this.markDownList) {
             String cleanLine = markdownLine.trim();
-            // 移除行内的空格
-            cleanLine = StrTools.removeSpaceInLine(cleanLine);
 
-            if (StrUtil.isBlank(cleanLine)) {
-                this.compareMarkdownList.add(Constant.EMPTY_LINE);
-                continue;
-            }
-
+            // 表格数据优先添加到 list
             if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareMarkdownList.add(Constant.HTML_LINE);
                 this.compareTableList.add(cleanLine);
@@ -191,10 +185,17 @@ public class WordProcessVO {
 
             if (StrTools.startsWithHtmlTag(cleanLine)) {
                 this.compareMarkdownList.add(Constant.HTML_LINE);
-                this.compareTableList.add(cleanLine);
                 continue;
             }
 
+
+            // 移除行内的空格
+            cleanLine = StrTools.removeSpaceInLine(cleanLine);
+
+            if (StrUtil.isBlank(cleanLine)) {
+                this.compareMarkdownList.add(Constant.EMPTY_LINE);
+                continue;
+            }
 
             this.compareMarkdownList.add(cleanLine);
         }

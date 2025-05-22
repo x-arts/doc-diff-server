@@ -53,17 +53,18 @@ public class DocDiffService {
         log.info("docDiff wordProcess  finish ");
         PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
-        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-        log.info("docDiff findDiff  finish ");
-        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
+//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+//        log.info("docDiff findDiff  finish ");
+//        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
 
         TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
 
         List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        printSideBySide(diff, diffTableItems);
-        return generateUnifiedDiff(diff);
-//        return null;
+//        printSideBySide(diff, diffTableItems);
+//        return generateUnifiedDiff(diff);
+
+        return "null";
     }
 
     private void  printSideBySide(DiffResultVO diff, List<DiffTableItemVO> diffTableItems){

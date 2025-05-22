@@ -58,7 +58,7 @@ public class PdfProcessVO {
     /**
      * 行的下标记录， 后续用来做二分查找
      */
-    private List<Integer> compareDictIndex = new ArrayList<>();
+    private ArrayList<Integer> compareDictIndex = new ArrayList<>();
 
 
     /**
@@ -147,8 +147,13 @@ public class PdfProcessVO {
     private void buildCompareMarkdownList() {
         for (String markdownLine : this.mardDownList) {
             String cleanLine = markdownLine.trim();
-            // 移除行内的空格
-            cleanLine  = StrTools.removeSpaceInLine(cleanLine);
+
+            // 跳过表格
+            if (StrTools.isHtmlTable(cleanLine)) {
+                this.compareTableList.add(cleanLine);
+                continue;
+            }
+
 
             // 跳过空行
             if (StrUtil.isBlank(cleanLine)) {
@@ -158,14 +163,12 @@ public class PdfProcessVO {
 
             //跳过标题
             if (markdownLine.startsWith("#")) {
-               continue;
-            }
-
-            // 跳过表格
-            if (StrTools.isHtmlTable(cleanLine)) {
-                this.compareTableList.add(cleanLine);
                 continue;
             }
+
+
+            // 移除行内的空格
+            cleanLine  = StrTools.removeSpaceInLine(cleanLine);
 
             this.compareMarkdownList.add(cleanLine);
         }
@@ -187,9 +190,9 @@ public class PdfProcessVO {
             /**
              * 数组需要存的下标
              */
-            int maxIndex = currentIndex + contentText.length();
-            for (int j = currentIndex; j < maxIndex; j++) {
-                compareDictIndex.set(j,i );
+//            int maxIndex = currentIndex + contentText.length();
+            for (char c : contentText.toCharArray()) {
+                compareDictIndex.add(i);
             }
         }
 
