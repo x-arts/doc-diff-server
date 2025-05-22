@@ -88,18 +88,24 @@ public class PdfService {
         // 表格合并结果
         TableMergeResult result = MergeTableUtils.mergeTable(htmlTableContents, standHeads);
 
-        List<String> mergeTableFormat = new ArrayList<>(formatLines);
-
-        result.getReSetTables().forEach(tableContent -> {
-            mergeTableFormat.set(tableContent.getIndex(), tableContent.getHtml());
-        });
-
-        result.getRemoveLineIndex().forEach(removeIndex -> {
-            mergeTableFormat.remove(removeIndex.intValue());
-        });
+//        List<String> mergeTableFormat = new ArrayList<>(formatLines);
 
 
-        return mergeTableFormat;
+        // 先修改表格，再删除行数，避免影响下标
+        List<HtmlTableContent> reSetTables = result.getReSetTables();
+        for (HtmlTableContent reSetTable : reSetTables) {
+            formatLines.set(reSetTable.getIndex(), reSetTable.getHtml());
+        }
+
+        List<Integer> removeLineIndex = result.getRemoveLineIndex();
+        int deleteCount = 0;
+        for (int lineIndex : removeLineIndex) {
+            // 每删除一行 都会影响下标
+            formatLines.remove(lineIndex - deleteCount);
+            deleteCount++;
+        }
+
+        return formatLines;
     }
 
 
