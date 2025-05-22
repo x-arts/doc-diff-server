@@ -1,6 +1,5 @@
 package com.did.docdiffserver.utils;
 
-import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.table.HtmlTableContent;
 import org.jsoup.Jsoup;

@@ -51,7 +51,7 @@ public class PdfService {
     }
 
 
-    public String formatShowMarkdown(String filepath) {
+    public String formatShowMarkdown(String filepath, Set<String> standHeads) {
         List<String> lines = FileUtil.readLines(filepath, StandardCharsets.UTF_8);
 
         Set<String> pageTitle = findPageTitle(lines);
@@ -60,7 +60,7 @@ public class PdfService {
 
         formatLines = formatService.symbolicFormat(formatLines);
 
-//        formatLines = mergeHtmlTable(formatLines);
+        formatLines = mergeHtmlTable(formatLines, standHeads);
 
         FileUtil.writeLines(formatLines, filepath, StandardCharsets.UTF_8);
         String markdownContent = "";
@@ -77,20 +77,27 @@ public class PdfService {
     public List<String> mergeHtmlTable(List<String> formatLines, Set<String> standHeads) {
         // 获取到 markdown 的表格， 有字符分割也打上了标签
         List<HtmlTableContent> htmlTableContents = buildMergeTableList(formatLines);
-        // 移除识别错误导致的错误表头
-        htmlTableContents.forEach(tableContent -> {HtmlUtils.adjustTableHead(tableContent, standHeads);});
+
+        for (HtmlTableContent htmlTableContent : htmlTableContents) {
+            if (htmlTableContent.isTable()) {
+                // 移除识别错误导致的错误表头
+                HtmlUtils.adjustTableHead(htmlTableContent, standHeads);
+            }
+        }
 
         // 表格合并结果
         TableMergeResult result = MergeTableUtils.mergeTable(htmlTableContents, standHeads);
 
         List<String> mergeTableFormat = new ArrayList<>(formatLines);
 
-        result.getRemoveLineIndex().forEach(removeIndex -> {
-            mergeTableFormat.remove(removeIndex.intValue());
-        });
         result.getReSetTables().forEach(tableContent -> {
             mergeTableFormat.set(tableContent.getIndex(), tableContent.getHtml());
         });
+
+        result.getRemoveLineIndex().forEach(removeIndex -> {
+            mergeTableFormat.remove(removeIndex.intValue());
+        });
+
 
         return mergeTableFormat;
     }
@@ -108,7 +115,6 @@ public class PdfService {
             }
 
             if (StrUtil.isNotBlank(line)) {
-                System.out.println("line = " + line);
                 addHtmlTableContent(result, HtmlTableContent.ofSplit());
             }
         }

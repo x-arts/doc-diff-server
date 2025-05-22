@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -46,7 +45,11 @@ public class DocDiffServiceTest extends TestBase {
     @Test
     public void pdfFormatTest() {
         String path = "/Users/xuewenke/doc-diff-server/process/markdown/b2b4a8f7-42b1-49f7-adc6-68d159573100/auto/b2b4a8f7-42b1-49f7-adc6-68d159573100.md";
-        pdfService.formatShowMarkdown(path);
+        String wordPath = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/word.md";
+        List<String> wordMdLine = FileUtil.readLines(wordPath, StandardCharsets.UTF_8);
+        wordMdLine =  wordMdLine.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
+        Set<String> tableHeads = HtmlUtils.getTableHeads(wordMdLine);
+        pdfService.formatShowMarkdown(path, tableHeads);
     }
 
 
@@ -57,12 +60,8 @@ public class DocDiffServiceTest extends TestBase {
         List<String> readLines = FileUtil.readLines(pdfPath, StandardCharsets.UTF_8);
         List<String> wordMdLine = FileUtil.readLines(wordPath, StandardCharsets.UTF_8);
 
-
         Set<String> tableHeads = HtmlUtils.getTableHeads(wordMdLine);
 
-//        List<String> collect = readLines.stream()
-//                .filter(StrUtil::isNotBlank)
-//                .collect(Collectors.toList());
 
         List<String> mergeHtmlTable = pdfService.mergeHtmlTable(readLines, tableHeads);
 

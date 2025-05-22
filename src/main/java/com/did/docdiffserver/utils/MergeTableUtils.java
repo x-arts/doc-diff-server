@@ -65,7 +65,7 @@ public class MergeTableUtils {
         }
 
         HtmlTableContent masterTable = tableContents.get(0);
-        List<HtmlTableContent> branchTable = tableContents.subList(1, tableContents.size() - 1);
+        List<HtmlTableContent> branchTable = tableContents.subList(1, tableContents.size());
 
         List<Integer> removeIndex = branchTable.stream()
                 .map(HtmlTableContent::getIndex)
