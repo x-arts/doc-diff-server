@@ -2,11 +2,13 @@ package com.did.docdiffserver.service.table;
 
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.condition.TableCompareCondition;
+import com.did.docdiffserver.data.vo.DiffTableItemVO;
 import com.did.docdiffserver.data.vo.table.Row;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +22,11 @@ public class TableCompare {
      *
      * @param condition
      */
-    public void tableInfoCompare(TableCompareCondition condition){
+    public List<DiffTableItemVO> tableInfoCompare(TableCompareCondition condition){
         List<TableInfo> wordTableInfoList = condition.getWordTableInfoList();
         List<TableInfo> pdftableInfoList = condition.getPdftableInfoList();
+
+        List<DiffTableItemVO> diffList = new ArrayList<>();
 
         Map<String, TableInfo> pdfTableInfoMap = pdftableInfoList
                 .stream()
@@ -30,9 +34,11 @@ public class TableCompare {
 
         for (TableInfo tableInfo : wordTableInfoList) {
             TableInfo pdfTableInfo = pdfTableInfoMap.get(tableInfo.getTableId());
-            doTableInfoCompare(tableInfo, pdfTableInfo);
+            List<DiffTableItemVO> diffTableItemVOS = doTableInfoCompare(tableInfo, pdfTableInfo);
+            diffList.addAll(diffTableItemVOS);
         }
 
+        return diffList;
     }
 
 
@@ -41,10 +47,12 @@ public class TableCompare {
      * @param word
      * @param pdfTable
      */
-    public void doTableInfoCompare(TableInfo word, TableInfo pdfTable) {
+    public List<DiffTableItemVO> doTableInfoCompare(TableInfo word, TableInfo pdfTable) {
         List<Row> wordTableRows = word.getRows();
         List<Row> pdfTableRows = pdfTable.getRows();
 
+
+        List<DiffTableItemVO> diffTableItemList = new ArrayList<>();
 
         for (int i = 0; i < wordTableRows.size(); i++) {
             Row row = wordTableRows.get(i);
@@ -53,15 +61,12 @@ public class TableCompare {
 
             if (!StrUtil.equals(wordRowLine, pdfRowLine)) {
                 // not match  add  to resutl
-
+                DiffTableItemVO diffItem = DiffTableItemVO.create(wordRowLine, pdfRowLine, word.getTableId(), i);
+                diffTableItemList.add(diffItem);
             }
-
-
         }
 
-
-
-
+        return diffTableItemList;
     }
 
 }
