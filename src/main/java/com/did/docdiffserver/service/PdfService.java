@@ -100,7 +100,7 @@ public class PdfService {
         List<Integer> removeLineIndex = result.getRemoveLineIndex();
         int deleteCount = 0;
         for (int lineIndex : removeLineIndex) {
-            // 每删除一行 都会影响下标
+            // 每删除一行 都会影响下标，所以删除一行，对应
             formatLines.remove(lineIndex - deleteCount);
             deleteCount++;
         }
