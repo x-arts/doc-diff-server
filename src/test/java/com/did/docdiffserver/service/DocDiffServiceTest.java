@@ -45,7 +45,7 @@ public class DocDiffServiceTest extends TestBase {
     @Test
     public void pdfFormatTest() {
         String path = "/Users/xuewenke/doc-diff-server/process/markdown/b2b4a8f7-42b1-49f7-adc6-68d159573100/auto/b2b4a8f7-42b1-49f7-adc6-68d159573100.md";
-        String wordPath = "/Users/xuewenke/code/DID/web-server/doc-diff-server/src/main/temp-file/compare/table/word.md";
+        String wordPath = localTempFilePath + "compare/table/word.md";
         List<String> wordMdLine = FileUtil.readLines(wordPath, StandardCharsets.UTF_8);
         wordMdLine =  wordMdLine.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
         Set<String> tableHeads = HtmlUtils.getTableHeads(wordMdLine);

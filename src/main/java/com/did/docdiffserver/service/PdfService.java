@@ -122,10 +122,11 @@ public class PdfService {
             }
         }
 
+
         for (int i = 0; i < htmlTableContents.size(); i++) {
             HtmlTableContent reSetTable = htmlTableContents.get(i);
-            i++;
-            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + i);
+            String tableId = "table" + (i + 1);
+            String html = HtmlUtils.addTableId(reSetTable.getHtml(), tableId);
             reSetTable.setHtml(html);
         }
 
