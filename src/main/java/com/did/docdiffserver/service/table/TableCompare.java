@@ -51,14 +51,22 @@ public class TableCompare {
         List<Row> wordTableRows = word.getRows();
         List<Row> pdfTableRows = pdfTable.getRows();
 
+        /**  后续优化的， 谁的表格大，谁在 for 循环 驱动对比， 小的表格会遗漏
+         *
+         * 如果一定要word 来循环，需要考虑 pdf 的表格 比 word 大
+         */
+
+        Map<Integer, String> pdfRowMap = new HashMap<>();
+
+        for (int i = 0; i < pdfTableRows.size(); i++) {
+            pdfRowMap.put(i, pdfTableRows.get(i).simpleRowLine());
+        }
 
         List<DiffTableItemVO> diffTableItemList = new ArrayList<>();
-
+        // pdf 的表格不一定有足够满足的下标
         for (int i = 0; i < wordTableRows.size(); i++) {
-            Row row = wordTableRows.get(i);
-            String wordRowLine = row.simpleRowLine();
-            String pdfRowLine = pdfTableRows.get(i).simpleRowLine();
-
+            String wordRowLine = wordTableRows.get(i).simpleRowLine();
+            String pdfRowLine = pdfRowMap.get(i);
             if (!StrUtil.equals(wordRowLine, pdfRowLine)) {
                 // not match  add  to resutl
                 DiffTableItemVO diffItem = DiffTableItemVO.create(wordRowLine, pdfRowLine, word.getTableId(), i);
