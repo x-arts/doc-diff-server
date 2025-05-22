@@ -38,14 +38,14 @@ public class MergeTableUtils {
             mergeResult.add(result);
         }
 
-        int index = 1;
+//        int index = 1;
 
-        // 添加 id 属性
-        for (HtmlTableContent reSetTable : mergeResult.getReSetTables()) {
-            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + index);
-            reSetTable.setHtml(html);
-            index++;
-        }
+//        // 添加 id 属性
+//        for (HtmlTableContent reSetTable : mergeResult.getReSetTables()) {
+//            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + index);
+//            reSetTable.setHtml(html);
+//            index++;
+//        }
 
         return mergeResult;
     }

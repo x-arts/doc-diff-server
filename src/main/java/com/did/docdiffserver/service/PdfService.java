@@ -105,8 +105,46 @@ public class PdfService {
             deleteCount++;
         }
 
+        formatLines = addAttrId(formatLines);
+
         return formatLines;
     }
+
+
+    private List<String> addAttrId(List<String> formatLines) {
+
+        List<HtmlTableContent> htmlTableContents =  new ArrayList<>();
+        for (int i = 0; i < formatLines.size(); i++) {
+            String line = formatLines.get(i);
+            line = line.trim();
+            if (StrTools.isHtmlTable(line)) {
+                htmlTableContents.add(new HtmlTableContent(line, i));
+            }
+        }
+
+        for (int i = 0; i < htmlTableContents.size(); i++) {
+            HtmlTableContent reSetTable = htmlTableContents.get(i);
+            i++;
+            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + i);
+            reSetTable.setHtml(html);
+        }
+
+        for (HtmlTableContent htmlTableContent : htmlTableContents) {
+            formatLines.set(htmlTableContent.getIndex(), htmlTableContent.getHtml());
+        }
+        return formatLines;
+    }
+
+    //        int index = 1;
+
+//        // 添加 id 属性
+//        for (HtmlTableContent reSetTable : mergeResult.getReSetTables()) {
+//            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + index);
+//            reSetTable.setHtml(html);
+//            index++;
+//        }
+
+
 
 
     private List<HtmlTableContent>  buildMergeTableList(List<String> formatLines) {
