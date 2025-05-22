@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo.table;
 
+import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
 
 /**
@@ -19,6 +20,13 @@ public class Cell {
         cell.text = text;
 
         return cell;
+    }
+
+
+    public String simpleText(){
+        String cellText = StrTools.removeSpaceInLine(this.getText());
+        cellText = StrTools.replacePunctuation(cellText);
+        return  cellText;
     }
 
 }

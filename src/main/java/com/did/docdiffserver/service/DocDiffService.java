@@ -70,7 +70,7 @@ public class DocDiffService {
             System.out.println(string);
         }
 
-        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffItemList());
+        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffTextList());
 
         System.out.println(JSONObject.toJSONString(printJsonVo));
 

@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-public class DiffItemVO {
+public class DiffTextItemVO {
 
     private String originalText;
 
@@ -22,12 +22,12 @@ public class DiffItemVO {
     private List<DiffItemDetailVO> diffDetail;
 
 
-    public static  DiffItemVO create(String originalText, String modifiedText, List<Integer> originalLineNumbers) {
-        DiffItemVO diffItemVO = new DiffItemVO();
-        diffItemVO.originalText = originalText;
-        diffItemVO.modifiedText = modifiedText;
-        diffItemVO.originalLineNumbers = originalLineNumbers;
-        return diffItemVO;
+    public static DiffTextItemVO create(String originalText, String modifiedText, List<Integer> originalLineNumbers) {
+        DiffTextItemVO diffTextItemVO = new DiffTextItemVO();
+        diffTextItemVO.originalText = originalText;
+        diffTextItemVO.modifiedText = modifiedText;
+        diffTextItemVO.originalLineNumbers = originalLineNumbers;
+        return diffTextItemVO;
     }
 
 

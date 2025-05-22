@@ -1,19 +1,17 @@
 package com.did.docdiffserver.data.vo;
 
-import lombok.Builder;
 import lombok.Data;
-import sun.security.krb5.internal.rcache.DflCache;
 
 import java.util.List;
 
 @Data
 public class PrintJsonVo {
 
-    private List<DiffItemVO> diffItemList;
+    private List<DiffTextItemVO> diffItemList;
 
 
 
-    public static PrintJsonVo of(List<DiffItemVO> diffItemList) {
+    public static PrintJsonVo of(List<DiffTextItemVO> diffItemList) {
         PrintJsonVo printJsonVo = new PrintJsonVo();
         printJsonVo.setDiffItemList(diffItemList);
         printJsonVo.buildDetail();
@@ -22,8 +20,8 @@ public class PrintJsonVo {
 
 
     public void buildDetail(){
-        for (DiffItemVO diffItemVO : this.diffItemList) {
-            diffItemVO.buildDiffDetail();
+        for (DiffTextItemVO diffTextItemVO : this.diffItemList) {
+            diffTextItemVO.buildDiffDetail();
         }
     }
 }

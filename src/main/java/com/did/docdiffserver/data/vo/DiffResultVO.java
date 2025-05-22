@@ -19,7 +19,7 @@ public class DiffResultVO {
     private PdfProcessVO pdfProcess;
 
 
-    private List<DiffItemVO> diffItemList;
+    private List<DiffTextItemVO> diffTextList;
 
 
     private List<String> originalList;
@@ -28,7 +28,7 @@ public class DiffResultVO {
 
 
     public void addDiffItem(String original, String modify, List<Integer> originalLineNumbers) {
-         this.diffItemList.add(DiffItemVO.create(original, modify, originalLineNumbers));
+         this.diffTextList.add(DiffTextItemVO.create(original, modify, originalLineNumbers));
     }
 
 
@@ -42,7 +42,7 @@ public class DiffResultVO {
         diffResultVO.setPdfProcess(pdf);
         diffResultVO.setOriginalList(new ArrayList<>());
         diffResultVO.setModifyList(new ArrayList<>());
-        diffResultVO.setDiffItemList(new ArrayList<>());
+        diffResultVO.setDiffTextList(new ArrayList<>());
         return diffResultVO;
     }
 

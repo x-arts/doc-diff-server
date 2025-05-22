@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo.table;
 
+import cn.hutool.core.util.StrUtil;
 import lombok.Data;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -22,6 +23,14 @@ public class Row {
         Row row = new Row();
         row.setCells(cells);
         return row;
+    }
+
+    public String simpleRowLine() {
+        List<String> cellTexts = new ArrayList<>();
+        for (Cell cell : cells) {
+            cellTexts.add(cell.simpleText());
+        }
+        return StrUtil.join("|", cellTexts);
     }
 
 }
