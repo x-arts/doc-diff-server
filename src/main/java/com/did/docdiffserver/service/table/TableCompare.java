@@ -5,6 +5,7 @@ import com.did.docdiffserver.data.condition.TableCompareCondition;
 import com.did.docdiffserver.data.vo.DiffTableItemVO;
 import com.did.docdiffserver.data.vo.table.Row;
 import com.did.docdiffserver.data.vo.table.TableInfo;
+import com.did.docdiffserver.utils.MergeTableUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,10 @@ public class TableCompare {
      * @param pdfTable
      */
     public List<DiffTableItemVO> doTableInfoCompare(TableInfo word, TableInfo pdfTable) {
+
+        // 表格里的行数合并
+        MergeTableUtils.mergeTableInfoRow(pdfTable);
+
         List<Row> wordTableRows = word.getRows();
         List<Row> pdfTableRows = pdfTable.getRows();
 

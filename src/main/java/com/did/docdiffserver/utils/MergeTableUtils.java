@@ -1,20 +1,82 @@
 package com.did.docdiffserver.utils;
 
-import com.did.docdiffserver.data.vo.table.HtmlTableContent;
-import com.did.docdiffserver.data.vo.table.TableMergeResult;
+import cn.hutool.core.collection.CollectionUtil;
+import com.alibaba.fastjson2.JSONObject;
+import com.did.docdiffserver.data.vo.table.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * 表格合并工具类
  */
 public class MergeTableUtils {
+
+
+    /**
+     * 一个表格里面的行合并
+     */
+    public static void mergeTableInfoRow(TableInfo tableInfo){
+        List<Row> rows = tableInfo.getRows();
+        List<Integer> firstEmptyCellRowIndex = firstEmptyCellRowIndex(rows);
+        if (CollectionUtil.isEmpty(firstEmptyCellRowIndex)) {
+            return;
+        }
+        for (int emptyCellRowIndex : firstEmptyCellRowIndex) {
+            mergeRow(rows.get(emptyCellRowIndex-1), rows.get(emptyCellRowIndex));
+        }
+
+        // remove Row
+        int deleteCount  = 0;
+        for (int emptyCellRowIndex : firstEmptyCellRowIndex) {
+            rows.remove(emptyCellRowIndex - deleteCount);
+            deleteCount++;
+        }
+
+    }
+
+    private static void mergeRow(Row row, Row branchRow) {
+        List<Cell> branchCells = branchRow.getCells();
+        Map<Integer, Cell> branchCellsMap = new HashMap<>();
+        for (int i = 0; i < branchCells.size(); i++) {
+            Cell cell = branchCells.get(i);
+            branchCellsMap.put(i, cell);
+        }
+
+        List<Cell> masterCells = row.getCells();
+        for (int i = 0; i < masterCells.size(); i++) {
+            Cell cell = masterCells.get(i);
+            Cell branchCell = branchCellsMap.get(i);
+            if (branchCell != null) {
+                cell.setText(cell.getText() + branchCell.getText());
+            }
+        }
+
+        System.out.println(JSONObject.toJSONString(row));
+
+    }
+
+
+    /**
+     * 获取第一列是空的行数
+     * @param rows
+     * @return
+     */
+    private static  List<Integer> firstEmptyCellRowIndex(List<Row> rows) {
+        List<Integer> hasEmptyCellRow = new ArrayList<>();
+        for (int i = 0; i < rows.size(); i++) {
+            Row row = rows.get(i);
+            if (row.onlyLastOneCellNotEmpty()) {
+                hasEmptyCellRow.add(i);
+            }
+        }
+
+        return hasEmptyCellRow;
+    }
+
 
 
     public static TableMergeResult mergeTable(List<HtmlTableContent> tableContents, Set<String> standHeads) {
@@ -38,14 +100,6 @@ public class MergeTableUtils {
             mergeResult.add(result);
         }
 
-//        int index = 1;
-
-//        // 添加 id 属性
-//        for (HtmlTableContent reSetTable : mergeResult.getReSetTables()) {
-//            String html = HtmlUtils.addTableId(reSetTable.getHtml(), "table" + index);
-//            reSetTable.setHtml(html);
-//            index++;
-//        }
 
         return mergeResult;
     }

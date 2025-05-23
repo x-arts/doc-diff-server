@@ -33,4 +33,25 @@ public class Row {
         return StrUtil.join("|", cellTexts);
     }
 
+    /**
+     * 判断是否有空列
+     * @return
+     */
+    public boolean onlyLastOneCellNotEmpty() {
+
+        String lastText = cells.get(cells.size() - 1).getText();
+        boolean lastNotBlank = StrUtil.isNotBlank(lastText);
+
+        boolean othersIsBlank = true;
+
+        for (int i = 0; i < cells.size() - 1; i++) {
+            String text = cells.get(i).getText();
+            if (StrUtil.isNotBlank(text)) {
+                othersIsBlank = false;
+                break;
+            }
+        }
+        return lastNotBlank && othersIsBlank;
+    }
+
 }

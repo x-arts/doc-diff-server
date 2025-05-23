@@ -3,7 +3,11 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.TestBase;
+import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.table.TableInfo;
+import com.did.docdiffserver.service.compent.StoreService;
 import com.did.docdiffserver.utils.HtmlUtils;
+import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -27,6 +31,29 @@ public class DocDiffServiceTest extends TestBase {
     @Resource
     private PdfService pdfService;
 
+    @Resource
+    private StoreService storeService;
+
+
+    @Test
+    public void pdfProcessVoTest(){
+        String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
+        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
+        List<TableInfo> tableInfoList = pdfProcess.getTableInfoList();
+
+        TableInfo tableInfo = tableInfoList.get(2);
+
+        tableInfo.getRows().forEach(row -> {
+            System.out.println(row.simpleRowLine());
+        });
+
+        MergeTableUtils.mergeTableInfoRow(tableInfo);
+
+        tableInfo.getRows().forEach(row -> {
+            System.out.println(row.simpleRowLine());
+        });
+
+    }
 
 
     @Test
