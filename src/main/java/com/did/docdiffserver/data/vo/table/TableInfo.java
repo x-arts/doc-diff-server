@@ -12,7 +12,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -27,6 +29,16 @@ public class TableInfo {
 
     private List<Row> rows;
 
+    /**
+     * 表格查询的字段
+     */
+    private String tabDict;
+
+
+    /**
+     * 行的下标记录， 后续用来做二分查找
+     */
+    private ArrayList<Integer> compareDictIndex = new ArrayList<>();
 
 
 
@@ -74,35 +86,52 @@ public class TableInfo {
     }
 
 
+    /**
+     * 构建比较字典
+     */
+    public void  buildTableDict() {
+        List<String> rowLines = getRowLines();
+        StringBuilder dict = new StringBuilder();
+        for (int i = 0; i < rowLines.size(); i++) {
+            String rowLine = rowLines.get(i);
+            dict.append(rowLine);
 
-
-
-
-    public void addRows(List<Row> rows) {
-        this.rows.addAll(rows);
+            for (char c : rowLine.toCharArray()) {
+                this.compareDictIndex.add(i);
+            }
+        }
+        this.tabDict = dict.toString();
     }
 
 
     public List<String> getRowLines() {
         List<String> rowLines = new ArrayList<>();
         for (Row row : this.rows) {
-            List<Cell> cells = row.getCells();
-            String rowLine = StrUtil.join("|", cellsToText(cells));
-            rowLines.add(rowLine);
+            String compareRowLine = row.compareRowLine();
+            rowLines.add(compareRowLine);
         }
         return rowLines;
     }
 
 
-    public List<String> cellsToText(List<Cell> cells) {
-        List<String> lines = new ArrayList<>();
-        for (Cell cell : cells) {
-            String cellText = StrTools.removeSpaceInLine(cell.getText());
-            cellText = StrTools.replacePunctuation(cellText);
-            lines.add(cellText);
+    public List<Integer> fetchMatchIndex(String matchText) {
+        int startIndex = tabDict.indexOf(matchText);
+        int endIndex = startIndex + matchText.length() ;
+
+        Set<Integer> indexSet = new HashSet<>();
+
+        for (int i = startIndex; i < endIndex; i++) {
+            indexSet.add(compareDictIndex.get(i));
         }
-        return lines;
+        return new ArrayList<>(indexSet);
     }
+
+    public static void main(String[] args) {
+        String s = "0123456789";
+
+        System.out.println(s.indexOf("3456"));
+    }
+
 
 
 }

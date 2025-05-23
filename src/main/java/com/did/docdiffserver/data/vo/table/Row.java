@@ -33,6 +33,14 @@ public class Row {
         return StrUtil.join("|", cellTexts);
     }
 
+    public String compareRowLine() {
+        List<String> cellTexts = new ArrayList<>();
+        for (Cell cell : cells) {
+            cellTexts.add(cell.simpleText());
+        }
+        return StrUtil.join("", cellTexts);
+    }
+
     /**
      * 判断是否有空列
      * @return

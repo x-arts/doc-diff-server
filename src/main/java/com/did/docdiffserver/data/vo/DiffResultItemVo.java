@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PrintJsonVo {
+public class DiffResultItemVo {
 
     private List<DiffTextItemVO> diffItemList;
 
@@ -14,12 +14,12 @@ public class PrintJsonVo {
 
 
 
-    public static PrintJsonVo of(List<DiffTextItemVO> diffItemList, List<DiffTableItemVO> tableItemList) {
-        PrintJsonVo printJsonVo = new PrintJsonVo();
-        printJsonVo.setDiffItemList(diffItemList);
-        printJsonVo.diffTableItemList = tableItemList;
-        printJsonVo.buildDetail();
-        return printJsonVo;
+    public static DiffResultItemVo of(List<DiffTextItemVO> diffItemList, List<DiffTableItemVO> tableItemList) {
+        DiffResultItemVo diffResultItemVo = new DiffResultItemVo();
+        diffResultItemVo.setDiffItemList(diffItemList);
+        diffResultItemVo.diffTableItemList = tableItemList;
+        diffResultItemVo.buildDetail();
+        return diffResultItemVo;
     }
 
 

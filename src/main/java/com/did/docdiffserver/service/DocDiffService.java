@@ -48,44 +48,24 @@ public class DocDiffService {
      * @param pdfFileId
      * @return
      */
-    public String docDiff(String wordFileId, String pdfFileId) {
+    public DiffResultItemVo docDiff(String wordFileId, String pdfFileId) {
         WordProcessVO wordProcess = wordService.process(storeService.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
         PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
-//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-//        log.info("docDiff findDiff  finish ");
+        // 文档比对
+        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        log.info("docDiff findDiff  finish ");
 //        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
 
         TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
 
         List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-//        printSideBySide(diff, diffTableItems);
-//        return generateUnifiedDiff(diff);
-
-        return "null";
+        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
     }
 
-    private void  printSideBySide(DiffResultVO diff, List<DiffTableItemVO> diffTableItems){
-        List<String> originalList = diff.getOriginalList();
 
-        for (String string : originalList) {
-            System.out.println(string);
-        }
-
-        System.out.println("==========================");
-
-        List<String> modifyList = diff.getModifyList();
-        for (String string : modifyList) {
-            System.out.println(string);
-        }
-
-        PrintJsonVo printJsonVo = PrintJsonVo.of(diff.getDiffTextList(), diffTableItems);
-
-        System.out.println(JSONObject.toJSONString(printJsonVo));
-
-    }
 
 
 

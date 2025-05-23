@@ -54,11 +54,11 @@ public class PdfProcessVO {
      * 用来比对的字典，全量
      */
     private String compareDict;
-
     /**
      * 行的下标记录， 后续用来做二分查找
      */
     private ArrayList<Integer> compareDictIndex = new ArrayList<>();
+
 
 
     /**
@@ -182,7 +182,6 @@ public class PdfProcessVO {
     private void  buildDict(){
 //        this.compareDict = String.join("", this.compareMarkdownList);
 //        this.dynamicDict = compareDict;
-        int currentIndex = 0;
         StringBuilder compareDictBuilder = new StringBuilder();
         for (int i = 0; i < compareMarkdownList.size(); i++) {
             String contentText = compareMarkdownList.get(i);
@@ -190,7 +189,6 @@ public class PdfProcessVO {
             /**
              * 数组需要存的下标
              */
-//            int maxIndex = currentIndex + contentText.length();
             for (char c : contentText.toCharArray()) {
                 compareDictIndex.add(i);
             }

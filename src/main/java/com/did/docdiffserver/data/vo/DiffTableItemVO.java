@@ -22,19 +22,25 @@ public class DiffTableItemVO {
     /**
      *  行索引
      */
-    private int rowIndex;
+    private int wordTableRowIndex;
+
+    /**
+     * pdf 表格的行索引
+     */
+    private List<Integer> pdfTableRowIndex;
 
 
 
     private List<DiffItemDetailVO> diffDetail;
 
 
-    public static DiffTableItemVO create(String originalText, String modifiedText, String tableId, int rowIndex) {
+    public static DiffTableItemVO create(String originalText, String modifiedText, String tableId, int rowIndex, List<Integer> pdfLineIndex) {
         DiffTableItemVO item = new DiffTableItemVO();
         item.originalText = originalText;
         item.modifiedText = modifiedText;
         item.tableId = tableId;
-        item.rowIndex = rowIndex;
+        item.wordTableRowIndex = rowIndex;
+        item.pdfTableRowIndex = pdfLineIndex;
         return item;
     }
 
