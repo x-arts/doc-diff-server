@@ -52,9 +52,9 @@ public class ContractDiffTaskApi implements BaseApi {
 
     @PostMapping("/api/ctcdiff")
     public ResponseContent<DiffTaskPageListVO> diffTaskPageList(@RequestBody TaskPageListCondition condition)  {
+        DiffTaskPageListVO pageList = diffTaskService.pageList(condition);
 
-
-        return ResponseContent.success();
+        return ResponseContent.success(pageList);
     }
 
 

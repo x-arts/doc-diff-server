@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BusinessException extends RuntimeException {
 
-    private String code;
+    private Integer code;
 
     private String message;
 
@@ -20,7 +20,7 @@ public class BusinessException extends RuntimeException {
         return new BusinessException(errorCode.code, errorCode.message);
     }
 
-    public static BusinessException of(String code, String message) {
+    public static BusinessException of(int code, String message) {
         return new BusinessException(code, message);
     }
 
