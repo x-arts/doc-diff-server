@@ -18,6 +18,11 @@ public class ContractDiffTask {
 
     private String taskName;
 
+    /**
+     * @see com.did.docdiffserver.data.enums.TaskProcessStatus
+     */
+    private String processStatus;
+
     private String standardFileId;
 
     private String compareFileId;
