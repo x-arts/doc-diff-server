@@ -2,12 +2,11 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.condition.TableCompareCondition;
 import com.did.docdiffserver.data.vo.*;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
-import com.did.docdiffserver.service.compent.StoreService;
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.service.table.TableCompare;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
@@ -36,7 +35,7 @@ public class DocDiffService {
     private PdfService pdfService;
 
     @Resource
-    private StoreService storeService;
+    private StoreConfig storeConfig;
 
     @Resource
     private TableCompare  tableCompare;
@@ -49,9 +48,9 @@ public class DocDiffService {
      * @return
      */
     public DiffResultItemVo docDiff(String wordFileId, String pdfFileId) {
-        WordProcessVO wordProcess = wordService.process(storeService.getWordMarkDownFilePath(wordFileId), wordFileId);
+        WordProcessVO wordProcess = wordService.process(storeConfig.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
-        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
+        PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         // 文档比对
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);

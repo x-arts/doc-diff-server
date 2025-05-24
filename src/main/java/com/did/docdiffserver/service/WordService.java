@@ -3,7 +3,6 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
-import com.did.docdiffserver.service.compent.StoreService;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

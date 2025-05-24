@@ -1,6 +1,7 @@
 package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.io.FileUtil;
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.config.YamlConfig;
 import com.did.docdiffserver.service.WordService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class DocCovertService {
     private YamlConfig yamlConfig;
 
     @Resource
-    private  StoreService  storeService;
+    private StoreConfig storeConfig;
 
     @Resource
     private WordService wordService;
@@ -83,7 +84,7 @@ public class DocCovertService {
      * @return 返回 markdown 的文件路径
      */
     public String docx2Markdown(String filePath, String fileId) {
-        String outDir = storeService.getProcessMarkDownDir(fileId);
+        String outDir = storeConfig.getProcessMarkDownDir(fileId);
         String mdFilePath = outDir + fileId + ".md";
 
         System.out.println(mdFilePath);
@@ -107,7 +108,7 @@ public class DocCovertService {
             log.error(e.getMessage(),e);
         }
 
-        return storeService.getWordMarkDownFilePath(fileId);
+        return storeConfig.getWordMarkDownFilePath(fileId);
     }
 
 

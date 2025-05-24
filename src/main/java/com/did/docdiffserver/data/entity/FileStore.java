@@ -27,4 +27,14 @@ public class FileStore {
 
     private Date createTime;
 
+
+    public static FileStore createLocalFile(String fileId, String format) {
+        FileStore fileStore = new FileStore();
+        fileStore.setFileId(fileId);
+        fileStore.setFormat(format);
+        fileStore.setStoreType("LOCAL");
+        fileStore.setCreateTime(new Date());
+        return fileStore;
+    }
+
 }

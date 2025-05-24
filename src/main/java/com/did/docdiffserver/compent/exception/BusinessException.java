@@ -20,5 +20,9 @@ public class BusinessException extends RuntimeException {
         return new BusinessException(errorCode.code, errorCode.message);
     }
 
+    public static BusinessException of(String code, String message) {
+        return new BusinessException(code, message);
+    }
+
 
 }

@@ -1,7 +1,6 @@
-package com.did.docdiffserver.service.compent;
+package com.did.docdiffserver.config;
 
 import cn.hutool.core.io.FileUtil;
-import com.did.docdiffserver.config.YamlConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,15 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-public class StoreService {
+public class StoreConfig {
 
     @Resource
     private YamlConfig yamlConfig;
+
+
+    public String getUploadBase() {
+        return yamlConfig.getUploadBase();
+    }
 
     public String getPdfFilePath(String fileId) {
         return yamlConfig.getUploadBase() + fileId + ".pdf";

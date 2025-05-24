@@ -9,29 +9,37 @@ import lombok.Data;
  * responseBody
  */
 @Data
-public class ResponseContent {
+public class ResponseContent<T extends BaseVO> {
 
     private String code;
 
     private String message;
 
-    private BaseVO data;
+    private T data;
 
 
 
-    public static ResponseContent failedOf(BusinessException exception) {
-        ResponseContent content = new ResponseContent();
+    public static ResponseContent<?> failedOf(BusinessException exception) {
+        ResponseContent<?> content = new ResponseContent<>();
         content.setCode(exception.getCode());
         content.setMessage(exception.getMessage());
         return content;
     }
 
-    public static ResponseContent failedOf(ErrorCode errorCode) {
-        ResponseContent content = new ResponseContent();
+    public static ResponseContent<?> failedOf(ErrorCode errorCode) {
+        ResponseContent<?> content = new ResponseContent<>();
         content.setCode(errorCode.getCode());
         content.setMessage(errorCode.getMessage());
         return content;
     }
 
+
+    public static <T extends BaseVO> ResponseContent<T> success(T baseVO) {
+        ResponseContent<T> content = new ResponseContent<>();
+        content.setCode(ErrorCode.SUCCESS.code);
+        content.setMessage(ErrorCode.SUCCESS.message);
+        content.setData(baseVO);
+        return content;
+    }
 
 }

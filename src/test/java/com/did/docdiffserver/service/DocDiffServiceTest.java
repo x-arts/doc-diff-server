@@ -6,7 +6,7 @@ import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.table.TableInfo;
-import com.did.docdiffserver.service.compent.StoreService;
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.utils.HtmlUtils;
 import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.StrTools;
@@ -33,13 +33,13 @@ public class DocDiffServiceTest extends TestBase {
     private PdfService pdfService;
 
     @Resource
-    private StoreService storeService;
+    private StoreConfig storeConfig;
 
 
     @Test
     public void pdfProcessVoTest(){
         String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
-        PdfProcessVO pdfProcess = pdfService.process(storeService.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
+        PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         List<TableInfo> tableInfoList = pdfProcess.getTableInfoList();
 
         TableInfo tableInfo = tableInfoList.get(2);

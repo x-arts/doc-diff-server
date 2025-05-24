@@ -1,4 +1,6 @@
 package com.did.docdiffserver.data.base;
 
-public interface BaseCondition {
+import com.did.docdiffserver.compent.JsonStrAbility;
+
+public interface BaseCondition extends JsonStrAbility {
 }

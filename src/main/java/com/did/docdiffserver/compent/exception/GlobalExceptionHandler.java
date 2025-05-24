@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler  {
 
 
-
     // 处理自定义业务异常
     @ResponseBody
     @ExceptionHandler({BusinessException.class})
