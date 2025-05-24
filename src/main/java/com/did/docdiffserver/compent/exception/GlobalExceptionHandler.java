@@ -21,25 +21,22 @@ public class GlobalExceptionHandler  {
 
 
     // 处理自定义业务异常
-//    @ResponseBody
-//    @ExceptionHandler({BusinessException.class})
-//    public ResponseContent bizException(BusinessException e) {
-////        log.error("出现异常:{}", e);
-//        return ResultsBean.failed(e.getMessage());
-//    }
+    @ResponseBody
+    @ExceptionHandler({BusinessException.class})
+    public ResponseContent bizException(BusinessException e) {
+        log.error(e.getMessage(), e);
+        return ResponseContent.failedOf(e);
+    }
 
 
     // 处理所有未捕获的异常
-//    @ResponseBody
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<ErrorResponse> handleAllExceptions(Exception ex) {
-//        ErrorResponse errorResponse = new ErrorResponse(
-//                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-//                "服务器内部错误: " + ex.getMessage(),
-//                System.currentTimeMillis()
-//        );
-//        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+    @ResponseBody
+    @ExceptionHandler(Exception.class)
+    public ResponseContent handleAllExceptions(Exception e) {
+        log.error(e.getMessage(), e);
+        return ResponseContent.failedOf(ErrorCode.SYSTEM_ERROR);
+
+    }
 
 
 }

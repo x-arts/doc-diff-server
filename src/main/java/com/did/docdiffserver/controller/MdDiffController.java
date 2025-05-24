@@ -5,8 +5,8 @@ import cn.hutool.core.lang.UUID;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.data.condition.MdTextDiffCondition;
-import com.did.docdiffserver.data.vo.BaseVo;
-import com.did.docdiffserver.data.vo.ProcessFileVO;
+import com.did.docdiffserver.data.vo.BaseResponseVo;
+import com.did.docdiffserver.data.vo.ProcessFileResponseVO;
 import com.did.docdiffserver.service.compent.DocCovertService;
 import com.did.docdiffserver.service.DocDiffService;
 import lombok.extern.slf4j.Slf4j;
@@ -66,9 +66,9 @@ public class MdDiffController {
 
 
     @PostMapping("/mark")
-    public ResponseEntity<BaseVo> mark(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<BaseResponseVo> mark(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("文件不能为空！"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseResponseVo.nSuccess("文件不能为空！"));
         }
 
         // 指定保存路径
@@ -81,7 +81,7 @@ public class MdDiffController {
         String suffix = FileNameUtil.getSuffix(file.getOriginalFilename());
         assert suffix != null;
         if (!allowedFileTypes.contains(suffix)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("仅支持 docx，pdf 格式"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseResponseVo.nSuccess("仅支持 docx，pdf 格式"));
         }
 
         String fileId = UUID.randomUUID().toString();
@@ -91,23 +91,23 @@ public class MdDiffController {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
             String text = docCovertService.docx2HtmlAndGet(filePath, fileId);
-            ProcessFileVO processFileVO = new ProcessFileVO();
+            ProcessFileResponseVO processFileVO = new ProcessFileResponseVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);
             processFileVO.successStatus();
             return ResponseEntity.ok(processFileVO);
         } catch (IOException e) {
             log.info(e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BaseVo.nSuccess("上传失败"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BaseResponseVo.nSuccess("上传失败"));
         }
     }
 
 
 
     @PostMapping("/upload")
-    public ResponseEntity<BaseVo> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<BaseResponseVo> uploadFile(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("文件不能为空！"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseResponseVo.nSuccess("文件不能为空！"));
         }
 
         // 指定保存路径
@@ -120,7 +120,7 @@ public class MdDiffController {
         String suffix = FileNameUtil.getSuffix(file.getOriginalFilename());
         assert suffix != null;
         if (!allowedFileTypes.contains(suffix)) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseVo.nSuccess("仅支持 docx，pdf 格式"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseResponseVo.nSuccess("仅支持 docx，pdf 格式"));
         }
 
         String fileId = UUID.randomUUID().toString();
@@ -130,14 +130,14 @@ public class MdDiffController {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
             String text = docCovertService.doc2md(filePath, fileId,suffix);
-            ProcessFileVO processFileVO = new ProcessFileVO();
+            ProcessFileResponseVO processFileVO = new ProcessFileResponseVO();
             processFileVO.setFileId(fileId);
             processFileVO.setText(text);
             processFileVO.successStatus();
             return ResponseEntity.ok(processFileVO);
         } catch (IOException e) {
             log.info(e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BaseVo.nSuccess("上传失败"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(BaseResponseVo.nSuccess("上传失败"));
         }
     }
 
