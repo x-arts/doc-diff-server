@@ -1,6 +1,7 @@
 package com.did.docdiffserver.data.entity;
 
 
+import cn.hutool.core.lang.UUID;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -20,6 +21,8 @@ public class ContractDiffTask {
 
     private String taskName;
 
+    private String taskId;
+
     /**
      * @see com.did.docdiffserver.data.enums.TaskProcessStatus
      */
@@ -34,6 +37,7 @@ public class ContractDiffTask {
 
     public static  ContractDiffTask createAddOf(TaskAddCondition condition) {
         ContractDiffTask task = new ContractDiffTask();
+        task.setTaskId(UUID.randomUUID().toString());
         task.setTaskName(condition.getTaskName());
         task.setStandardFileId(condition.getStandardFileId());
         task.setCompareFileId(condition.getCompareFileId());

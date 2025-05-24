@@ -9,7 +9,7 @@ import lombok.Data;
  * responseBody
  */
 @Data
-public class ResponseContent<T extends BaseVO> {
+public class ResponseContent<T> {
 
     private String code;
 
@@ -34,11 +34,18 @@ public class ResponseContent<T extends BaseVO> {
     }
 
 
-    public static <T extends BaseVO> ResponseContent<T> success(T baseVO) {
+    public static <T> ResponseContent<T> success(T baseVO) {
         ResponseContent<T> content = new ResponseContent<>();
         content.setCode(ErrorCode.SUCCESS.code);
         content.setMessage(ErrorCode.SUCCESS.message);
         content.setData(baseVO);
+        return content;
+    }
+
+    public static <T> ResponseContent<T> success() {
+        ResponseContent<T> content = new ResponseContent<>();
+        content.setCode(ErrorCode.SUCCESS.code);
+        content.setMessage(ErrorCode.SUCCESS.message);
         return content;
     }
 

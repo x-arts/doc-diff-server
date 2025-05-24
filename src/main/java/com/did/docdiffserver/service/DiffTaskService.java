@@ -1,8 +1,11 @@
 package com.did.docdiffserver.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.did.docdiffserver.data.condition.TaskAddCondition;
+import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
+import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
 import com.did.docdiffserver.repository.ContractDiffTaskRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,4 +35,11 @@ public class DiffTaskService {
 
         return AddDiffTaskVo.of(diffTask);
     }
+
+    public DiffTaskPageListVO pageList(TaskPageListCondition condition) {
+        IPage<ContractDiffTask> contractDiffTaskIPage = diffTaskRepository.pageList(condition);
+
+        return   DiffTaskPageListVO.of(contractDiffTaskIPage);
+    }
+
 }
