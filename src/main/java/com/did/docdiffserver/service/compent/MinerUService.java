@@ -1,5 +1,6 @@
 package com.did.docdiffserver.service.compent;
 
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.config.YamlConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,9 @@ public class MinerUService {
     @Resource
     private YamlConfig yamlConfig;
 
+    @Resource
+    private StoreConfig storeConfig;
+
     /**
      * 返回文件路径
      * @param filePath
@@ -33,21 +37,23 @@ public class MinerUService {
      * @return
      */
     public String docToMarkdown(String filePath, String fileId) {
-        convert(filePath);
+
+        String processMarkDownDir = storeConfig.getProcessMarkDownDir(fileId);
+        convert(filePath, processMarkDownDir);
         String targetFileName = fileId + ".md";
 
         // 读取文件
-        return uploadFilePath  + "mineru/" +  fileId + "/auto/" + targetFileName;
+        return storeConfig.getPdfMarkDownFilePath(fileId);
     }
 
 
-    public void convert(String filePath) {
-        log.info("convert filePath = {}", filePath);
+    public void convert(String filePath, String outDir) {
+        log.info("convert filePath = {}, outDir = {}", filePath, outDir);
         try {
             String scriptBasePath = yamlConfig.getScriptBasePath();
             String scriptPath = scriptBasePath + "mineru2md.sh";
 
-            ProcessBuilder pb = new ProcessBuilder(scriptPath, filePath);
+            ProcessBuilder pb = new ProcessBuilder(scriptPath, filePath, outDir);
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
             InputStream is = process.getInputStream();
@@ -57,6 +63,7 @@ public class MinerUService {
                 log.info("MinerU doc2Markdown line = {}", line);
             }
 
+            log.info("MinerUService convert  finish");
         } catch (Exception e) {
             log.error(e.getMessage(),e);
         }

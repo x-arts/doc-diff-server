@@ -9,7 +9,6 @@ public class DiffResultItemVo {
 
     private List<DiffTextItemVO> diffItemList;
 
-
     private List<DiffTableItemVO> diffTableItemList;
 
 

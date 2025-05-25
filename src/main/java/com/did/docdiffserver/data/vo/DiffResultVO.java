@@ -27,8 +27,8 @@ public class DiffResultVO {
     private List<String> modifyList;
 
 
-    public void addDiffItem(String original, String modify, List<Integer> originalLineNumbers) {
-         this.diffTextList.add(DiffTextItemVO.create(original, modify, originalLineNumbers));
+    public void addDiffItem(String original, String modify, List<Integer> originalLineNumbers, List<Integer> modifyLineNums) {
+         this.diffTextList.add(DiffTextItemVO.create(original, modify, originalLineNumbers, modifyLineNums));
     }
 
 

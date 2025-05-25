@@ -19,14 +19,20 @@ public class DiffTextItemVO {
 
     private List<Integer>  originalLineNumbers;
 
+    /**
+     * pdf 行索引
+     */
+    private List<Integer> modifyLineNumbers;
+
     private List<DiffItemDetailVO> diffDetail;
 
 
-    public static DiffTextItemVO create(String originalText, String modifiedText, List<Integer> originalLineNumbers) {
+    public static DiffTextItemVO create(String originalText, String modifiedText, List<Integer> originalLineNumbers, List<Integer> modifyLineNumbers) {
         DiffTextItemVO diffTextItemVO = new DiffTextItemVO();
         diffTextItemVO.originalText = originalText;
         diffTextItemVO.modifiedText = modifiedText;
         diffTextItemVO.originalLineNumbers = originalLineNumbers;
+        diffTextItemVO.modifyLineNumbers = modifyLineNumbers;
         return diffTextItemVO;
     }
 

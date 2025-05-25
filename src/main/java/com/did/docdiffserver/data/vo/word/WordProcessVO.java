@@ -21,7 +21,8 @@ public class WordProcessVO {
      * 比对最小的字符串长度
      * 如果一样小于 10，则需要加上下一行去比对
      */
-    private static final int min_size = 10;
+//    private static final int min_size = 10;
+    private static final int min_size = 2;
 
 
     /**

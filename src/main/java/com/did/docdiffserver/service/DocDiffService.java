@@ -120,7 +120,7 @@ public class DocDiffService {
                 // 没有找到的情况
                 diffResultVO.getOriginalList().add(hadMatch.getOriginalText().getCompareText());
                 diffResultVO.getModifyList().add("");
-                diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), "", hadMatch.getOriginalText().getLineNumbers());
+                diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), "", hadMatch.getOriginalText().getLineNumbers(), Collections.emptyList());
 
                 return NextTextMatchVO.create(findNext, matchTextNext);
             }
@@ -140,7 +140,9 @@ public class DocDiffService {
             String modifyText = pdfProcess.getDictSubString(startIndex, endIndex);
             diffResultVO.getModifyList().add(modifyText);
 
-            diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), modifyText, hadMatch.getOriginalText().getLineNumbers());
+            List<Integer> pdfLineNums = pdfProcess.fetchMatchIndex(modifyText);
+
+            diffResultVO.addDiffItem(hadMatch.getOriginalText().getCompareText(), modifyText, hadMatch.getOriginalText().getLineNumbers(), pdfLineNums);
 
         }
         return NextTextMatchVO.create(findNext, matchTextNext);

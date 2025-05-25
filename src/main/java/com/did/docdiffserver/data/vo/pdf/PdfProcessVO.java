@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Slf4j
@@ -203,6 +205,23 @@ public class PdfProcessVO {
      */
     private void buildTableInfo() {
         this.tableInfoList = TableInfo.buildTableInfoList(compareTableList);
+    }
+
+    public List<Integer> fetchMatchIndex(String matchText) {
+        if (StrUtil.isBlank(matchText)) {
+            log.warn("fetchMatchIndex: matchText is blank");
+            return new ArrayList<>();
+        }
+
+        int startIndex = compareDict.indexOf(matchText);
+        int endIndex = startIndex + matchText.length() ;
+
+        Set<Integer> indexSet = new HashSet<>();
+
+        for (int i = startIndex; i < endIndex; i++) {
+            indexSet.add(compareDictIndex.get(i));
+        }
+        return new ArrayList<>(indexSet);
     }
 
 

@@ -43,7 +43,7 @@ public class StoreConfig {
     }
 
     public String getPdfMarkDownFilePath(String fileId) {
-        String dirOut = yamlConfig.getMarkdownBasePath() + fileId + "/auto/";
+        String dirOut = yamlConfig.getMarkdownBasePath() + fileId +"/" + fileId + "/auto/";
         return dirOut + fileId + ".md";
     }
 

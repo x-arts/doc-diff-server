@@ -2,6 +2,7 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
@@ -63,7 +64,7 @@ public class DocDiffServiceTest extends TestBase {
         String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
         DiffResultItemVo diffStr = docDiffService.docDiff(wordFileId, pdfFileId);
 
-        System.out.println(diffStr);
+        System.out.println(JSONObject.toJSONString(diffStr));
     }
 
     @Test
