@@ -63,16 +63,15 @@ public class DocDiffService {
         PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         // 文档比对
-//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
 //        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
 
-        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
+//        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
 
-        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
+//        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-//        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
-        return null;
+        return DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
     }
 
 

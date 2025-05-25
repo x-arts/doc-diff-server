@@ -1,5 +1,6 @@
 package com.did.docdiffserver.service;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
@@ -86,6 +87,8 @@ public class DiffTaskService {
                 PdfProcessVO pdfProcess = pdfService.process(diffTask, detail, wordProcess);
 
                 DiffResultItemVo diffResultItem = docDiffService.docDiffTask(wordProcess, pdfProcess);
+
+                log.info("Diff  diffResultItem = {} ", JSONObject.toJSONString(diffResultItem));
 
                 diffTask.setProcessStatus(TaskProcessStatus.PROCESS_SUCCESS.code);
                 diffTaskRepository.updateById(diffTask);

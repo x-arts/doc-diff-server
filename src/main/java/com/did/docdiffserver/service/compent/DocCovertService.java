@@ -70,7 +70,7 @@ public class DocCovertService {
 
         // word 文档的转换
         String markdownFilePath = docx2Markdown(strandFilePath, standardFileId);
-        String wordMdFormatContent = wordService.formatShowMarkdown(markdownFilePath);
+//        String wordMdFormatContent = wordService.formatShowMarkdown(markdownFilePath);
 
         // 存入数据库
         String wordMdFileId = UUID.randomUUID().toString();

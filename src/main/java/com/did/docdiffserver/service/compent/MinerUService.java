@@ -1,10 +1,12 @@
 package com.did.docdiffserver.service.compent;
 
+import com.did.docdiffserver.config.YamlConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +22,9 @@ public class MinerUService {
 
     @Value("${local.file-upload-path}")
     private String uploadFilePath;
+
+    @Resource
+    private YamlConfig yamlConfig;
 
     /**
      * 返回文件路径
@@ -39,9 +44,10 @@ public class MinerUService {
     public void convert(String filePath) {
         log.info("convert filePath = {}", filePath);
         try {
-            ProcessBuilder pb = new ProcessBuilder(
-                    "/Users/xuewenke/temp-file/doc-diff-server/mineru2md.sh", filePath
-            );
+            String scriptBasePath = yamlConfig.getScriptBasePath();
+            String scriptPath = scriptBasePath + "mineru2md.sh";
+
+            ProcessBuilder pb = new ProcessBuilder(scriptPath, filePath);
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
             InputStream is = process.getInputStream();
