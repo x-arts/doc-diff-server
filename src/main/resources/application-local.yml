@@ -1,5 +1,5 @@
 server:
-  port: 8070
+  port: 8077
 
   servlet:
     encoding:
@@ -16,8 +16,6 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-  profiles:
-    active: local
 
   datasource:
     # 使用Druid数据源
