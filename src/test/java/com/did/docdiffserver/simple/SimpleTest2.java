@@ -35,15 +35,6 @@ public class SimpleTest2 {
     }
 
 
-    @Test
-    public void simpleTest(){
-
-        String markdown = convertHTMLTableToMarkdown(html);
-        System.out.println(markdown);
-
-
-    }
-
 
     public  String convertHTMLTableToMarkdown(String htmlTable) {
         // 使用 Jsoup 解析 HTML

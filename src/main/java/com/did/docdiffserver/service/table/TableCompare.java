@@ -2,7 +2,7 @@ package com.did.docdiffserver.service.table;
 
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.condition.TableCompareCondition;
-import com.did.docdiffserver.data.vo.DiffTableItemVO;
+import com.did.docdiffserver.data.vo.table.DiffTableItemVO;
 import com.did.docdiffserver.data.vo.table.Row;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.utils.SearchUtils;

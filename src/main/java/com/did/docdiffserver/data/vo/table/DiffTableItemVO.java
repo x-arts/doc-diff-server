@@ -1,6 +1,7 @@
-package com.did.docdiffserver.data.vo;
+package com.did.docdiffserver.data.vo.table;
 
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.vo.DiffItemDetailVO;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;

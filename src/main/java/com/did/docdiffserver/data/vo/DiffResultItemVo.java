@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo;
 
+import com.did.docdiffserver.data.vo.table.DiffTableItemVO;
 import lombok.Data;
 
 import java.util.List;
