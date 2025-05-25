@@ -21,20 +21,18 @@ public class MinerUService {
     @Value("${local.file-upload-path}")
     private String uploadFilePath;
 
+    /**
+     * 返回文件路径
+     * @param filePath
+     * @param fileId
+     * @return
+     */
     public String docToMarkdown(String filePath, String fileId) {
         convert(filePath);
         String targetFileName = fileId + ".md";
 
         // 读取文件
-        String targetPath = uploadFilePath  + "mineru/" +  fileId + "/auto/" + targetFileName;
-
-        try {
-            return StreamUtils.copyToString(Files.newInputStream(Paths.get(targetPath)), StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            log.info(e.getMessage(),e);
-        }
-        return "# 解析失败";
-
+        return uploadFilePath  + "mineru/" +  fileId + "/auto/" + targetFileName;
     }
 
 
@@ -44,7 +42,6 @@ public class MinerUService {
             ProcessBuilder pb = new ProcessBuilder(
                     "/Users/xuewenke/temp-file/doc-diff-server/mineru2md.sh", filePath
             );
-            List<String> command = pb.command();
             pb.redirectErrorStream(true);  // 合并错误输出
             Process process = pb.start();
             InputStream is = process.getInputStream();

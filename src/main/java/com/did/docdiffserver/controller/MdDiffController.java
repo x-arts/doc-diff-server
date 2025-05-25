@@ -129,10 +129,10 @@ public class MdDiffController {
         try {
             String filePath = uploadDir + fileId + "." + suffix;
             file.transferTo(new File(filePath));
-            String text = docCovertService.doc2md(filePath, fileId,suffix);
+//            String text = docCovertService.doc2md(fileId);
             ProcessFileResponseVO processFileVO = new ProcessFileResponseVO();
             processFileVO.setFileId(fileId);
-            processFileVO.setText(text);
+//            processFileVO.setText(text);
             processFileVO.successStatus();
             return ResponseEntity.ok(processFileVO);
         } catch (IOException e) {

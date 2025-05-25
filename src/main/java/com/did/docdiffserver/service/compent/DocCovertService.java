@@ -1,10 +1,19 @@
 package com.did.docdiffserver.service.compent;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.UUID;
+import com.did.docdiffserver.compent.exception.BusinessException;
+import com.did.docdiffserver.compent.exception.ErrorCode;
 import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.config.YamlConfig;
+import com.did.docdiffserver.data.entity.ContractDiffTask;
+import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.entity.FileStore;
+import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
+import com.did.docdiffserver.repository.FileStoreRepository;
 import com.did.docdiffserver.service.PdfService;
 import com.did.docdiffserver.service.WordService;
+import com.did.docdiffserver.utils.AssertUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -43,8 +52,59 @@ public class DocCovertService {
     @Resource
     private PdfService pdfService;
 
+    @Resource
+    private FileStoreRepository fileStoreRepository;
 
-    public String doc2md(String filePath, String fileId, String suffix) {
+    @Resource
+    private ContractDiffTaskDetailRepository taskDetailRepository;
+
+
+    /**
+     *  文本转换成 markdown
+     * @param diffTask
+     */
+    public ContractDiffTaskDetail  docConventMarkdown(ContractDiffTask diffTask) {
+        String standardFileId = diffTask.getStandardFileId();
+        FileStore standFileStore = fileStoreRepository.findByFileId(standardFileId);
+        String strandFilePath = standFileStore.getFilePath();
+
+        // word 文档的转换
+        String markdownFilePath = docx2Markdown(strandFilePath, standardFileId);
+        String wordMdFormatContent = wordService.formatShowMarkdown(markdownFilePath);
+
+        // 存入数据库
+        String wordMdFileId = UUID.randomUUID().toString();
+        FileStore markdownFileStore = FileStore.createLocalFile(wordMdFileId, markdownFilePath,"MD" );
+        fileStoreRepository.save(markdownFileStore);
+
+
+        // pdf 文档转换
+        String compareFileId = diffTask.getCompareFileId();
+        FileStore compareFileStore = fileStoreRepository.findByFileId(compareFileId);
+        String compareFilePath = compareFileStore.getFilePath();
+
+        String pdfMdFileId = UUID.randomUUID().toString();
+        String pdfMarkdownFilePath = doc2mdMinerU(compareFilePath, compareFileId);
+        FileStore pdfMarkdownFileStore = FileStore.createLocalFile(pdfMdFileId, pdfMarkdownFilePath,"MD" );
+        fileStoreRepository.save(pdfMarkdownFileStore);
+
+        ContractDiffTaskDetail diffTaskDetail = ContractDiffTaskDetail.createForAdd(diffTask.getId(), wordMdFileId, pdfMdFileId);
+
+        taskDetailRepository.save(diffTaskDetail);
+
+        return diffTaskDetail;
+
+    }
+
+
+
+
+    public String doc2md(String fileId) {
+        FileStore fileStore = fileStoreRepository.findByFileId(fileId);
+        AssertUtil.notNull(fileStore, "File not found for fileId: " + fileId);
+        String suffix = fileStore.getFormat();
+        String filePath = fileStore.getFilePath();
+
         if (suffix.equals("docx")) {
             String markdownFilePath = docx2Markdown(filePath, fileId);
             return wordService.formatShowMarkdown(markdownFilePath);
@@ -54,13 +114,13 @@ public class DocCovertService {
             return doc2mdMinerU(filePath, fileId);
         }
 
-        return "";
+        throw new BusinessException(ErrorCode.ILLEGAL_NOT_ASSERT.code,  "文件格式不支持: " + suffix);
     }
 
 
     public String doc2mdMinerU(String filePath, String fileId) {
         log.info("doc2mdMinerU: fileId={}", fileId);
-        return   minerUService.docToMarkdown(filePath,fileId);
+        return  minerUService.docToMarkdown(filePath,fileId);
     }
 
     public String docx2HtmlAndGet(String filePath, String fileId) {

@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
+import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
 import com.did.docdiffserver.repository.ContractDiffTaskRepository;
+import com.did.docdiffserver.service.compent.DocCovertService;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,12 @@ public class DiffTaskService {
 
     @Resource
     private ListeningExecutorService executorService;
+
+    @Resource
+    private DocCovertService docCovertService;
+
+    @Resource
+    private DocDiffService docDiffService;
 
 
     /**
@@ -61,9 +70,16 @@ public class DiffTaskService {
         executorService.submit(() -> {
             // 模拟对比处理
             try {
-                Thread.sleep(2000); // 模拟耗时操作
-                log.info("Diff task {} processed successfully", diffTask.getId());
-            } catch (InterruptedException e) {
+                // 文件的转换
+                ContractDiffTaskDetail detail = docCovertService.docConventMarkdown(diffTask);
+
+                // 格式 format 处理
+
+
+
+                DiffResultItemVo diffResultItem = docDiffService.docDiff(diffTask.getStandardFileId(), diffTask.getCompareFileId());
+
+            } catch (Exception e) {
                 log.error("Error processing diff task {}", diffTask.getId(), e);
             }
         });

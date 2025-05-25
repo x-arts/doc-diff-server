@@ -2,7 +2,12 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.entity.ContractDiffTask;
+import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
+import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
+import com.did.docdiffserver.repository.FileStoreRepository;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,6 +34,14 @@ public class WordService {
     @Resource
     private FormatService formatService;
 
+    @Resource
+    private FileStoreRepository fileStoreRepository;
+
+    @Resource
+    private ContractDiffTaskDetailRepository taskDetailRepository;
+
+
+
     private static final List<String> filterKeyWords = new ArrayList<>();
 
     static {
@@ -43,7 +56,6 @@ public class WordService {
 
         // 表格合并
         formatLines = mergeHtmlContentOneLine(formatLines);
-
 
         formatLines = formatService.symbolicFormat(formatLines);
 
@@ -103,6 +115,22 @@ public class WordService {
 
         }
         return  result;
+    }
+
+
+    public WordProcessVO process(ContractDiffTask diffTask, ContractDiffTaskDetail taskDetail) {
+        String standardMarkdownFileId = taskDetail.getStandardMarkdownFileId();
+        FileStore fileStore = fileStoreRepository.findByFileId(standardMarkdownFileId);
+        String markdownFilePath = fileStore.getFilePath();
+
+        String wordMdFormatContent = formatShowMarkdown(markdownFilePath);
+        taskDetail.setCompareFormatTxt(wordMdFormatContent);
+        taskDetailRepository.updateById(taskDetail);
+
+        WordProcessVO wordProcessVO = WordProcessVO.init(diffTask.getStandardFileId(), markdownFilePath);
+        wordProcessVO.buildCompareData();
+        return wordProcessVO;
+
     }
 
 

@@ -38,7 +38,7 @@ public class FileLocalStoreService {
         String filePath = storeConfig.getUploadBase() + fileId + "." + suffix;
         uploadFile.transferTo(new File(filePath));
 
-        FileStore localFile = FileStore.createLocalFile(filePath, suffix);
+        FileStore localFile = FileStore.createLocalFile(fileId,filePath, suffix);
         fileStoreRepository.save(localFile);
         return fileId;
 

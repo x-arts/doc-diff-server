@@ -39,4 +39,15 @@ public class ContractDiffTaskDetail {
      * 比对预处理文本
      */
     private String compareFormatTxt;
+
+
+
+    public static ContractDiffTaskDetail createForAdd(long relTaskId, String wordMdFileId, String compareMarkdownFileId) {
+        ContractDiffTaskDetail detail = new ContractDiffTaskDetail();
+        detail.setRelTaskId(relTaskId);
+        detail.setStandardMarkdownFileId(wordMdFileId);
+        detail.setCompareMarkdownFileId(compareMarkdownFileId);
+        return detail;
+    }
+
 }
