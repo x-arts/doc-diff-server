@@ -2,6 +2,8 @@ package com.did.docdiffserver.service;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.did.docdiffserver.compent.exception.BusinessException;
+import com.did.docdiffserver.compent.exception.ErrorCode;
 import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
@@ -12,6 +14,7 @@ import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
+import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
 import com.did.docdiffserver.repository.ContractDiffTaskRepository;
 import com.did.docdiffserver.service.compent.DocCovertService;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -30,6 +33,9 @@ public class DiffTaskService {
     private ContractDiffTaskRepository diffTaskRepository;
 
     @Resource
+    private ContractDiffTaskDetailRepository diffTaskDetailRepository;
+
+    @Resource
     private ListeningExecutorService executorService;
 
     @Resource
@@ -43,6 +49,25 @@ public class DiffTaskService {
 
     @Resource
     private PdfService pdfService;
+
+
+
+    public void getTaskDetail(String taskId) {
+        ContractDiffTask task = diffTaskRepository.findByTaskId(taskId);
+        if (task.getProcessStatus().equals(TaskProcessStatus.PROCESS_FAIL.code)) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR.code, "对比任务处理失败");
+        }
+
+        if (task.getProcessStatus().equals(PROCESSING.code)) {
+            throw new BusinessException(ErrorCode.ILLEGAL_NOT_ASSERT.code, "对比任务处理中，请稍后再试");
+        }
+
+        ContractDiffTaskDetail detail = diffTaskDetailRepository.findByRelTaskId(task.getId());
+        String compareResult = detail.getCompareResult();
+
+        DiffResultItemVo diffResultItem = JSONObject.parseObject(compareResult, DiffResultItemVo.class);
+
+    }
 
 
     /**

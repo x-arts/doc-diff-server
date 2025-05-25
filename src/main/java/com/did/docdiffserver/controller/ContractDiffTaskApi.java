@@ -10,10 +10,7 @@ import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
 import com.did.docdiffserver.service.DiffTaskService;
 import com.did.docdiffserver.service.store.FileLocalStoreService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -53,10 +50,25 @@ public class ContractDiffTaskApi implements BaseApi {
     @PostMapping("/api/ctcdiff")
     public ResponseContent<DiffTaskPageListVO> diffTaskPageList(@RequestBody TaskPageListCondition condition)  {
         DiffTaskPageListVO pageList = diffTaskService.pageList(condition);
-
         return ResponseContent.success(pageList);
     }
 
+     //  /api/ctcdiff/detail
+
+
+    /**
+     * 获取对比任务详情
+     * @param taskId 任务ID
+     * @return 对比任务详情
+     *
+     * @param taskId
+     * @return
+     */
+    @GetMapping("/api/ctcdiff/detail")
+    public ResponseContent<DiffTaskPageListVO> getTaskCompareDetail(@RequestParam String taskId)  {
+        DiffTaskPageListVO pageList = diffTaskService.pageList(condition);
+        return ResponseContent.success(pageList);
+    }
 
 
 }

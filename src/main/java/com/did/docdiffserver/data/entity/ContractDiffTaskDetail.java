@@ -40,6 +40,11 @@ public class ContractDiffTaskDetail {
      */
     private String compareFormatTxt;
 
+    /**
+     * 比对结果
+     */
+    private String compareResult;
+
 
 
     public static ContractDiffTaskDetail createForAdd(long relTaskId, String wordMdFileId, String compareMarkdownFileId) {

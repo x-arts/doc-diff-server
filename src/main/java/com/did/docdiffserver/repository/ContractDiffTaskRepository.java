@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 public class ContractDiffTaskRepository extends ServiceImpl<ContractDiffTaskMapper, ContractDiffTask> {
 
 
+    public ContractDiffTask findByTaskId(String taskId) {
+        return lambdaQuery().eq(ContractDiffTask::getTaskId, taskId).one();
+    }
+
     public IPage<ContractDiffTask>  pageList(TaskPageListCondition pageCondition) {
         IPage<ContractDiffTask> page = new Page<>();
         page.setCurrent(pageCondition.getCurrent());

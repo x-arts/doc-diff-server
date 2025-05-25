@@ -16,7 +16,7 @@ public class ContractDiffTaskDetailRepository extends ServiceImpl<ContractDiffTa
      */
     public ContractDiffTaskDetail findByRelTaskId(Long relTaskId) {
         return this.lambdaQuery()
-                .eq(com.did.docdiffserver.data.entity.ContractDiffTaskDetail::getRelTaskId, relTaskId)
+                .eq(ContractDiffTaskDetail::getRelTaskId, relTaskId)
                 .one();
     }
 }
