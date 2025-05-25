@@ -41,7 +41,6 @@ public class WordService {
     private ContractDiffTaskDetailRepository taskDetailRepository;
 
 
-
     private static final List<String> filterKeyWords = new ArrayList<>();
 
     static {

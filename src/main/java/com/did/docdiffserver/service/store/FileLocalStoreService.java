@@ -1,7 +1,6 @@
 package com.did.docdiffserver.service.store;
 
 import cn.hutool.core.io.file.FileNameUtil;
-import cn.hutool.core.lang.Assert;
 import cn.hutool.core.lang.UUID;
 import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.data.entity.FileStore;
@@ -41,9 +40,6 @@ public class FileLocalStoreService {
         FileStore localFile = FileStore.createLocalFile(fileId,filePath, suffix);
         fileStoreRepository.save(localFile);
         return fileId;
-
-
-
     }
 
 

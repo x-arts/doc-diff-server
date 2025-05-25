@@ -54,8 +54,6 @@ public class ContractDiffTaskApi implements BaseApi {
         return ResponseContent.success(pageList);
     }
 
-     //  /api/ctcdiff/detail
-
 
     /**
      * 获取对比任务详情

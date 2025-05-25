@@ -11,7 +11,6 @@ import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
 import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
 import com.did.docdiffserver.repository.FileStoreRepository;
-import com.did.docdiffserver.service.PdfService;
 import com.did.docdiffserver.service.WordService;
 import com.did.docdiffserver.utils.AssertUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -48,9 +47,6 @@ public class DocCovertService {
 
     @Resource
     private WordService wordService;
-
-    @Resource
-    private PdfService pdfService;
 
     @Resource
     private FileStoreRepository fileStoreRepository;

@@ -1,19 +1,18 @@
-package com.did.docdiffserver.service.compent;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-
-/**
- *
- */
-@Slf4j
-@Service
-public class PanDocService {
-
-    public String htmlToPlanText(String html) {
-
-
-        return "";
-    }
-
-}
+//package com.did.docdiffserver.service.compent;
+//
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.stereotype.Service;
+//
+///**
+// *
+// */
+//@Slf4j
+//@Service
+//public class PanDocService {
+//
+//    public String htmlToPlanText(String html) {
+//
+//        return "";
+//    }
+//
+//}
