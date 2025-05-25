@@ -66,8 +66,8 @@ public class ContractDiffTaskApi implements BaseApi {
      */
     @GetMapping("/api/ctcdiff/detail")
     public ResponseContent<DiffTaskPageListVO> getTaskCompareDetail(@RequestParam String taskId)  {
-        DiffTaskPageListVO pageList = diffTaskService.pageList(condition);
-        return ResponseContent.success(pageList);
+        diffTaskService.getTaskDetail(taskId);
+        return ResponseContent.success();
     }
 
 
