@@ -5,6 +5,7 @@ import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
 import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.enums.TaskProcessStatus;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
@@ -63,7 +64,7 @@ public class DiffTaskService {
 
     public DiffTaskPageListVO pageList(TaskPageListCondition condition) {
         IPage<ContractDiffTask> contractDiffTaskIPage = diffTaskRepository.pageList(condition);
-        return   DiffTaskPageListVO.of(contractDiffTaskIPage);
+        return  DiffTaskPageListVO.of(contractDiffTaskIPage);
     }
 
     /**
@@ -84,11 +85,14 @@ public class DiffTaskService {
                 WordProcessVO wordProcess = wordService.process(diffTask, detail);
                 PdfProcessVO pdfProcess = pdfService.process(diffTask, detail, wordProcess);
 
+                DiffResultItemVo diffResultItem = docDiffService.docDiffTask(wordProcess, pdfProcess);
 
-                DiffResultItemVo diffResultItem = docDiffService.docDiff(diffTask.getStandardFileId(), diffTask.getCompareFileId());
-
+                diffTask.setProcessStatus(TaskProcessStatus.PROCESS_SUCCESS.code);
+                diffTaskRepository.updateById(diffTask);
             } catch (Exception e) {
                 log.error("Error processing diff task {}", diffTask.getId(), e);
+                diffTask.setProcessStatus(TaskProcessStatus.PROCESS_FAIL.code);
+                diffTaskRepository.updateById(diffTask);
             }
         });
 

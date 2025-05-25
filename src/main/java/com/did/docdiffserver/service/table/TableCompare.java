@@ -5,13 +5,11 @@ import com.did.docdiffserver.data.condition.TableCompareCondition;
 import com.did.docdiffserver.data.vo.DiffTableItemVO;
 import com.did.docdiffserver.data.vo.table.Row;
 import com.did.docdiffserver.data.vo.table.TableInfo;
-import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.SearchUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -50,7 +48,14 @@ public class TableCompare {
      * @param pdfTable
      */
     public List<DiffTableItemVO> doTableInfoCompare(TableInfo word, TableInfo pdfTable) {
+        return doTableInfoCompareForOneLineDit(word, pdfTable);
+//        return doTableInfoCompareForDit(pdfTable,word);
+    }
 
+
+
+
+    public List<DiffTableItemVO> doTableInfoCompareForOneLineDit(TableInfo word, TableInfo pdfTable) {
         // 表格里的行数合并
 //        MergeTableUtils.mergeTableInfoRow(pdfTable);
         pdfTable.buildTableDict();
@@ -72,7 +77,6 @@ public class TableCompare {
                 diffTableItemList.add(diffItem);
             }
         }
-
         return diffTableItemList;
     }
 

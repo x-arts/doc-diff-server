@@ -18,11 +18,7 @@ import toolgood.words.StringSearch;
 
 import javax.annotation.Resource;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -47,12 +43,10 @@ public class DocDiffService {
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
 
+//        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
+//        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
-
-        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
-
-        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
+        return DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
     }
 
 
@@ -69,7 +63,7 @@ public class DocDiffService {
         PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         // 文档比对
-        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
 //        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
 
@@ -77,7 +71,8 @@ public class DocDiffService {
 
         List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
+//        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
+        return null;
     }
 
 
