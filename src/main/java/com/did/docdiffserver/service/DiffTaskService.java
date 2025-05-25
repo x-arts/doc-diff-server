@@ -6,8 +6,10 @@ import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
 import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
+import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
+import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.repository.ContractDiffTaskRepository;
 import com.did.docdiffserver.service.compent.DocCovertService;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -33,6 +35,12 @@ public class DiffTaskService {
 
     @Resource
     private DocDiffService docDiffService;
+
+    @Resource
+    private WordService wordService;
+
+    @Resource
+    private PdfService pdfService;
 
 
     /**
@@ -73,8 +81,8 @@ public class DiffTaskService {
                 // 文件的转换
                 ContractDiffTaskDetail detail = docCovertService.docConventMarkdown(diffTask);
 
-                // 格式 format 处理
-
+                WordProcessVO wordProcess = wordService.process(diffTask, detail);
+                PdfProcessVO pdfProcess = pdfService.process(diffTask, detail, wordProcess);
 
 
                 DiffResultItemVo diffResultItem = docDiffService.docDiff(diffTask.getStandardFileId(), diffTask.getCompareFileId());

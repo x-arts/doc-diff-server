@@ -42,6 +42,21 @@ public class DocDiffService {
 
 
 
+    public DiffResultItemVo docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
+        // 文档比对
+        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        log.info("docDiff findDiff  finish ");
+
+
+        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
+
+        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
+
+        return DiffResultItemVo.of(diff.getDiffTextList(), diffTableItems);
+    }
+
+
+
     /**
      * 上传两个文件 id， 对文件对比
      * @param wordFileId

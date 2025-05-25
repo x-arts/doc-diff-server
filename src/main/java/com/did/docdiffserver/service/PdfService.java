@@ -3,18 +3,19 @@ package com.did.docdiffserver.service;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.entity.ContractDiffTask;
+import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.table.HtmlTableContent;
-import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.table.TableMergeResult;
-import com.did.docdiffserver.service.table.TableInfoBuilder;
+import com.did.docdiffserver.data.vo.word.WordProcessVO;
+import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
+import com.did.docdiffserver.repository.FileStoreRepository;
 import com.did.docdiffserver.utils.HtmlUtils;
 import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
@@ -38,10 +39,31 @@ public class PdfService {
     @Resource
     private FormatService formatService;
 
+    @Resource
+    private FileStoreRepository fileStoreRepository;
 
     @Resource
-    private TableInfoBuilder tableInfoBuilder;
+    private ContractDiffTaskDetailRepository taskDetailRepository;
 
+
+
+    public PdfProcessVO process(ContractDiffTask diffTask, ContractDiffTaskDetail taskDetail, WordProcessVO wordProcess) {
+
+        String markdownFileId = taskDetail.getCompareMarkdownFileId();
+        FileStore fileStore = fileStoreRepository.findByFileId(markdownFileId);
+        String markdownFilePath = fileStore.getFilePath();
+
+        Set<String> tableHeads = HtmlUtils.getTableHeads(wordProcess.getCompareTableList());
+        String formatContent = formatShowMarkdown(markdownFilePath, tableHeads);
+
+        taskDetail.setCompareFormatTxt(formatContent);
+        taskDetailRepository.updateById(taskDetail);
+
+
+        PdfProcessVO processVO = PdfProcessVO.init(diffTask.getCompareFileId(), markdownFilePath);
+        processVO.buildCompareData();
+        return processVO;
+    }
 
 
     public PdfProcessVO process(String markdownFilePath, String fileId) {
