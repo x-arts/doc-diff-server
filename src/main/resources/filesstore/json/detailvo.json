@@ -1,0 +1,34 @@
+{
+  "code": 200,
+  "message": "操作成功",
+  "data": {
+    "stdFileContent": "xxxxxxxxxx",
+    "cmpFileContent": "yyyyyyyyy",
+    "detail": {
+      "10": {
+        "originalText": "（3）授课教师为原厂专业讲师并应具有工程经验、实践经验及教学经验。",
+        "modifiedText": "（3）授课教师为原厂专业讲师并应具有工程经验、实践经验及教学经验",
+        "originalLineNumbers": [
+          324
+        ],
+        "modifyLineNumbers": [
+          140
+        ],
+        "diffDetail": [
+          {
+            "originalText": null,
+            "modifyText": null,
+            "type": "DELETE",
+            "originalDiffChars": [
+              "。"
+            ],
+            "originalStrPosition": 32,
+            "modifyDiffChars": [],
+            "modifyStrPosition": 32
+          }
+        ]
+      }
+    }
+
+  }
+}

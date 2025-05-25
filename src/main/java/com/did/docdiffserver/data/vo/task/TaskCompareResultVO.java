@@ -1,14 +1,16 @@
 package com.did.docdiffserver.data.vo.task;
 
-import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.DiffTextItemVO;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class TaskCompareResultVO {
@@ -17,20 +19,25 @@ public class TaskCompareResultVO {
 
     private String cmpFileContent;
 
-    private JSONObject detail;
+    private Map<String, DiffTextItemVO> detail;
 
+    @JsonIgnore
     private String stdFileId;
 
+    @JsonIgnore
     private String cmpFileId;
 
 
     @JSONField(serialize = false)
+    @JsonIgnore
     private WordProcessVO wordProcess;
 
     @JSONField(serialize = false)
+    @JsonIgnore
     private PdfProcessVO pdfProcess;
 
     @JSONField(serialize = false)
+    @JsonIgnore
     private DiffResultItemVo diffResultItem;
 
 
@@ -39,7 +46,7 @@ public class TaskCompareResultVO {
         result.setWordProcess(word);
         result.setPdfProcess(pdf);
         result.setDiffResultItem(diffResultItem);
-        result.setDetail(new JSONObject());
+        result.setDetail(new HashMap<>());
         return result;
     }
 
@@ -68,15 +75,10 @@ public class TaskCompareResultVO {
                 pdfMdList.set(pdfLine,tagLine);
             }
 
-            this.detail.put(insertIndex, diffTextItemVO.getDiffDetail());
+            this.detail.put(insertIndex, diffTextItemVO);
+            index++;
         }
 
     }
-
-
-
-
-
-
 
 }

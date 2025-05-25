@@ -100,9 +100,6 @@ public class DocDiffServiceTest extends TestBase {
         detail.setCompareResult(JSONObject.toJSONString(result));
         diffTaskDetailRepository.updateById(detail);
 
-        List<String> pdfMardDownList = result.getPdfProcess().getMardDownList();
-
-
         System.out.println(JSONObject.toJSONString(result));
     }
 
