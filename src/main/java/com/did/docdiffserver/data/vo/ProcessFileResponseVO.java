@@ -3,7 +3,7 @@ package com.did.docdiffserver.data.vo;
 import lombok.Data;
 
 @Data
-public class ProcessFileVO extends BaseVo{
+public class ProcessFileResponseVO extends BaseResponseVo {
 
     private String fileId;
 
