@@ -3,6 +3,7 @@ package com.did.docdiffserver.service.compent;
 import cn.hutool.core.io.FileUtil;
 import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.config.YamlConfig;
+import com.did.docdiffserver.service.PdfService;
 import com.did.docdiffserver.service.WordService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -39,9 +40,11 @@ public class DocCovertService {
     @Resource
     private WordService wordService;
 
+    @Resource
+    private PdfService pdfService;
 
 
-    public String doc2md(String filePath, String fileId, String suffix)  {
+    public String doc2md(String filePath, String fileId, String suffix) {
         if (suffix.equals("docx")) {
             String markdownFilePath = docx2Markdown(filePath, fileId);
             return wordService.formatShowMarkdown(markdownFilePath);
@@ -87,7 +90,6 @@ public class DocCovertService {
         String outDir = storeConfig.getProcessMarkDownDir(fileId);
         String mdFilePath = outDir + fileId + ".md";
 
-        System.out.println(mdFilePath);
         FileUtil.touch(mdFilePath);
 
         String scriptBasePath = yamlConfig.getScriptBasePath();

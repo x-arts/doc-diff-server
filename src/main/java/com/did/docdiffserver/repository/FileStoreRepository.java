@@ -7,4 +7,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FileStoreRepository extends ServiceImpl<FileStoreMapper, FileStore> {
+
+
+    public FileStore findByFileId(String fileId) {
+        return this.lambdaQuery()
+                .eq(FileStore::getFileId, fileId).one();
+    }
+
 }

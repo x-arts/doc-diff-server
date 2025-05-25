@@ -21,6 +21,8 @@ public class FileStore {
 
     private String fileId;
 
+    private String filePath;
+
     private String format;
 
     private String storeType;
