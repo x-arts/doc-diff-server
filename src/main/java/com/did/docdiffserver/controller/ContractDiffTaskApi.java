@@ -7,6 +7,7 @@ import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
+import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
 import com.did.docdiffserver.service.DiffTaskService;
 import com.did.docdiffserver.service.store.FileLocalStoreService;
 import lombok.extern.slf4j.Slf4j;
@@ -65,9 +66,9 @@ public class ContractDiffTaskApi implements BaseApi {
      * @return
      */
     @GetMapping("/api/ctcdiff/detail")
-    public ResponseContent<DiffTaskPageListVO> getTaskCompareDetail(@RequestParam String taskId)  {
-        diffTaskService.getTaskDetail(taskId);
-        return ResponseContent.success();
+    public ResponseContent<TaskCompareResultVO> getTaskCompareDetail(@RequestParam String taskId)  {
+        TaskCompareResultVO taskDetail = diffTaskService.getTaskDetail(taskId);
+        return ResponseContent.success(taskDetail);
     }
 
 

@@ -18,6 +18,12 @@ public class StoreConfig {
     private YamlConfig yamlConfig;
 
 
+
+    public String getShowMarkdownBasePath() {
+        return yamlConfig.getMarkdownBasePath() + "/show/";
+    }
+
+
     public String getUploadBase() {
         return yamlConfig.getUploadBase();
     }

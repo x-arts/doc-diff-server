@@ -1,13 +1,19 @@
 package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.TestBase;
+import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.config.StoreConfig;
+import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
+import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
+import com.did.docdiffserver.repository.FileStoreRepository;
 import com.did.docdiffserver.utils.HtmlUtils;
 import com.did.docdiffserver.utils.MergeTableUtils;
 import com.did.docdiffserver.utils.StrTools;
@@ -36,6 +42,12 @@ public class DocDiffServiceTest extends TestBase {
     @Resource
     private StoreConfig storeConfig;
 
+    @Resource
+    private FileStoreRepository fileStoreRepository;
+
+    @Resource
+    private ContractDiffTaskDetailRepository diffTaskDetailRepository;
+
 
     @Test
     public void pdfProcessVoTest(){
@@ -62,9 +74,36 @@ public class DocDiffServiceTest extends TestBase {
     public void docDiffTest() {
         String wordFileId = "a91b1188-cc50-462e-952d-ad685abf9660";
         String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
-        DiffResultItemVo diffStr = docDiffService.docDiff(wordFileId, pdfFileId);
+        TaskCompareResultVO result = docDiffService.docDiff(wordFileId, pdfFileId);
 
-        System.out.println(JSONObject.toJSONString(diffStr));
+        String baseDir = storeConfig.getShowMarkdownBasePath();
+        List<String> wordMarkDownList = result.getWordProcess().getMarkDownList();
+        String fileId =  UUID.randomUUID().toString();
+        String wordMdFilePath = baseDir + fileId +".md";
+        FileStore localFile = FileStore.createLocalFile(fileId, wordMdFilePath, "MD");
+        FileUtil.writeLines(wordMarkDownList, wordMdFilePath, StandardCharsets.UTF_8);
+        fileStoreRepository.save(localFile);
+
+
+        List<String> pdfMarkDownList = result.getPdfProcess().getMardDownList();
+        String pdfMdId =  UUID.randomUUID().toString();
+        String pdfMdFilePath = baseDir + pdfMdId +".md";
+        FileStore pdfLocalFile = FileStore.createLocalFile(pdfMdId, pdfMdFilePath, "MD");
+        FileUtil.writeLines(pdfMarkDownList, pdfMdFilePath, StandardCharsets.UTF_8);
+        fileStoreRepository.save(pdfLocalFile);
+
+
+        result.setStdFileId(fileId);
+        result.setCmpFileId(pdfMdId);
+
+        ContractDiffTaskDetail detail = diffTaskDetailRepository.findByRelTaskId(7L);
+        detail.setCompareResult(JSONObject.toJSONString(result));
+        diffTaskDetailRepository.updateById(detail);
+
+        List<String> pdfMardDownList = result.getPdfProcess().getMardDownList();
+
+
+        System.out.println(JSONObject.toJSONString(result));
     }
 
     @Test

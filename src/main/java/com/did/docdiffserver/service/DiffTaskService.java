@@ -8,20 +8,29 @@ import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
 import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
+import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.data.enums.TaskProcessStatus;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
+import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.repository.ContractDiffTaskDetailRepository;
 import com.did.docdiffserver.repository.ContractDiffTaskRepository;
+import com.did.docdiffserver.repository.FileStoreRepository;
 import com.did.docdiffserver.service.compent.DocCovertService;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 
 import javax.annotation.Resource;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static com.did.docdiffserver.data.enums.TaskProcessStatus.PROCESSING;
 
@@ -50,9 +59,12 @@ public class DiffTaskService {
     @Resource
     private PdfService pdfService;
 
+    @Resource
+    private FileStoreRepository fileStoreRepository;
 
 
-    public void getTaskDetail(String taskId) {
+
+    public TaskCompareResultVO getTaskDetail(String taskId) {
         ContractDiffTask task = diffTaskRepository.findByTaskId(taskId);
         if (task.getProcessStatus().equals(TaskProcessStatus.PROCESS_FAIL.code)) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR.code, "对比任务处理失败");
@@ -64,9 +76,22 @@ public class DiffTaskService {
 
         ContractDiffTaskDetail detail = diffTaskDetailRepository.findByRelTaskId(task.getId());
         String compareResult = detail.getCompareResult();
+        TaskCompareResultVO result = JSONObject.parseObject(compareResult, TaskCompareResultVO.class);
 
-        DiffResultItemVo diffResultItem = JSONObject.parseObject(compareResult, DiffResultItemVo.class);
 
+        FileStore wordMd = fileStoreRepository.findByFileId(result.getStdFileId());
+        FileStore pdfMd = fileStoreRepository.findByFileId(result.getCmpFileId());
+
+        try {
+            String stdFileContent  =  StreamUtils.copyToString(Files.newInputStream(Paths.get(wordMd.getFilePath())), StandardCharsets.UTF_8);
+            result.setStdFileContent(stdFileContent);
+            String cmpFileContent  =  StreamUtils.copyToString(Files.newInputStream(Paths.get(pdfMd.getFilePath())), StandardCharsets.UTF_8);
+            result.setCmpFileContent(cmpFileContent);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
 

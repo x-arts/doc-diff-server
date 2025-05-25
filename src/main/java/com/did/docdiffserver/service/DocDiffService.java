@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.data.condition.TableCompareCondition;
 import com.did.docdiffserver.data.vo.*;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.service.table.TableCompare;
@@ -57,7 +58,7 @@ public class DocDiffService {
      * @param pdfFileId
      * @return
      */
-    public DiffResultItemVo docDiff(String wordFileId, String pdfFileId) {
+    public TaskCompareResultVO docDiff(String wordFileId, String pdfFileId) {
         WordProcessVO wordProcess = wordService.process(storeConfig.getWordMarkDownFilePath(wordFileId), wordFileId);
         log.info("docDiff wordProcess  finish ");
         PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
@@ -71,7 +72,14 @@ public class DocDiffService {
 
 //        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        return DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+        DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+
+
+        TaskCompareResultVO result = TaskCompareResultVO.createResult(wordProcess, pdfProcess, diffResultItemVo);
+        result.buildDetail();
+
+
+        return result;
     }
 
 

@@ -30,6 +30,15 @@ public class SimpleTest {
 
 
     @Test
+    public void simpleTest3() {
+        int index = 1;
+        String line = "这是一个测试的行";
+        String str1 = String.format("@%s@%s@%s@", index+"0", line, index+"0");
+        System.out.println(str1);
+    }
+
+
+    @Test
     public void createDict() {
 //        String dictFilePath = localTempFilePath + "1/dict.txt";
         List<String> lines = FileUtil.readLines(localTempFilePath + "1/1_notable_html_text_1.txt", "utf-8");
