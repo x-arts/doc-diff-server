@@ -3,7 +3,7 @@
 
 # 服务启动的准备
 
-## 文档站换工具的安装
+## 文档转换工具的安装
 
 ### minerU
 https://github.com/opendatalab/MinerU
