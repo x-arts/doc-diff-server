@@ -39,7 +39,7 @@ public class DocDiffService {
 
 
 
-    public DiffResultItemVo docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
+    public TaskCompareResultVO docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
         // 文档比对
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
@@ -47,7 +47,10 @@ public class DocDiffService {
 //        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
 //        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        return DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+
+        DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+
+        return TaskCompareResultVO.createResult(wordProcess, pdfProcess,diffResultItemVo);
     }
 
 

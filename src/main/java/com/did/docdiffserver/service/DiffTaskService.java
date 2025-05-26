@@ -1,16 +1,18 @@
 package com.did.docdiffserver.service;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.UUID;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.did.docdiffserver.compent.exception.BusinessException;
 import com.did.docdiffserver.compent.exception.ErrorCode;
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.data.condition.TaskAddCondition;
 import com.did.docdiffserver.data.condition.TaskPageListCondition;
 import com.did.docdiffserver.data.entity.ContractDiffTask;
 import com.did.docdiffserver.data.entity.ContractDiffTaskDetail;
 import com.did.docdiffserver.data.entity.FileStore;
 import com.did.docdiffserver.data.enums.TaskProcessStatus;
-import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.task.AddDiffTaskVo;
 import com.did.docdiffserver.data.vo.task.DiffTaskPageListVO;
@@ -26,11 +28,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
 import javax.annotation.Resource;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import static com.did.docdiffserver.data.enums.TaskProcessStatus.PROCESSING;
 
@@ -61,6 +63,9 @@ public class DiffTaskService {
 
     @Resource
     private FileStoreRepository fileStoreRepository;
+
+    @Resource
+    private StoreConfig storeConfig;
 
 
 
@@ -136,9 +141,35 @@ public class DiffTaskService {
                 WordProcessVO wordProcess = wordService.process(diffTask, detail);
                 PdfProcessVO pdfProcess = pdfService.process(diffTask, detail, wordProcess);
 
-                DiffResultItemVo diffResultItem = docDiffService.docDiffTask(wordProcess, pdfProcess);
+                TaskCompareResultVO diffResult = docDiffService.docDiffTask(wordProcess, pdfProcess);
+                log.info("Diff  diffResult = {} ", JSONObject.toJSONString(diffResult));
 
-                log.info("Diff  diffResultItem = {} ", JSONObject.toJSONString(diffResultItem));
+                //  需要把打了 @标签 md 写入到两外一个文件里，用来回显用
+
+                String baseDir = storeConfig.getShowMarkdownBasePath();
+                List<String> wordMarkDownList = wordProcess.getMarkDownList();
+                String fileId =  UUID.randomUUID().toString();
+                String wordMdFilePath = baseDir + fileId +".md";
+                FileStore localFile = FileStore.createLocalFile(fileId, wordMdFilePath, "MD");
+                FileUtil.writeLines(wordMarkDownList, wordMdFilePath, StandardCharsets.UTF_8);
+                fileStoreRepository.save(localFile);
+
+
+                List<String> pdfMarkDownList = pdfProcess.getMardDownList();
+                String pdfMdId =  UUID.randomUUID().toString();
+                String pdfMdFilePath = baseDir + pdfMdId +".md";
+                FileStore pdfLocalFile = FileStore.createLocalFile(pdfMdId, pdfMdFilePath, "MD");
+                FileUtil.writeLines(pdfMarkDownList, pdfMdFilePath, StandardCharsets.UTF_8);
+                fileStoreRepository.save(pdfLocalFile);
+
+
+                diffResult.setStdFileId(fileId);
+                diffResult.setCmpFileId(pdfMdId);
+
+
+                detail.setCompareResult(JSONObject.toJSONString(diffResult));
+                diffTaskDetailRepository.updateById(detail);
+
 
                 diffTask.setProcessStatus(TaskProcessStatus.PROCESS_SUCCESS.code);
                 diffTaskRepository.updateById(diffTask);
