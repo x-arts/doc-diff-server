@@ -1,15 +1,19 @@
 package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.table.DiffTableFlag;
 import com.did.docdiffserver.data.vo.table.TableInfo;
+import com.did.docdiffserver.utils.MergeTableUtils;
 import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TableCompareTest extends TestBase {
 
@@ -24,14 +28,45 @@ public class TableCompareTest extends TestBase {
         String pdfTablePath = localTempFilePath + "compare/table/pdf.md";
 
 
+        List<DiffTableFlag> diffTableFlags = new ArrayList<>();
+
+
         List<String> wordLines = FileUtil.readLines(wordTablePath, StandardCharsets.UTF_8);
+
+        wordLines =  wordLines.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
+
         List<String> pdfLines = FileUtil.readLines(pdfTablePath, StandardCharsets.UTF_8);
 
-        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(0));
+        pdfLines =  pdfLines.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
 
-        TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(0));
 
-        List<DiffTableFlag> diffTableFlags = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo);
+        for (int i = 0; i < wordLines.size(); i++) {
+            TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(i));
+            TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(i));
+            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+
+            List<DiffTableFlag> diffTableFlags1 = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo);
+
+            System.out.println(" i  = "  + i + " size = " + diffTableFlags1.size() );
+            diffTableFlags.addAll(diffTableFlags1);
+        }
+        /**
+         *
+         *  0-1
+         *  1-1
+         *  2- 104
+         *  3-19
+         *  4-0
+         *  5-13
+         *  6-0
+         *
+         */
+
+//        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(2));
+//        TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(2));
+//        MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+//        diffTableFlags.addAll(tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo));
+
 
         System.out.println(diffTableFlags.size());
 
