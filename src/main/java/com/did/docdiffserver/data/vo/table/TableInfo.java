@@ -127,5 +127,35 @@ public class TableInfo {
     }
 
 
+    public String toHtmlTable() {
+        StringBuilder html = new StringBuilder();
+        html.append("<table>");
+
+        // 添加表头行
+        if (tableName != null && !tableName.trim().isEmpty()) {
+            html.append("<tr>");
+            String[] headers = tableName.split("\\|");
+            for (String header : headers) {
+                html.append("<th>").append(header.trim()).append("</th>");
+            }
+            html.append("</tr>");
+        }
+
+        // 添加数据行
+        if (rows != null) {
+            for (Row row : rows) {
+                html.append("<tr>");
+                for (Cell cell : row.getCells()) {
+                    html.append("<td>").append(cell.getText()).append("</td>");
+                }
+                html.append("</tr>");
+            }
+        }
+
+        html.append("</table>");
+        return html.toString();
+    }
+
+
 
 }
