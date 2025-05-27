@@ -21,10 +21,10 @@ public class TaskCompareResultVO {
 
     private Map<String, DiffTextItemVO> detail;
 
-    @JsonIgnore
+
     private String stdFileId;
 
-    @JsonIgnore
+
     private String cmpFileId;
 
 
