@@ -11,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Slf4j
@@ -81,6 +83,13 @@ public class WordProcessVO {
      * 当前下标
      */
     private int currentLineNum = -1;
+
+
+    /**
+     * 表格行索引
+     * 用来标记表格的行号
+     */
+    private Map<String, Integer> tableLineIndex = new HashMap<>();
 
 
     public static WordProcessVO init(String fileId, String markDownFilePath) {
@@ -174,6 +183,7 @@ public class WordProcessVO {
 
 
     private void buildCompareMarkdownList() {
+        int index = 0;
         for (String markdownLine : this.markDownList) {
             String cleanLine = markdownLine.trim();
 
@@ -181,6 +191,8 @@ public class WordProcessVO {
             if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareMarkdownList.add(Constant.HTML_LINE);
                 this.compareTableList.add(cleanLine);
+                int tableId = index+1;
+                tableLineIndex.put("table"+ tableId, index);
                 continue;
             }
 
@@ -199,6 +211,7 @@ public class WordProcessVO {
             }
 
             this.compareMarkdownList.add(cleanLine);
+            index++;
         }
     }
 

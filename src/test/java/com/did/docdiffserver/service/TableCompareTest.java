@@ -40,16 +40,16 @@ public class TableCompareTest extends TestBase {
         pdfLines =  pdfLines.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
 
 
-//        for (int i = 0; i < wordLines.size(); i++) {
-//            TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(i));
-//            TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(i));
-//            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
-//
-//            List<DiffTableFlag> diffTableFlags1 = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo);
-//
-//            System.out.println(" i  = "  + i + " size = " + diffTableFlags1.size() );
-//            diffTableFlags.addAll(diffTableFlags1);
-//        }
+        for (int i = 0; i < wordLines.size(); i++) {
+            TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(i));
+            TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(i));
+            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+
+            List<DiffTableFlag> diffTableFlags1 = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo);
+
+            System.out.println(" i  = "  + i + " size = " + diffTableFlags1.size() );
+            diffTableFlags.addAll(diffTableFlags1);
+        }
         /**
          *
          *  0-1
