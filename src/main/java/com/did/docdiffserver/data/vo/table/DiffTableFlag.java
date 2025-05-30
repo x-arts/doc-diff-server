@@ -18,6 +18,8 @@ public class DiffTableFlag {
 
     private String modifiedText;
 
+    private String tableId;;
+
     private Integer flagIndex;
 
     private List<DiffItemDetailVO> diffDetail;

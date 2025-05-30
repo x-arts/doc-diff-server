@@ -40,12 +40,17 @@ public class TableCompareTest extends TestBase {
         pdfLines =  pdfLines.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());
 
 
+        int startIndex = 4000;
+
+        List<TableInfo> wordTableInfos =  TableInfo.buildTableInfoList(wordLines);
+        List<TableInfo> pdfTableInfos =  TableInfo.buildTableInfoList(pdfLines);
+
         for (int i = 0; i < wordLines.size(); i++) {
-            TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(i));
-            TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(i));
+            TableInfo wordTableInfo = wordTableInfos.get(i);
+            TableInfo pdfTableInfo = pdfTableInfos.get(i);
             MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
 
-            List<DiffTableFlag> diffTableFlags1 = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo);
+            List<DiffTableFlag> diffTableFlags1 = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo, startIndex + i);
 
             System.out.println(" i  = "  + i + " size = " + diffTableFlags1.size() );
             diffTableFlags.addAll(diffTableFlags1);
@@ -67,9 +72,9 @@ public class TableCompareTest extends TestBase {
 //        MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
 //        diffTableFlags.addAll(tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo));
 
-        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(0));
-
-        System.out.println(wordTableInfo.toHtmlTable());
+//        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(0));
+//
+//        System.out.println(wordTableInfo.toHtmlTable());
 
 
 //        System.out.println(diffTableFlags.size());

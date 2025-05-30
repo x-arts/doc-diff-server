@@ -29,4 +29,9 @@ public class Cell {
         return  cellText;
     }
 
+    public void flagCell(int flagIndex) {
+        String flagIndexStr = flagIndex + "0";
+        this.text = String.format("@%s@%s@%s@", flagIndexStr, this.text, flagIndexStr);
+    }
+
 }
