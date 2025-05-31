@@ -46,6 +46,7 @@ public class DocDiffService {
         log.info("docDiffTask textDiff  finish ");
 
 
+        // 表格比对
         List<DiffTableFlag> tableDiffs = new ArrayList<>();
 
         List<TableInfo> wordTableInfos =  wordProcess.getTableInfoList();
@@ -62,8 +63,11 @@ public class DocDiffService {
 
         log.info("docDiffTask tableDiff  finish ");
 
+        // 生成差异补丁+ 生成统一的diff文本(打上 @ 标记)
         DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), tableDiffs);
-        return TaskCompareResultVO.createResult(wordProcess, pdfProcess,diffResultItemVo);
+        TaskCompareResultVO result = TaskCompareResultVO.createResult(wordProcess, pdfProcess, diffResultItemVo);
+        result.buildDetail();
+        return result;
     }
 
 
