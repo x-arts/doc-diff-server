@@ -102,14 +102,12 @@ public class DocDiffService {
             tableDiffs.addAll(diffTableFlags);
         }
 
-        log.info("docDiffTask tableDiff  finish ");
+        log.info("docDiff tableDiff  finish ");
 
         DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), tableDiffs);
 
-
         TaskCompareResultVO result = TaskCompareResultVO.createResult(wordProcess, pdfProcess, diffResultItemVo);
         result.buildDetail();
-
 
         return result;
     }

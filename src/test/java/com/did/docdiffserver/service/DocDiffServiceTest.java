@@ -96,7 +96,7 @@ public class DocDiffServiceTest extends TestBase {
         result.setStdFileId(fileId);
         result.setCmpFileId(pdfMdId);
 
-        ContractDiffTaskDetail detail = diffTaskDetailRepository.findByRelTaskId(7L);
+        ContractDiffTaskDetail detail = diffTaskDetailRepository.findByRelTaskId(6L);
         detail.setCompareResult(JSONObject.toJSONString(result));
         diffTaskDetailRepository.updateById(detail);
 

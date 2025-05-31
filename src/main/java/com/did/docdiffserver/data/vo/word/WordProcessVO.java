@@ -183,16 +183,18 @@ public class WordProcessVO {
 
 
     private void buildCompareMarkdownList() {
-        int index = 0;
-        for (String markdownLine : this.markDownList) {
+        int tableId = 0;
+
+        for (int i = 0; i < markDownList.size(); i++) {
+            String markdownLine = markDownList.get(i);
             String cleanLine = markdownLine.trim();
 
             // 表格数据优先添加到 list
             if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareMarkdownList.add(Constant.HTML_LINE);
                 this.compareTableList.add(cleanLine);
-                int tableId = index+1;
-                tableLineIndex.put("table"+ tableId, index);
+                tableId++;
+                tableLineIndex.put("table"+ tableId, i);
                 continue;
             }
 
@@ -211,7 +213,7 @@ public class WordProcessVO {
             }
 
             this.compareMarkdownList.add(cleanLine);
-            index++;
+
         }
     }
 

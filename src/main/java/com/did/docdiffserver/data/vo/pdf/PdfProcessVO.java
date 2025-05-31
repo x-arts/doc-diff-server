@@ -151,15 +151,16 @@ public class PdfProcessVO {
      *  所以，就直接跳过 标题， 表格， 空行
      */
     private void buildCompareMarkdownList() {
-        int index = 0;
-        for (String markdownLine : this.mardDownList) {
+        int tableId = 0;
+        for (int i = 0; i < mardDownList.size(); i++) {
+            String markdownLine = mardDownList.get(i);
             String cleanLine = markdownLine.trim();
 
             // 跳过表格
             if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareTableList.add(cleanLine);
-                int tableId = index+1;
-                tableLineIndex.put("table"+ tableId, index);
+                tableId++;
+                tableLineIndex.put("table"+ tableId, i);
                 continue;
             }
 
@@ -180,7 +181,6 @@ public class PdfProcessVO {
             cleanLine  = StrTools.removeSpaceInLine(cleanLine);
 
             this.compareMarkdownList.add(cleanLine);
-            index++;
         }
     }
 
