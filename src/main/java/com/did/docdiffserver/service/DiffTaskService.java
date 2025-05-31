@@ -143,33 +143,8 @@ public class DiffTaskService {
 
                 TaskCompareResultVO diffResult = docDiffService.docDiffTask(wordProcess, pdfProcess);
                 log.info("Diff  diffResult = {} ", JSONObject.toJSONString(diffResult));
-
-                //  需要把打了 @标签 md 写入到两外一个文件里，用来回显用
-
-                String baseDir = storeConfig.getShowMarkdownBasePath();
-                List<String> wordMarkDownList = wordProcess.getMarkDownList();
-                String fileId =  UUID.randomUUID().toString();
-                String wordMdFilePath = baseDir + fileId +".md";
-                FileStore localFile = FileStore.createLocalFile(fileId, wordMdFilePath, "MD");
-                FileUtil.writeLines(wordMarkDownList, wordMdFilePath, StandardCharsets.UTF_8);
-                fileStoreRepository.save(localFile);
-
-
-                List<String> pdfMarkDownList = pdfProcess.getMardDownList();
-                String pdfMdId =  UUID.randomUUID().toString();
-                String pdfMdFilePath = baseDir + pdfMdId +".md";
-                FileStore pdfLocalFile = FileStore.createLocalFile(pdfMdId, pdfMdFilePath, "MD");
-                FileUtil.writeLines(pdfMarkDownList, pdfMdFilePath, StandardCharsets.UTF_8);
-                fileStoreRepository.save(pdfLocalFile);
-
-
-                diffResult.setStdFileId(fileId);
-                diffResult.setCmpFileId(pdfMdId);
-
-
-                detail.setCompareResult(JSONObject.toJSONString(diffResult));
-                diffTaskDetailRepository.updateById(detail);
-
+                // 生成打了 @ 标签的 markdown 文件
+                createShowMarkdownFile(wordProcess, pdfProcess, diffResult, detail);
 
                 diffTask.setProcessStatus(TaskProcessStatus.PROCESS_SUCCESS.code);
                 diffTaskRepository.updateById(diffTask);
@@ -182,6 +157,42 @@ public class DiffTaskService {
 
         diffTask.setProcessStatus(PROCESSING.code);
         return diffTask;
+    }
+
+
+    /**
+     * 生成打了 @ 标签的 markdown 文件
+     * @param wordProcess
+     * @param pdfProcess
+     * @param diffResult
+     * @param detail
+     */
+    public void createShowMarkdownFile(WordProcessVO wordProcess, PdfProcessVO pdfProcess, TaskCompareResultVO diffResult, ContractDiffTaskDetail detail) {
+        //  需要把打了 @标签 md 写入到两外一个文件里，用来回显用
+
+        String baseDir = storeConfig.getShowMarkdownBasePath();
+        List<String> wordMarkDownList = wordProcess.getMarkDownList();
+        String fileId =  UUID.randomUUID().toString();
+        String wordMdFilePath = baseDir + fileId +".md";
+        FileStore localFile = FileStore.createLocalFile(fileId, wordMdFilePath, "MD");
+        FileUtil.writeLines(wordMarkDownList, wordMdFilePath, StandardCharsets.UTF_8);
+        fileStoreRepository.save(localFile);
+
+
+        List<String> pdfMarkDownList = pdfProcess.getMardDownList();
+        String pdfMdId =  UUID.randomUUID().toString();
+        String pdfMdFilePath = baseDir + pdfMdId +".md";
+        FileStore pdfLocalFile = FileStore.createLocalFile(pdfMdId, pdfMdFilePath, "MD");
+        FileUtil.writeLines(pdfMarkDownList, pdfMdFilePath, StandardCharsets.UTF_8);
+        fileStoreRepository.save(pdfLocalFile);
+
+
+        diffResult.setStdFileId(fileId);
+        diffResult.setCmpFileId(pdfMdId);
+
+
+        detail.setCompareResult(JSONObject.toJSONString(diffResult));
+        diffTaskDetailRepository.updateById(detail);
     }
 
 }

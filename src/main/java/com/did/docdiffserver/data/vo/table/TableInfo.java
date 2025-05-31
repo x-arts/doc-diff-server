@@ -129,7 +129,7 @@ public class TableInfo {
 
     public String toHtmlTable() {
         StringBuilder html = new StringBuilder();
-        html.append("<table>");
+        html.append("<table id=\"").append(tableId).append("\">");
 
         // 添加表头行
         if (tableName != null && !tableName.trim().isEmpty()) {

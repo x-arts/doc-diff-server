@@ -2,7 +2,6 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson2.JSONObject;
 import com.did.docdiffserver.TestBase;
 import com.did.docdiffserver.data.vo.table.DiffTableFlag;
 import com.did.docdiffserver.data.vo.table.TableInfo;
@@ -67,19 +66,15 @@ public class TableCompareTest extends TestBase {
          *
          */
 
-//        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(2));
-//        TableInfo pdfTableInfo = TableInfo.getTableInfo(pdfLines.get(2));
-//        MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
-//        diffTableFlags.addAll(tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo));
+        for (TableInfo wordTableInfo : wordTableInfos) {
+            System.out.println(wordTableInfo.toHtmlTable());
+        }
 
-//        TableInfo wordTableInfo = TableInfo.getTableInfo(wordLines.get(0));
-//
-//        System.out.println(wordTableInfo.toHtmlTable());
+        for (TableInfo pdfTable : pdfTableInfos) {
+            System.out.println(pdfTable.toHtmlTable());
+        }
 
 
-//        System.out.println(diffTableFlags.size());
-//
-//        System.out.println(JSONObject.toJSONString(diffTableFlags));
     }
 
 

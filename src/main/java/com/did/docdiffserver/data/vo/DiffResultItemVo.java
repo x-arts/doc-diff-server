@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo;
 
+import com.did.docdiffserver.data.vo.table.DiffTableFlag;
 import com.did.docdiffserver.data.vo.table.DiffTableItemVO;
 import lombok.Data;
 
@@ -10,11 +11,11 @@ public class DiffResultItemVo {
 
     private List<DiffTextItemVO> diffItemList;
 
-    private List<DiffTableItemVO> diffTableItemList;
+    private List<DiffTableFlag> diffTableItemList;
 
 
 
-    public static DiffResultItemVo of(List<DiffTextItemVO> diffItemList, List<DiffTableItemVO> tableItemList) {
+    public static DiffResultItemVo of(List<DiffTextItemVO> diffItemList, List<DiffTableFlag> tableItemList) {
         DiffResultItemVo diffResultItemVo = new DiffResultItemVo();
         diffResultItemVo.setDiffItemList(diffItemList);
         diffResultItemVo.diffTableItemList = tableItemList;
@@ -28,7 +29,7 @@ public class DiffResultItemVo {
             diffTextItemVO.buildDiffDetail();
         }
 
-        for (DiffTableItemVO diffTableItemVO : diffTableItemList) {
+        for (DiffTableFlag diffTableItemVO : diffTableItemList) {
             diffTableItemVO.buildDiffDetail();
         }
     }
