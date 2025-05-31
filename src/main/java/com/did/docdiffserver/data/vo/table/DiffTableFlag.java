@@ -1,6 +1,7 @@
 package com.did.docdiffserver.data.vo.table;
 
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.vo.DiffItem;
 import com.did.docdiffserver.data.vo.DiffItemDetailVO;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Data
-public class DiffTableFlag {
+public class DiffTableFlag implements DiffItem {
 
     private String originalText;
 

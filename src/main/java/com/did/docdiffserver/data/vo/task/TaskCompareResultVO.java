@@ -1,9 +1,11 @@
 package com.did.docdiffserver.data.vo.task;
 
 import com.alibaba.fastjson2.annotation.JSONField;
+import com.did.docdiffserver.data.vo.DiffItem;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.DiffTextItemVO;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.table.DiffTableFlag;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,7 +22,7 @@ public class TaskCompareResultVO {
 
     private String cmpFileContent;
 
-    private Map<String, DiffTextItemVO> detail;
+    private Map<String, DiffItem> detail;
 
     private String stdFileId;
 
@@ -91,6 +93,11 @@ public class TaskCompareResultVO {
         for (TableInfo pdfTable : pdfTables) {
             int tableLine = pdfTableLineMap.get(pdfTable.getTableId());
             pdfMdList.set(tableLine, pdfTable.toHtmlTable());
+        }
+
+
+        for (DiffTableFlag diffTableFlag : diffResultItem.getDiffTableItemList()) {
+            this.detail.put(String.valueOf(diffTableFlag.getFlagIndex()), diffTableFlag);
         }
 
     }
