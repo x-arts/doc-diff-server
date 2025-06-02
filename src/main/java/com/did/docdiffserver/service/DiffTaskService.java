@@ -153,6 +153,8 @@ public class DiffTaskService {
                 diffTask.setProcessStatus(TaskProcessStatus.PROCESS_FAIL.code);
                 diffTaskRepository.updateById(diffTask);
             }
+
+            log.info("Diff task {} processed successfully", diffTask.getId());
         });
 
         diffTask.setProcessStatus(PROCESSING.code);
