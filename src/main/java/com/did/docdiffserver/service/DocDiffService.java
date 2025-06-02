@@ -2,13 +2,14 @@ package com.did.docdiffserver.service;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import com.did.docdiffserver.data.condition.TableCompareCondition;
+import com.did.docdiffserver.config.StoreConfig;
 import com.did.docdiffserver.data.vo.*;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.table.DiffTableFlag;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
-import com.did.docdiffserver.config.StoreConfig;
-import com.did.docdiffserver.service.table.TableCompare;
+import com.did.docdiffserver.utils.MergeTableUtils;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
@@ -35,19 +36,38 @@ public class DocDiffService {
     private StoreConfig storeConfig;
 
     @Resource
-    private TableCompare  tableCompare;
+    private TableContentCompareService tableContentCompareService;
 
 
 
-    public DiffResultItemVo docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
+    public TaskCompareResultVO docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
         // 文档比对
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-        log.info("docDiff findDiff  finish ");
+        log.info("docDiffTask textDiff  finish ");
 
-//        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
-//        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
 
-        return DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+        // 表格比对
+        List<DiffTableFlag> tableDiffs = new ArrayList<>();
+
+        List<TableInfo> wordTableInfos =  wordProcess.getTableInfoList();
+        List<TableInfo> pdfTableInfos =  pdfProcess.getTableInfoList();
+
+        int startIndex = 4000;
+        for (int i = 0; i < wordTableInfos.size(); i++) {
+            TableInfo wordTableInfo = wordTableInfos.get(i);
+            TableInfo pdfTableInfo = pdfTableInfos.get(i);
+            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+            List<DiffTableFlag> diffTableFlags = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo, startIndex + i);
+            tableDiffs.addAll(diffTableFlags);
+        }
+
+        log.info("docDiffTask tableDiff  finish ");
+
+        // 生成差异补丁+ 生成统一的diff文本(打上 @ 标记)
+        DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), tableDiffs);
+        TaskCompareResultVO result = TaskCompareResultVO.createResult(wordProcess, pdfProcess, diffResultItemVo);
+        result.buildDetail();
+        return result;
     }
 
 
@@ -66,18 +86,28 @@ public class DocDiffService {
         // 文档比对
         DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
-//        log.info("docDiff  diff size = {}", diff.getOriginalList().size());
 
-//        TableCompareCondition tableCompareCondition = TableCompareCondition.of(wordProcess, pdfProcess);
 
-//        List<DiffTableItemVO> diffTableItems = tableCompare.tableInfoCompare(tableCompareCondition);
+        List<DiffTableFlag> tableDiffs = new ArrayList<>();
 
-        DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), Collections.emptyList());
+        List<TableInfo> wordTableInfos =  wordProcess.getTableInfoList();
+        List<TableInfo> pdfTableInfos =  pdfProcess.getTableInfoList();
 
+        int startIndex = 4000;
+        for (int i = 0; i < wordTableInfos.size(); i++) {
+            TableInfo wordTableInfo = wordTableInfos.get(i);
+            TableInfo pdfTableInfo = pdfTableInfos.get(i);
+            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+            List<DiffTableFlag> diffTableFlags = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo, startIndex + i);
+            tableDiffs.addAll(diffTableFlags);
+        }
+
+        log.info("docDiff tableDiff  finish ");
+
+        DiffResultItemVo diffResultItemVo = DiffResultItemVo.of(diff.getDiffTextList(), tableDiffs);
 
         TaskCompareResultVO result = TaskCompareResultVO.createResult(wordProcess, pdfProcess, diffResultItemVo);
         result.buildDetail();
-
 
         return result;
     }

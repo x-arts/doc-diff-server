@@ -8,10 +8,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Slf4j
@@ -76,6 +73,13 @@ public class PdfProcessVO {
 
 
     private int cutIndex;
+
+
+    /**
+     * 表格行索引
+     * 用来标记表格的行号
+     */
+    private Map<String, Integer> tableLineIndex = new HashMap<>();
 
 
     /**
@@ -147,12 +151,16 @@ public class PdfProcessVO {
      *  所以，就直接跳过 标题， 表格， 空行
      */
     private void buildCompareMarkdownList() {
-        for (String markdownLine : this.mardDownList) {
+        int tableId = 0;
+        for (int i = 0; i < mardDownList.size(); i++) {
+            String markdownLine = mardDownList.get(i);
             String cleanLine = markdownLine.trim();
 
             // 跳过表格
             if (StrTools.isHtmlTable(cleanLine)) {
                 this.compareTableList.add(cleanLine);
+                tableId++;
+                tableLineIndex.put("table"+ tableId, i);
                 continue;
             }
 

@@ -11,6 +11,7 @@ import static cn.hutool.core.date.DatePattern.NORM_DATETIME_MINUTE_PATTERN;
 public class AddDiffTaskVo implements BaseVO {
 
     private String taskId;
+    private String id;
     private String taskName;
     private String status;
     private String createTime;
@@ -18,7 +19,8 @@ public class AddDiffTaskVo implements BaseVO {
 
     public static AddDiffTaskVo of(ContractDiffTask task) {
         AddDiffTaskVo vo = new AddDiffTaskVo();
-        vo.setTaskId(task.getId().toString());
+        vo.setId(String.valueOf(task.getId()));
+        vo.setTaskId(task.getTaskId());
         vo.setTaskName(task.getTaskName());
         vo.setStatus(task.getProcessStatus());
         vo.setCreateTime(DateUtil.format(task.getCreateTime(), NORM_DATETIME_MINUTE_PATTERN));

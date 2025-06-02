@@ -54,9 +54,6 @@ public class MergeTableUtils {
                 cell.setText(cell.getText() + branchCell.getText());
             }
         }
-
-        System.out.println(JSONObject.toJSONString(row));
-
     }
 
 

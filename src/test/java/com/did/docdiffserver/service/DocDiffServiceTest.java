@@ -111,7 +111,8 @@ public class DocDiffServiceTest extends TestBase {
 
     @Test
     public void pdfFormatTest() {
-        String path = "/Users/xuewenke/doc-diff-server/process/markdown/b2b4a8f7-42b1-49f7-adc6-68d159573100/auto/b2b4a8f7-42b1-49f7-adc6-68d159573100.md";
+//        String path = "/Users/xuewenke/doc-diff-server/process/markdown/b2b4a8f7-42b1-49f7-adc6-68d159573100/auto/b2b4a8f7-42b1-49f7-adc6-68d159573100.md";
+        String path = "/Users/xuewenke/temp-file/doc/ocrmypdf/1-scan/auto/1-scan.md";
         String wordPath = localTempFilePath + "compare/table/word.md";
         List<String> wordMdLine = FileUtil.readLines(wordPath, StandardCharsets.UTF_8);
         wordMdLine =  wordMdLine.stream().filter(StrUtil::isNotBlank).collect(Collectors.toList());

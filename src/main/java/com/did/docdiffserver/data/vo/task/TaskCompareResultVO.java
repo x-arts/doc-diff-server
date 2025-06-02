@@ -1,9 +1,12 @@
 package com.did.docdiffserver.data.vo.task;
 
 import com.alibaba.fastjson2.annotation.JSONField;
+import com.did.docdiffserver.data.vo.DiffItem;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
 import com.did.docdiffserver.data.vo.DiffTextItemVO;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
+import com.did.docdiffserver.data.vo.table.DiffTableFlag;
+import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -19,11 +22,9 @@ public class TaskCompareResultVO {
 
     private String cmpFileContent;
 
-    private Map<String, DiffTextItemVO> detail;
-
+    private Map<String, DiffItem> detail;
 
     private String stdFileId;
-
 
     private String cmpFileId;
 
@@ -77,6 +78,26 @@ public class TaskCompareResultVO {
 
             this.detail.put(insertIndex, diffTextItemVO);
             index++;
+        }
+
+        //  表格的差异处理
+        List<TableInfo> wordTables = wordProcess.getTableInfoList();
+        Map<String, Integer> wordTableLineMap = wordProcess.getTableLineIndex();
+        for (TableInfo wordTable : wordTables) {
+            int tableLine = wordTableLineMap.get(wordTable.getTableId());
+            wordMdList.set(tableLine, wordTable.toHtmlTable());
+        }
+
+        List<TableInfo> pdfTables = pdfProcess.getTableInfoList();
+        Map<String, Integer> pdfTableLineMap = pdfProcess.getTableLineIndex();
+        for (TableInfo pdfTable : pdfTables) {
+            int tableLine = pdfTableLineMap.get(pdfTable.getTableId());
+            pdfMdList.set(tableLine, pdfTable.toHtmlTable());
+        }
+
+
+        for (DiffTableFlag diffTableFlag : diffResultItem.getDiffTableItemList()) {
+            this.detail.put(String.valueOf(diffTableFlag.getFlagIndex()), diffTableFlag);
         }
 
     }
