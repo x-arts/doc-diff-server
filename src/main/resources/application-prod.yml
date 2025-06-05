@@ -13,12 +13,15 @@ logging:
   level:
     root: info
   file:
-    path: ~/data/logs/doc-diff-server
+    path: /Users/xuewenke/logs/doc-diff-server
+
 
 spring:
   config:
     location: file:./config/
     additional-location: file:./config/
+  application:
+    name: doc-diff-server
   servlet:
     multipart:
       max-file-size: 100MB
@@ -82,8 +85,6 @@ spring:
         login-username: admin
         # 登录密码
         login-password: admin
-  application:
-    name: doc-diff-server
 
 
 # MyBatis-Plus配置
