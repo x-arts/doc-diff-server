@@ -13,7 +13,7 @@ logging:
   level:
     root: info
   file:
-    path: /Users/xuewenke/logs/doc-diff-server
+    path: /root/autodl-tmp/logs/doc-diff-server
 
 
 spring:
@@ -112,7 +112,6 @@ mybatis-plus:
       logic-not-delete-value: 0    # 逻辑未删除值(默认为 0)
 
 local:
-  file-upload-path: /Users/xuewenke/temp-file/doc-diff-server/upload/
-  script: /Users/xuewenke/doc-diff-server/script/
-  temp: /Users/xuewenke/doc-diff-server/temp/
-  markdown: /Users/xuewenke/doc-diff-server/process/markdown/
+  file-upload-path: /root/autodl-tmp/doc-diff-server/upload/
+  script: /root/autodl-tmp/doc-diff-server/script/
+  markdown: /root/autodl-tmp/doc-diff-server/process/markdown/
