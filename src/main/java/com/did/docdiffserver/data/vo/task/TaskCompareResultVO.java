@@ -67,6 +67,7 @@ public class TaskCompareResultVO {
             List<Integer> wordLines = diffTextItemVO.getOriginalLineNumbers();
             for (int wordLine : wordLines) {
                 String line = wordMdList.get(wordLine);
+                log.info("word@line index: {}, line: {}", wordLine, line);
                 String tagLine = String.format("@%s@%s@%s@", insertIndex, line, insertIndex);
                 wordMdList.set(wordLine, tagLine);
             }
