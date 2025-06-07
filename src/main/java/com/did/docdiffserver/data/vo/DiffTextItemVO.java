@@ -13,6 +13,10 @@ import java.util.List;
 @Data
 public class DiffTextItemVO implements DiffItem{
 
+    private String tableId;
+
+    private Integer flagIndex;
+
     private String originalText;
 
     private String modifiedText;

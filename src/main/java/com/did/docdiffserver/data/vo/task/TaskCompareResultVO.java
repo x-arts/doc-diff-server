@@ -1,5 +1,6 @@
 package com.did.docdiffserver.data.vo.task;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson2.annotation.JSONField;
 import com.did.docdiffserver.data.vo.DiffItem;
 import com.did.docdiffserver.data.vo.DiffResultItemVo;
@@ -22,7 +23,7 @@ public class TaskCompareResultVO {
 
     private String cmpFileContent;
 
-    private Map<String, DiffItem> detail;
+    private Map<String, DiffTextItemVO> detail;
 
     private String stdFileId;
 
@@ -97,7 +98,8 @@ public class TaskCompareResultVO {
 
 
         for (DiffTableFlag diffTableFlag : diffResultItem.getDiffTableItemList()) {
-            this.detail.put(String.valueOf(diffTableFlag.getFlagIndex()), diffTableFlag);
+            DiffTextItemVO diffTextItemVO = BeanUtil.copyProperties(diffTableFlag, DiffTextItemVO.class);
+            this.detail.put(diffTableFlag.getFlagIndex()+ "0", diffTextItemVO);
         }
 
     }
