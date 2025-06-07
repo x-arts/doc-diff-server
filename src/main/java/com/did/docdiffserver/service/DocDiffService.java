@@ -49,7 +49,7 @@ public class DocDiffService {
         // 表格比对
         List<DiffTableFlag> tableDiffs = new ArrayList<>();
 
-        tableDiffs = tableDiff(wordProcess, pdfProcess);
+//        tableDiffs = tableDiff(wordProcess, pdfProcess);
 
         log.info("docDiffTask tableDiff  finish ");
 
