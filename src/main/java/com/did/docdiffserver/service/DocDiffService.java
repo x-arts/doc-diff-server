@@ -51,7 +51,7 @@ public class DocDiffService {
 
     public TaskCompareResultVO docDiffTask(WordProcessVO wordProcess, PdfProcessVO pdfProcess) {
         // 文档比对
-        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        DiffResultVO diff = wordMasterDiffService.findDiff(wordProcess, pdfProcess);
         log.info("docDiffTask textDiff  finish ");
 
 
