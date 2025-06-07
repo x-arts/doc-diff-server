@@ -1,26 +1,32 @@
 package com.did.docdiffserver.service;
 
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.did.docdiffserver.config.StoreConfig;
-import com.did.docdiffserver.data.vo.*;
+import com.did.docdiffserver.data.vo.CompareData;
+import com.did.docdiffserver.data.vo.DiffResultItemVo;
+import com.did.docdiffserver.data.vo.DiffResultVO;
+import com.did.docdiffserver.data.vo.NextTextMatchVO;
 import com.did.docdiffserver.data.vo.pdf.PdfProcessVO;
 import com.did.docdiffserver.data.vo.table.DiffTableFlag;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.task.TaskCompareResultVO;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
+import com.did.docdiffserver.service.diff.WordMasterDiffService;
+import com.did.docdiffserver.utils.DocDiffUtils;
 import com.did.docdiffserver.utils.MergeTableUtils;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.UnifiedDiffUtils;
 import com.github.difflib.patch.Patch;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.text.similarity.JaroWinklerSimilarity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import toolgood.words.StringSearch;
 
 import javax.annotation.Resource;
 import java.io.StringWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -37,6 +43,9 @@ public class DocDiffService {
 
     @Resource
     private TableContentCompareService tableContentCompareService;
+
+    @Autowired
+    private WordMasterDiffService wordMasterDiffService;
 
 
 
@@ -92,7 +101,8 @@ public class DocDiffService {
         PdfProcessVO pdfProcess = pdfService.process(storeConfig.getPdfMarkDownFilePath(pdfFileId), pdfFileId);
         log.info("docDiff pdfProcess  finish ");
         // 文档比对
-        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+//        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
+        DiffResultVO diff = wordMasterDiffService.findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
 
 
@@ -137,7 +147,7 @@ public class DocDiffService {
         while (!nextCompareText.getCompareText().equals(WordProcessVO.END_LINE)) {
             if (hadMatch == null) {
                 // 第一次为 null 需要自己组装
-                String matchText = findMatchText(dict, currentCompareText.getCompareText());
+                String matchText = DocDiffUtils.findMatchText(dict, currentCompareText.getCompareText());
                 hadMatch = NextTextMatchVO.create(currentCompareText, matchText);
             }
 
@@ -157,7 +167,7 @@ public class DocDiffService {
         String dict = pdfProcess.getDynamicDict();
 
         log.info("oneLineFindDiff findNext = {}", findNext);
-        String matchTextNext = findMatchText(dict, findNext.getCompareText());
+        String matchTextNext = DocDiffUtils.findMatchText(dict, findNext.getCompareText());
         log.info("oneLineFindDiff matchTextNext = {}", matchTextNext);
 
         if (hadMatch.isNotSame()) {
@@ -195,50 +205,7 @@ public class DocDiffService {
     }
 
 
-    public String findMatchText(String dict, String findKey) {
-        List<String> findText = preciseSearch(dict, findKey);
 
-        if (CollectionUtil.isNotEmpty(findText)) {
-            return findText.get(0);
-        }
-
-        // 相似度匹配
-        List<SimilarSearchResult> searchResults = similarSearch(dict, findKey);
-        Optional<SimilarSearchResult> max = searchResults.stream().max(Comparator.comparingDouble(SimilarSearchResult::getScore));
-        if (max.isPresent()) {
-            return max.get().getSimilarStr();
-        }
-        return "";
-    }
-
-
-
-
-
-    private  List<SimilarSearchResult>  similarSearch(String text, String key) {
-        JaroWinklerSimilarity jw = new JaroWinklerSimilarity();
-        double threshold = 0.85;  // 相似度阈值
-
-        List<SimilarSearchResult> searchResults = new ArrayList<>();
-        int lenB = key.length();
-        // 遍历所有长度与 B 相同的滑动窗口子串
-        for (int i = 0; i + lenB <= text.length(); i++) {
-            String sub = text.substring(i, i + lenB);
-            Double score = jw.apply(sub, key);
-            if (score != null && score > threshold) {
-                searchResults.add(new SimilarSearchResult(sub, score));
-            }
-        }
-        return searchResults;
-    }
-
-
-
-    private List<String> preciseSearch(String text, String key) {
-        StringSearch search = new StringSearch();
-        search.SetKeywords(CollectionUtil.newArrayList(key));
-        return search.FindAll(text);
-    }
 
 
 
