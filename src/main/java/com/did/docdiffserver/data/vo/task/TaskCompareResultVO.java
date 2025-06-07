@@ -10,11 +10,13 @@ import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.data.vo.word.WordProcessVO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Data
 public class TaskCompareResultVO {
 
@@ -72,6 +74,7 @@ public class TaskCompareResultVO {
             List<Integer> pdfLines = diffTextItemVO.getModifyLineNumbers();
             for (int pdfLine : pdfLines) {
                 String line = pdfMdList.get(pdfLine);
+                log.info("pdf@line index: {}, line: {}", pdfLine, line);
                 String tagLine = String.format("@%s@%s@%s@", insertIndex, line, insertIndex);
                 pdfMdList.set(pdfLine,tagLine);
             }

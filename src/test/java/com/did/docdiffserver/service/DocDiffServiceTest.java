@@ -76,6 +76,9 @@ public class DocDiffServiceTest extends TestBase {
         String pdfFileId = "b2b4a8f7-42b1-49f7-adc6-68d159573100";
         TaskCompareResultVO result = docDiffService.docDiff(wordFileId, pdfFileId);
 
+
+        System.out.println("size " + result.getDiffResultItem().getDiffItemList().size());
+
         String baseDir = storeConfig.getShowMarkdownBasePath();
         List<String> wordMarkDownList = result.getWordProcess().getMarkDownList();
         String fileId =  UUID.randomUUID().toString();
