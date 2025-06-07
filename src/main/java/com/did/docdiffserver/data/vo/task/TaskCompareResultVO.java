@@ -73,12 +73,44 @@ public class TaskCompareResultVO {
             }
 
             List<Integer> pdfLines = diffTextItemVO.getModifyLineNumbers();
-            for (int pdfLine : pdfLines) {
+//            for (int pdfLine : pdfLines) {
+//                String line = pdfMdList.get(pdfLine);
+//                log.info("pdf@line index: {}, line: {}", pdfLine, line);
+//                String tagLine = String.format("@%s@%s@%s@", insertIndex, line, insertIndex);
+//                pdfMdList.set(pdfLine,tagLine);
+//            }
+
+            String lastTwoStr = "";
+            if (pdfLines.size() > 1) {
+                Integer i = pdfLines.get(pdfLines.size() - 2);
+                lastTwoStr = pdfMdList.get(i).trim();
+            }
+
+            for (int i = 0; i < pdfLines.size()-1; i++) {
+                Integer pdfLine = pdfLines.get(i);
                 String line = pdfMdList.get(pdfLine);
                 log.info("pdf@line index: {}, line: {}", pdfLine, line);
                 String tagLine = String.format("@%s@%s@%s@", insertIndex, line, insertIndex);
                 pdfMdList.set(pdfLine,tagLine);
             }
+            if (pdfLines.size() > 1) {
+                String modifiedText = diffTextItemVO.getModifiedText();
+                String substring = lastTwoStr.substring(lastTwoStr.length() - 2);
+                int index1 = modifiedText.indexOf(substring);
+
+                String substring1 = modifiedText.substring(index1 + 2);
+
+                Integer i1 = pdfLines.get(pdfLines.size() - 1);
+                String tagLine = pdfMdList.get(i1);
+
+                tagLine = tagLine.replace(substring1,"@"+insertIndex+"@"+substring1+"@"+insertIndex+"@");
+                pdfMdList.set(i1,tagLine);
+
+            }
+
+
+
+
 
             this.detail.put(insertIndex, diffTextItemVO);
             index++;

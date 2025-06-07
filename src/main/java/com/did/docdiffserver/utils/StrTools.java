@@ -1,5 +1,10 @@
 package com.did.docdiffserver.utils;
 
+import cn.hutool.core.util.StrUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,7 +44,28 @@ public class StrTools {
     }
 
     public static void main(String[] args) {
-        System.out.println(StrTools.startsWithHtmlTag("</tr>"));
+
+
+
     }
+
+
+
+
+    public static List<Integer> findAllIndices(String A, String B) {
+        if (StrUtil.isBlank(A)) {
+            return Collections.emptyList();
+        }
+        List<Integer> indices = new ArrayList<>();
+        int index = A.indexOf(B); // 第一次查找
+
+        while (index != -1) {
+            indices.add(index);
+            index = A.indexOf(B, index + 1); // 从下一个位置继续查找
+        }
+
+        return indices;
+    }
+
 
 }

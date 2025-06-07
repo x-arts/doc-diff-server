@@ -7,6 +7,7 @@ import com.github.difflib.patch.Patch;
 import lombok.Data;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,9 +16,27 @@ public class DiffSimpleTest {
 
     @Test
     public void diffTest() {
-        String original = "质保期：自项目验收合格之日起36个月。";
-        String revised =  "质保期：自项目验收合格之日起3年。";
-        doDiff(original, revised);
+
+//        String matchText = "1）质保期内，乙方提供 $7 \\times 2 4$ 小时电话技术支持服务；2）";
+//
+//        List<String> list = new ArrayList<>();
+//        list.add("1）质保期内，乙方提供 $7 \\times 2 4$ 小时电话技术支持服务；");
+//        list.add("2）乙方提供的设备有缺陷或质量问题需调试、维修、更换的，或者在用户使用过程中非因用户原因而发生损坏需调试、维修、更换的，乙方应在收到通知后立即进行免费的维修或更换。  ");
+
+
+        String modifiedText = "1）质保期内，乙方提供 $7 \\times 2 4$ 小时电话技术支持服务；2）";
+
+        String lastTwoStr = "1）质保期内，乙方提供 $7 \\times 2 4$ 小时电话技术支持服务；";
+
+        String substring = lastTwoStr.substring(lastTwoStr.length() - 2);
+        System.out.println("substring = " + substring);
+        int index1 = modifiedText.indexOf(substring);
+
+        String substring1 = modifiedText.substring(index1+2);
+        System.out.println(substring1);
+
+
+
     }
 
 

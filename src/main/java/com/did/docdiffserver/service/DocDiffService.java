@@ -44,8 +44,8 @@ public class DocDiffService {
     @Resource
     private TableContentCompareService tableContentCompareService;
 
-    @Autowired
-    private WordMasterDiffService wordMasterDiffService;
+//    @Autowired
+//    private WordMasterDiffService wordMasterDiffService;
 
 
 
@@ -94,7 +94,7 @@ public class DocDiffService {
         log.info("docDiff pdfProcess  finish ");
         // 文档比对
 //        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
-        DiffResultVO diff = wordMasterDiffService.findDiff(wordProcess, pdfProcess);
+        DiffResultVO diff = findDiff(wordProcess, pdfProcess);
         log.info("docDiff findDiff  finish ");
 
 
