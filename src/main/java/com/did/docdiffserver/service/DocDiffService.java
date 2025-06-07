@@ -98,17 +98,17 @@ public class DocDiffService {
 
         List<DiffTableFlag> tableDiffs = new ArrayList<>();
 
-        List<TableInfo> wordTableInfos =  wordProcess.getTableInfoList();
-        List<TableInfo> pdfTableInfos =  pdfProcess.getTableInfoList();
-
-        int startIndex = 4000;
-        for (int i = 0; i < wordTableInfos.size(); i++) {
-            TableInfo wordTableInfo = wordTableInfos.get(i);
-            TableInfo pdfTableInfo = pdfTableInfos.get(i);
-            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
-            List<DiffTableFlag> diffTableFlags = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo, startIndex + i);
-            tableDiffs.addAll(diffTableFlags);
-        }
+//        List<TableInfo> wordTableInfos =  wordProcess.getTableInfoList();
+//        List<TableInfo> pdfTableInfos =  pdfProcess.getTableInfoList();
+//
+//        int startIndex = 4000;
+//        for (int i = 0; i < wordTableInfos.size(); i++) {
+//            TableInfo wordTableInfo = wordTableInfos.get(i);
+//            TableInfo pdfTableInfo = pdfTableInfos.get(i);
+//            MergeTableUtils.mergeTableInfoRow(pdfTableInfo);
+//            List<DiffTableFlag> diffTableFlags = tableContentCompareService.compareTableContent(wordTableInfo, pdfTableInfo, startIndex + i);
+//            tableDiffs.addAll(diffTableFlags);
+//        }
 
         log.info("docDiff tableDiff  finish ");
 

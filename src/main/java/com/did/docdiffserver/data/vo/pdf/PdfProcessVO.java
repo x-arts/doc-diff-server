@@ -2,6 +2,7 @@ package com.did.docdiffserver.data.vo.pdf;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.did.docdiffserver.data.base.Constant;
 import com.did.docdiffserver.data.vo.table.TableInfo;
 import com.did.docdiffserver.utils.StrTools;
 import lombok.Data;
@@ -64,6 +65,9 @@ public class PdfProcessVO {
      * 动态字典，不断缩小的字典。
      */
     private String dynamicDict;
+
+
+    private Map<String, List<Integer>> matchIndexMap = new HashMap<>();
 
 
 //    /**
@@ -161,18 +165,20 @@ public class PdfProcessVO {
                 this.compareTableList.add(cleanLine);
                 tableId++;
                 tableLineIndex.put("table"+ tableId, i);
+                this.compareMarkdownList.add(Constant.EMPTY_SPACE);
                 continue;
             }
 
 
             // 跳过空行
             if (StrUtil.isBlank(cleanLine)) {
-//                this.compareMarkdownList.add(Constant.EMPTY_LINE);
+                this.compareMarkdownList.add(Constant.EMPTY_SPACE);
                 continue;
             }
 
             //跳过标题
             if (markdownLine.startsWith("#")) {
+                this.compareMarkdownList.add(Constant.EMPTY_SPACE);
                 continue;
             }
 
@@ -215,14 +221,21 @@ public class PdfProcessVO {
         this.tableInfoList = TableInfo.buildTableInfoList(compareTableList);
     }
 
+
+
+
     public List<Integer> fetchMatchIndex(String matchText) {
+        log.info("fetchMatchIndex: matchText = {}", matchText);
         if (StrUtil.isBlank(matchText)) {
             log.warn("fetchMatchIndex: matchText is blank");
             return new ArrayList<>();
         }
 
-        int startIndex = compareDict.indexOf(matchText);
+        int index = fetchStartIndex(matchText);
+        int startIndex = compareDict.indexOf(matchText,index);
         int endIndex = startIndex + matchText.length() ;
+
+        recordMatchIndex(matchText, startIndex);
 
         Set<Integer> indexSet = new HashSet<>();
 
@@ -230,6 +243,36 @@ public class PdfProcessVO {
             indexSet.add(compareDictIndex.get(i));
         }
         return new ArrayList<>(indexSet);
+    }
+
+
+    private void recordMatchIndex(String matchText, int startIndex) {
+        log.info("recordMatchIndex: matchText = {}, startIndex = {}", matchText, startIndex);
+        List<Integer> indexList = matchIndexMap.get(matchText);
+        if (Objects.isNull(indexList)) {
+            indexList = new ArrayList<>();
+        }
+        indexList.add(startIndex);
+        matchIndexMap.put(matchText, indexList);
+    }
+
+
+    private int fetchStartIndex(String matchText) {
+        log.info("fetchStartIndex: matchText = {}", matchText);
+        List<Integer> indexList = matchIndexMap.get(matchText);
+        if (Objects.isNull(indexList)) {
+            return 0;
+        }
+        return indexList.get(indexList.size()-1) + 1;
+    }
+
+    public static int findNthIndexOf(String text, String target, int n) {
+        int index = -1;
+        while (n-- > 0) {
+            index = text.indexOf(target, index + 1);
+            if (index == -1) break; // 如果找不到更多子串，提前退出
+        }
+        return index;
     }
 
 

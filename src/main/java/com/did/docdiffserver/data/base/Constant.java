@@ -4,5 +4,7 @@ public class Constant {
 
     public static final String EMPTY_LINE = "[emptyBlock]";
 
+    public static final String EMPTY_SPACE = "";
+
     public static final String HTML_LINE = "[htmlBlock]";
 }
