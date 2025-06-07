@@ -20,7 +20,7 @@ public class TaskListVO {
 
     private String status;
 
-    private String createTime;
+    private String createdAt;
 
     private String standardFile;
 
@@ -36,7 +36,7 @@ public class TaskListVO {
         vo.setStatus(contractDiffTask.getProcessStatus());
         vo.setStandardFile("standardFile.docx");
         vo.setCompareFile("compareFile.pdf");
-        vo.setCreateTime(contractDiffTask.getCreateTime().toString());
+        vo.setCreatedAt(contractDiffTask.getCreateTime().toString());
         return vo;
     }
 
