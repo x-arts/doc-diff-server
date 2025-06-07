@@ -17,6 +17,9 @@ logging:
 
 
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   config:
     location: file:./config/
     additional-location: file:./config/
