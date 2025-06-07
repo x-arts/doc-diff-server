@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class TaskListVO {
 
 
+    private String key;
+
     private String taskName;
 
     private String taskId;
@@ -20,13 +22,20 @@ public class TaskListVO {
 
     private String createTime;
 
+    private String standardFile;
+
+    private String compareFile;
+
 
     public static TaskListVO of(ContractDiffTask contractDiffTask) {
         TaskListVO vo = new TaskListVO();
         vo.setTaskName(contractDiffTask.getTaskName());
         vo.setTaskId(contractDiffTask.getTaskId());
+        vo.setKey(contractDiffTask.getTaskId());
 //        vo.setDifScore(contractDiffTask.getDifScore());
         vo.setStatus(contractDiffTask.getProcessStatus());
+        vo.setStandardFile("standardFile.docx");
+        vo.setCompareFile("compareFile.pdf");
         vo.setCreateTime(contractDiffTask.getCreateTime().toString());
         return vo;
     }
